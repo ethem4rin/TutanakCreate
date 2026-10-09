@@ -224,17 +224,26 @@ python tools/sablon_olustur.py
 
 ## Vercel'de yayınlama
 
-Depo Vercel'e hazırdır:
+Depo, Vercel'in **Flask** ön ayarıyla sıfır yapılandırma çalışacak şekilde
+düzenlenmiştir. Vercel kökteki `app.py` dosyasında `app` adlı Flask örneğini
+bulur ve uygulamayı tek bir Vercel Function'a dönüştürür.
 
-| Dosya | İşlevi |
+| Dosya / klasör | İşlevi |
 |---|---|
-| `api/index.py` | Sunucusuz giriş noktası — kökteki `app.py`'yi içe aktarır |
-| `vercel.json` | Tüm istekleri bu işleve yönlendirir, şablon/statik dosyaları pakete ekler |
+| `app.py` | Flask giriş noktası — Vercel'in aradığı yer |
+| `public/` | CSS ve JS; Vercel bunları CDN'den sunar, işleve hiç uğramaz |
+| `vercel.json` | Şablon, veri ve çekirdek modülleri işlev paketine ekler |
 | `.vercelignore` | Örnek belgeler, mevzuat PDF'leri ve araçlar pakete girmez |
-| `requirements.txt` | Yalnızca Flask ve python-docx (PyMuPDF yalnızca araçlar için gerekir) |
+| `requirements.txt` | Yalnızca Flask ve python-docx (PyMuPDF sadece araçlar için) |
 
 Yayınlamak için Vercel'de **Add New → Project** deyip bu depoyu seçin.
-Framework olarak **Other** yeterli; build komutu gerekmez. Ortam değişkeni yok.
+Application Preset **Flask** olarak gelir, Root Directory `./` kalır;
+build komutu ve ortam değişkeni gerekmez. **Deploy**'a basmanız yeterli.
+
+> Statik dosyalar Flask'ın `static/` klasöründe değil `public/` altındadır:
+> Vercel, Flask uygulamalarında `app.static_folder` yerine `public/**`
+> kullanılmasını önerir. Flask yerelde de aynı adreslerden (`/css/app.css`)
+> sunacak şekilde yapılandırılmıştır, bu yüzden iki ortam da aynı çalışır.
 
 ### Sunucusuz ortamda neler değişir
 
@@ -262,8 +271,7 @@ Yüklenen tutanak sunucuda hiçbir zaman saklanmaz; bellekte çözümlenip atıl
 ## Klasör düzeni
 
 ```
-app.py                     Flask uygulaması ve API uçları
-api/index.py               Vercel sunucusuz giriş noktası
+app.py                     Flask uygulaması ve API uçları (Vercel giriş noktası)
 core/
   tutanak.py               Tutanak çözümleyici (künye + noksanlık adayları)
   belge.py                 Word bildirimi üreteci
@@ -278,7 +286,7 @@ mevzuat_pdf/               mevzuat.gov.tr'den indirilen resmî PDF'ler
 sablon/
   noksanlik_bildirimi_sablon.docx    Biçimi taşıyan Word şablonu
 ornek/                     Referans tutanak ve bildirim (depoya gönderilmez)
-static/ templates/         Arayüz (saf CSS + JS, derleme adımı yok)
+public/ templates/         Arayüz (saf CSS + JS, derleme adımı yok)
 tools/
   sablon_olustur.py        Şablonu örnek bildirimden üretir
   mevzuat_kur.py           data/mevzuat.json iskeletini sıfırdan kurar

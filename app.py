@@ -45,7 +45,10 @@ def _yazilabilir_mi(dizin: Path) -> bool:
 # bildirim bellekte üretilir ve kütüphane düzenlemesi kapatılır.
 YEREL = _yazilabilir_mi(CIKTI_DIZINI)
 
-app = Flask(__name__)
+# Statik dosyalar `public/` altındadır: Vercel bu klasörü CDN'den sunar, Flask
+# da yerelde aynı adreslerden (/css/app.css) verir. Böylece şablondaki
+# bağlantılar iki ortamda da aynı çalışır.
+app = Flask(__name__, static_folder="public", static_url_path="")
 app.config["MAX_CONTENT_LENGTH"] = 25 * 1024 * 1024  # 25 MB
 app.config["JSON_AS_ASCII"] = False
 

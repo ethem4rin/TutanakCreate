@@ -6,5 +6,6 @@ tools/
 .claude/
 README.md
 requirements-arac.txt
+calistir.bat
 __pycache__/
 *.pyc

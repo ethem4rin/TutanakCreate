@@ -1051,11 +1051,21 @@ function oneriyiUygula() {
 /* ====================================================================== */
 
 const ONERI_ANAHTARI = "mufettis-programi-oneriler-v1";
+let SUNUCU_ONERILER = null;
+
+async function onerileriSunucudanCek() {
+  try {
+    SUNUCU_ONERILER = await istek("/api/oneriler");
+  } catch {
+    SUNUCU_ONERILER = null;
+  }
+}
 
 const yeniOneriKimligi = () =>
   "o" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
 function onerileriOku() {
+  if (SUNUCU_ONERILER !== null) return SUNUCU_ONERILER;
   try {
     const ham = localStorage.getItem(ONERI_ANAHTARI);
     const liste = ham ? JSON.parse(ham) : [];
@@ -1066,6 +1076,15 @@ function onerileriOku() {
 }
 
 function onerileriYaz(liste) {
+  if (SUNUCU_ONERILER !== null) {
+    SUNUCU_ONERILER = liste;
+    fetch("/api/oneriler", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(liste)
+    }).catch(console.error);
+    return true;
+  }
   try {
     localStorage.setItem(ONERI_ANAHTARI, JSON.stringify(liste));
     return true;
@@ -1658,9 +1677,10 @@ async function ortamiOgren() {
   $("#salt-okunur-not").classList.remove("gizli");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   olaylariBagla();
   ortamiOgren();
+  await onerileriSunucudanCek();
   if (durumuYukle()) {
     $("#tutanak-sonuc").classList.remove("gizli");
     kunyeyiFormaYaz();

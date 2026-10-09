@@ -9,10 +9,14 @@ Ardından tarayıcıdan http://127.0.0.1:5000 adresini açın.
 from __future__ import annotations
 
 import io
+import os
 import re
 import traceback
 from datetime import datetime
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from flask import Flask, jsonify, render_template, request, send_file
 from werkzeug.exceptions import HTTPException, RequestEntityTooLarge
@@ -91,19 +95,45 @@ def ortam():
 
 
 def _yazma_izni():
-    """Salt okunur ortamda mevzuat kütüphanesini değiştiren uçları kapatır."""
-    if not YEREL:
-        raise IstekHatasi(
-            "Bu kurulumda mevzuat kütüphanesi salt okunurdur. Madde "
-            "düzenlemelerini kendi bilgisayarınızda yapıp depoya gönderin. "
-            "(Müfettiş önerileri tarayıcınızda saklanır, onları buradan "
-            "düzenleyebilirsiniz.)"
-        )
+    """Artık veritabanı (Supabase) olduğu için Vercel üzerinden de yazma yapılabilir."""
+    pass
 
 
 # --------------------------------------------------------------------------- #
 # 1. Aşama — Tutanağı yükle ve çözümle
 # --------------------------------------------------------------------------- #
+
+@app.route("/api/oneriler", methods=["GET", "POST"])
+def oneriler():
+    """Müfettiş önerilerini Supabase'den okur ve yazar."""
+    from core.mevzuat import SUPABASE_URL, get_supabase_headers
+    import requests
+    
+    if request.method == "GET":
+        if SUPABASE_URL:
+            try:
+                url = f"{SUPABASE_URL}/rest/v1/depo?id=eq.oneriler&select=veri"
+                resp = requests.get(url, headers=get_supabase_headers())
+                if resp.status_code == 200:
+                    data = resp.json()
+                    if data and len(data) > 0:
+                        return jsonify(data[0]["veri"])
+            except Exception:
+                pass
+        return jsonify([])
+        
+    elif request.method == "POST":
+        liste = request.get_json(silent=True) or []
+        if SUPABASE_URL:
+            try:
+                url = f"{SUPABASE_URL}/rest/v1/depo"
+                headers = get_supabase_headers()
+                headers["Prefer"] = "resolution=merge-duplicates, return=representation"
+                requests.post(url, headers=headers, json={"id": "oneriler", "veri": liste})
+            except Exception:
+                pass
+        return jsonify(liste)
+
 
 @app.post("/api/tutanak")
 def tutanak_yukle():

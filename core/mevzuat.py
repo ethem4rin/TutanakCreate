@@ -31,8 +31,11 @@ maddelerde ``True``'dur.
 from __future__ import annotations
 
 import json
+import os
 import re
 import unicodedata
+import requests
+import logging
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -50,7 +53,37 @@ class MevzuatHatasi(Exception):
 # Okuma / yazma
 # --------------------------------------------------------------------------- #
 
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
+
+def get_supabase_headers():
+    return {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
+
 def agac() -> Dict[str, Any]:
+    if SUPABASE_URL and SUPABASE_KEY:
+        try:
+            url = f"{SUPABASE_URL}/rest/v1/depo?id=eq.mevzuat&select=veri"
+            resp = requests.get(url, headers=get_supabase_headers())
+            if resp.status_code == 200:
+                data = resp.json()
+                if data and len(data) > 0:
+                    return data[0]["veri"]
+                else:
+                    # Supabase'de tablo boşsa, lokal dosyadan okuyup Supabase'e yazalım (migration)
+                    if DOSYA.exists():
+                        with DOSYA.open(encoding="utf-8") as kaynak:
+                            lokal_veri = json.load(kaynak)
+                        kaydet(lokal_veri)
+                        return lokal_veri
+        except Exception as e:
+            logging.error(f"Supabase okuma hatası: {e}")
+
+    # Fallback to local
     if not DOSYA.exists():
         return {"surum": 2, "turler": []}
     with DOSYA.open(encoding="utf-8") as kaynak:
@@ -58,10 +91,26 @@ def agac() -> Dict[str, Any]:
 
 
 def kaydet(veri: Dict[str, Any]) -> None:
-    DOSYA.parent.mkdir(parents=True, exist_ok=True)
-    with DOSYA.open("w", encoding="utf-8") as hedef:
-        json.dump(veri, hedef, ensure_ascii=False, indent=2)
-        hedef.write("\n")
+    if SUPABASE_URL and SUPABASE_KEY:
+        try:
+            url = f"{SUPABASE_URL}/rest/v1/depo"
+            headers = get_supabase_headers()
+            headers["Prefer"] = "resolution=merge-duplicates, return=representation"
+            payload = {"id": "mevzuat", "veri": veri}
+            resp = requests.post(url, headers=headers, json=payload)
+            if resp.status_code not in (200, 201):
+                logging.error(f"Supabase yazma hatası: {resp.text}")
+        except Exception as e:
+            logging.error(f"Supabase yazma hatası: {e}")
+
+    # Her ihtimale karşı lokal dosyaya da yazmayı dene (yerelde çalışırken yedeğimiz olsun)
+    try:
+        DOSYA.parent.mkdir(parents=True, exist_ok=True)
+        with DOSYA.open("w", encoding="utf-8") as hedef:
+            json.dump(veri, hedef, ensure_ascii=False, indent=2)
+            hedef.write("\n")
+    except Exception:
+        pass
 
 
 def _tur_bul(veri: Dict[str, Any], tur_id: str) -> Dict[str, Any]:

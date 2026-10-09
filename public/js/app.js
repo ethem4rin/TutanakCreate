@@ -7,6 +7,7 @@
 "use strict";
 
 const SAKLAMA_ANAHTARI = "mufettis-programi-durum-v2";
+const EKSTRA_MADDELER_ANAHTARI = "mufettis-ekstra-maddeler-v1";
 
 /** Sunucusuz kurulumda (Vercel) kütüphane salt okunurdur. */
 let yerelKurulum = true;
@@ -244,10 +245,55 @@ function dosyaGirdisiniBagla() {
 /* MEVZUAT AĞACI — Mevzuat Türü → Mevzuat → Madde                          */
 /* ====================================================================== */
 
+/* --- localStorage'daki ekstra maddeler (Vercel salt-okunur ortam fallback) --- */
+
+function ekstraMaddeleriYukle() {
+  try { return JSON.parse(localStorage.getItem(EKSTRA_MADDELER_ANAHTARI) || "[]"); }
+  catch { return []; }
+}
+
+function ekstraMaddeleriKaydet(liste) {
+  try { localStorage.setItem(EKSTRA_MADDELER_ANAHTARI, JSON.stringify(liste)); } catch { /* kota dolu */ }
+}
+
+/**
+ * Mevzuat ağacına localStorage'daki ekstra maddeleri merge eder.
+ * Aynı no'ya sahip madde varsa üzerine yazar (düzenleme), yoksa ekler.
+ */
+function ekstraMaddeleriMergeEt(agac) {
+  const liste = ekstraMaddeleriYukle();
+  if (!liste.length) return;
+  liste.forEach((em) => {
+    const tur = agac.find((t) => t.id === em.tur_id);
+    if (!tur) return;
+    const mevzuat = tur.mevzuat.find((m) => m.id === em.mevzuat_id);
+    if (!mevzuat) return;
+    if (em._silindi) {
+      mevzuat.maddeler = mevzuat.maddeler.filter((m) => m.no !== em.no);
+      return;
+    }
+    const mevcutIdx = mevzuat.maddeler.findIndex((m) => m.no === em.no);
+    const madde = {
+      kimlik: `${em.mevzuat_id}-${em.no}`,
+      no: em.no, baslik: em.baslik, ceza: em.ceza,
+      anahtar: Array.isArray(em.anahtar) ? em.anahtar
+        : String(em.anahtar || "").split(",").map((s) => s.trim()).filter(Boolean),
+      paragraf: em.paragraf, html: em.html || em.paragraf,
+      mevzuat_id: em.mevzuat_id, mevzuat_ad: mevzuat.ad,
+      tur_id: em.tur_id,
+    };
+    if (mevcutIdx >= 0) mevzuat.maddeler[mevcutIdx] = madde;
+    else mevzuat.maddeler.push(madde);
+  });
+}
+
 let mevzuatAgaci = null;
 
 async function mevzuatAgaciniYukle(zorla = false) {
-  if (!mevzuatAgaci || zorla) mevzuatAgaci = await istek("/api/mevzuat");
+  if (!mevzuatAgaci || zorla) {
+    mevzuatAgaci = await istek("/api/mevzuat");
+    ekstraMaddeleriMergeEt(mevzuatAgaci);
+  }
   return mevzuatAgaci;
 }
 
@@ -628,36 +674,63 @@ async function maddeyiKaydet() {
     bildir("Madde numarası zorunludur.", "hata");
     return;
   }
+  // Önce sunucuya kaydetmeyi dene; salt-okunur ortamda (Vercel) başarısız olursa
+  // tarayıcının localStorage'ına ekle — bir sonraki yüklemede merge edilir.
+  let sunucuBasarili = false;
   try {
     await istek(`/api/mevzuat/${m.tur_id}/${m.mevzuat_id}/madde`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(govde),
     });
-    await mevzuatAgaciniYukle(true);
-    kipKapat("#madde-kipi");
-    bildir("Madde kaydedildi.", "basarili");
-    if (maddeDuzenleme.sonra) maddeDuzenleme.sonra();
-  } catch (hata) {
-    bildir(hata.message, "hata");
+    sunucuBasarili = true;
+  } catch { /* salt-okunur — localStorage fallback'e geç */ }
+
+  if (!sunucuBasarili) {
+    const liste = ekstraMaddeleriYukle();
+    // Aynı mevzuat+no kombinasyonu varsa güncelle, yoksa ekle
+    const eskiIdx = liste.findIndex(
+      (e) => e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id && e.no === (govde.eski_no || govde.no)
+    );
+    const yeniKayit = { tur_id: m.tur_id, mevzuat_id: m.mevzuat_id, ...govde };
+    if (eskiIdx >= 0) liste[eskiIdx] = yeniKayit;
+    else liste.push(yeniKayit);
+    ekstraMaddeleriKaydet(liste);
   }
+
+  await mevzuatAgaciniYukle(true);
+  kipKapat("#madde-kipi");
+  bildir("Madde kaydedildi.", "basarili");
+  if (maddeDuzenleme.sonra) maddeDuzenleme.sonra();
 }
 
 async function maddeyiSil() {
   const m = maddeDuzenleme.madde;
   if (!confirm(`${m.mevzuat_ad} m.${m.no} silinsin mi?`)) return;
+  let sunucuBasarili = false;
   try {
     await istek(
       `/api/mevzuat/${m.tur_id}/${m.mevzuat_id}/madde/${encodeURIComponent(m.no)}`,
       { method: "DELETE" }
     );
-    await mevzuatAgaciniYukle(true);
-    kipKapat("#madde-kipi");
-    bildir("Madde silindi.", "basarili");
-    if (maddeDuzenleme.sonra) maddeDuzenleme.sonra();
-  } catch (hata) {
-    bildir(hata.message, "hata");
+    sunucuBasarili = true;
+  } catch { /* salt-okunur — localStorage fallback */ }
+
+  if (!sunucuBasarili) {
+    const liste = ekstraMaddeleriYukle();
+    // Daha önce localStorage'da eklendiyse oradan kaldır, yoksa silinmiş olarak işaretle
+    const idx = liste.findIndex(
+      (e) => e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id && e.no === m.no
+    );
+    if (idx >= 0) liste.splice(idx, 1);
+    else liste.push({ tur_id: m.tur_id, mevzuat_id: m.mevzuat_id, no: m.no, _silindi: true });
+    ekstraMaddeleriKaydet(liste);
   }
+
+  await mevzuatAgaciniYukle(true);
+  kipKapat("#madde-kipi");
+  bildir("Madde silindi.", "basarili");
+  if (maddeDuzenleme.sonra) maddeDuzenleme.sonra();
 }
 
 /* --------------------------------------------------------- yeni mevzuat */

@@ -299,11 +299,7 @@
           hazırlama ve Word çıktısı burada tam olarak çalışır.
         </div>
         <div id="kut-sutunlar"></div>
-          <div class="dayanak-onizleme" id="kut-onizleme">Bir madde seçin.</div>
           <div class="dugme-sirasi" style="margin-top:12px">
-            <button class="dugme kucuk" id="kut-madde-duzenle" disabled>
-              <svg><use href="#s-kalem"/></svg> Seçili maddeyi düzenle
-            </button>
             <button class="dugme kucuk" id="kut-madde-yeni" disabled>
               <svg><use href="#s-arti"/></svg> Bu mevzuata madde ekle
             </button>
@@ -316,13 +312,19 @@
         <!-- Müfettiş önerileri: düz liste -->
         <div id="kut-oneri" class="gizli">
           <div class="bos-bilgi" style="text-align:left">
-            Metinlerde <code>**kalın**</code> ve <code>__kalın + italik + altı çizili__</code>
-            işaretleri kullanılabilir. İkincisi “Buna göre;” kalıbı içindir.
-            Kayıtlar <code>data/oneri.json</code> dosyasında saklanır.
+            Öneriler <strong>kendi tarayıcınızda</strong> saklanır — kendi kalıplarınızı
+            oluşturursunuz, kimseyle paylaşılmaz. Metinlerde <code>**kalın**</code> ve
+            <code>__kalın + italik + altı çizili__</code> işaretleri kullanılabilir;
+            ikincisi “Buna göre;” kalıbı içindir.
+            <br><strong>Yedek alın:</strong> tarayıcı verisi silinirse öneriler de gider.
           </div>
           <div class="dugme-sirasi" style="margin-bottom:12px">
             <input type="search" id="kutuphane-ara" placeholder="Başlık, anahtar kelime veya metin içinde ara…" style="flex:1 1 240px">
-            <button class="dugme kucuk" id="yeni-kayit"><svg><use href="#s-arti"/></svg> Yeni öneri</button>
+            <span class="etiket" id="oneri-sayaci">0 öneri</span>
+            <button class="dugme kucuk ana" id="yeni-kayit"><svg><use href="#s-arti"/></svg> Yeni öneri</button>
+            <button class="dugme kucuk" id="oneri-disa"><svg><use href="#s-indir"/></svg> Yedekle</button>
+            <button class="dugme kucuk" id="oneri-ice"><svg><use href="#s-yukle"/></svg> Yedekten yükle</button>
+            <input type="file" id="oneri-dosya" accept=".json,application/json" class="gizli">
           </div>
           <div id="kutuphane-listesi"></div>
         </div>
@@ -345,10 +347,6 @@
     </div>
     <div class="kip-orta">
       <div id="mevzuat-sutunlar"></div>
-      <div class="dayanak-onizleme" id="mevzuat-onizleme">
-        Soldan mevzuat türünü, ardından mevzuatı ve maddeyi seçin.
-        Seçtiğiniz madde bildirime bu şekilde yazılır.
-      </div>
       <div class="tepsi" id="mevzuat-tepsi"></div>
     </div>
     <div class="kip-alt">

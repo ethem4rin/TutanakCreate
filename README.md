@@ -168,14 +168,25 @@ Kapanış kalıbı: *Hükmü amirdir.* · *Hükmü,* · *hükmüne yer verilmiş
 
 ## Müfettiş önerileri kütüphanesi
 
-`data/oneri.json` dosyasında düz liste olarak tutulur. Arayüzdeki
+Öneriler **kendi tarayıcınızda** saklanır (`localStorage`), sunucuda değil.
+Her müfettiş kendi kalıplarını oluşturur; kurulu gelen hazır öneri yoktur.
+Böylece Vercel'de de (dosya sistemi salt okunurken) ekleme ve düzenleme
+çalışır.
+
 **Kütüphane → Müfettiş Önerileri** sekmesinden eklenir, düzenlenir, silinir.
+Noksanlık metnindeki anahtar kelimelere göre en ilgili öneriler seçim
+penceresinde en üste gelir.
+
+> **Yedek alın.** Tarayıcı verisi silinirse öneriler de gider.
+> **Yedekle** düğmesi tüm önerileri `mufettis-onerileri.json` olarak indirir,
+> **Yedekten yükle** geri alır. Aynı dosyayı başka bir bilgisayarda yükleyerek
+> kalıplarınızı taşıyabilirsiniz.
 
 Metinlerde hafif biçimlendirme işaretleri kullanılır:
 
 | İşaret | Sonuç | Kullanım |
 |---|---|---|
-| `**metin**` | **kalın** | Madde başlığı (*Çalışma Süresi*, *Fazla Çalışmada Sınır* …) |
+| `**metin**` | **kalın** | Vurgu |
 | `__metin__` | **_kalın + italik + altı çizili_** | “Buna göre;” kalıbı |
 
 Örnek öneri kaydı:
@@ -184,8 +195,6 @@ Metinlerde hafif biçimlendirme işaretleri kullanılır:
 __Buna göre;__ a) tutanak tarihi itibariyle işyerinde çalışma düzeninin
 haftalık 45 saati aşmayacak şekilde uygulanması … sağlanmalıdır.
 ```
-
----
 
 ## Üretilen belgenin biçimi
 
@@ -256,7 +265,8 @@ Vercel'de dosya sistemi salt okunurdur. Uygulama bunu açılışta algılar
 | Dayanak ve öneri seçimi | ✔ | ✔ |
 | Word bildirimi üretme ve indirme | ✔ | ✔ (bellekte üretilir) |
 | Üretilen bildirimin arşiv kopyası | ✔ `calisma/cikti/` | — |
-| Kütüphaneye madde/öneri ekleme, düzenleme | ✔ | ✘ salt okunur |
+| Müfettiş önerisi ekleme, düzenleme | ✔ | ✔ (tarayıcıda saklanır) |
+| Mevzuat maddesi metni düzenleme | ✔ | ✘ salt okunur |
 
 Kütüphane düzenlemesi Vercel'de kapalıdır; arayüz bunu sarı bir not ve pasif
 düğmelerle belirtir. Mevzuat veya öneri eklemek için değişikliği kendi
@@ -277,11 +287,9 @@ core/
   belge.py                 Word bildirimi üreteci
   mevzuat.py               Kademeli mevzuat ağacı (gezinme, arama, öneri, CRUD)
   mevzuat_pdf.py           mevzuat.gov.tr PDF'lerinden madde metni ayıklayıcı
-  kutuphane.py             Müfettiş önerileri kütüphanesi (JSON, CRUD, ilgi puanı)
   metin.py                 **kalın** / __altı çizili__ işaret çözümleyici
 data/
   mevzuat.json             Mevzuat ağacı (tür → mevzuat → madde)
-  oneri.json               Müfettiş önerileri kütüphanesi
 mevzuat_pdf/               mevzuat.gov.tr'den indirilen resmî PDF'ler
 sablon/
   noksanlik_bildirimi_sablon.docx    Biçimi taşıyan Word şablonu

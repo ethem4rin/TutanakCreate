@@ -746,3 +746,36 @@ select option { background: #16161d; }
 }
 .pul button:hover { opacity: 1; }
 .pul svg { width: 12px; height: 12px; }
+
+/* ------------------------- madde satırında açılan metin ------------------- */
+
+.madde-ogesi { display: flex; flex-direction: column; }
+
+.madde-metni {
+  margin: 4px 0 8px 10px;
+  padding: 12px 14px;
+  border-left: 2px solid rgba(255, 106, 31, 0.45);
+  border-radius: 0 10px 10px 0;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 12.5px;
+  line-height: 1.68;
+  color: var(--metin-soluk);
+  animation: belir 0.16s ease;
+}
+.madde-metni strong { color: var(--metin); }
+.madde-metni u { text-decoration-color: var(--turuncu); }
+.madde-metni .bos-metin { color: var(--sari); }
+.madde-metni .eylemler {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 11px;
+  padding-top: 11px;
+  border-top: 1px solid var(--cizgi);
+}
+
+/* Açılan metne yer açmak için madde sütunu biraz daha uzun */
+.sutun-ic { max-height: 340px; }
+@media (max-width: 820px) {
+  .sutun-ic { max-height: 240px; }
+}

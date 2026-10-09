@@ -367,24 +367,42 @@ function sutunlariCiz(ayar, gorunum) {
     maddeSatirlari = maddeler
       .map((m) => {
         const secili = gorunum.secilenler && gorunum.secilenler.has(m.kimlik);
+        const acik = gorunum.acikMadde === m.kimlik;
         const sagParcalar = [];
         if (m.puan) sagParcalar.push("ilgili");
         if (m.ceza) sagParcalar.push(`ceza ${kacis(m.ceza)}`);
         // Fıkra bazlı kayıtlarda fıkra sınırı PDF düzeninden çıkarılır;
-        // müfettiş eklemeden önce önizlemeden görsün diye işaretlenir.
+        // müfettiş eklemeden önce metni görsün diye işaretlenir.
         if (m.dolu && !m.dogrulandi) sagParcalar.push("fıkra");
         if (!m.dolu) sagParcalar.push("metin yok");
-        return `<button class="kademe ${gorunum.maddeKimlik === m.kimlik ? "etkin" : ""}
-                        ${secili ? "secili" : ""} ${m.dolu ? "" : "bos"}"
-                        data-madde="${m.kimlik}">
-            <span class="madde-no">${kacis(m.no)}</span>
-            <span class="ad">${kacis(m.baslik || (arama || gorunum.turId === "__oneri__" ? m.mevzuat_ad : "—"))}
-              ${(arama || gorunum.turId === "__oneri__") && m.baslik
-                ? `<br><span style="font-size:11px;color:var(--metin-sonuk)">${kacis(m.mevzuat_ad)}</span>`
-                : ""}
-            </span>
-            <span class="sag">${sagParcalar.join(" · ")}</span>
-          </button>`;
+
+        const govde = m.dolu
+          ? (m.html || isaretliHtml(m.paragraf))
+          : `<span class="bos-metin">Bu maddenin metni henüz girilmedi.</span>`;
+        const eylemler = (ayar.eylemler ? ayar.eylemler(m) : [])
+          .map((e, i) => `<button class="dugme kucuk ${e.ana ? "ana" : ""}"
+                                  data-eylem="${m.kimlik}" data-eylem-no="${i}">
+                            ${kacis(e.etiket)}
+                          </button>`)
+          .join("");
+
+        return `<div class="madde-ogesi">
+            <button class="kademe ${acik ? "etkin" : ""} ${secili ? "secili" : ""}
+                            ${m.dolu ? "" : "bos"}" data-madde="${m.kimlik}">
+              <span class="madde-no">${kacis(m.no)}</span>
+              <span class="ad">${kacis(m.baslik || (arama || gorunum.turId === "__oneri__" ? m.mevzuat_ad : "—"))}
+                ${(arama || gorunum.turId === "__oneri__") && m.baslik
+                  ? `<br><span style="font-size:11px;color:var(--metin-sonuk)">${kacis(m.mevzuat_ad)}</span>`
+                  : ""}
+              </span>
+              <span class="sag">${sagParcalar.join(" · ")}</span>
+            </button>
+            ${acik
+              ? `<div class="madde-metni">${govde}
+                   ${eylemler ? `<div class="eylemler">${eylemler}</div>` : ""}
+                 </div>`
+              : ""}
+          </div>`;
       })
       .join("");
   }
@@ -419,11 +437,22 @@ function sutunlariCiz(ayar, gorunum) {
       ayar.onDegisim(gorunum);
     })
   );
+  // Madde satırına tıklamak metnini satırın altında açar/kapatır.
   yuva.querySelectorAll("[data-madde]").forEach((d) =>
     d.addEventListener("click", () => {
       const madde = maddeler.find((m) => m.kimlik === d.dataset.madde);
+      gorunum.acikMadde = gorunum.acikMadde === madde.kimlik ? null : madde.kimlik;
       gorunum.maddeKimlik = madde.kimlik;
-      ayar.onMadde(madde, gorunum);
+      if (ayar.onMadde) ayar.onMadde(madde, gorunum);
+      ayar.onDegisim(gorunum);
+    })
+  );
+  yuva.querySelectorAll("[data-eylem]").forEach((d) =>
+    d.addEventListener("click", (olay) => {
+      olay.stopPropagation();
+      const madde = maddeler.find((m) => m.kimlik === d.dataset.eylem);
+      const eylem = ayar.eylemler(madde)[Number(d.dataset.eylemNo)];
+      if (eylem) eylem.calistir(madde);
     })
   );
 }
@@ -445,8 +474,6 @@ async function mevzuatKipiAc(noksanlik) {
     onerilenler: [], secilenler: new Set(dayanak.secilenler.map((m) => m.kimlik)),
   };
   $("#mevzuat-ara").value = "";
-  $("#mevzuat-onizleme").innerHTML =
-    "Soldan mevzuat türünü, ardından mevzuatı ve maddeyi seçin.";
   $("#mevzuat-sutunlar").innerHTML = `<div class="bos-durum"><div class="yukleniyor"></div></div>`;
   kipAc("#mevzuat-kipi");
 
@@ -470,19 +497,27 @@ function dayanakCiz() {
       yuva: "#mevzuat-sutunlar",
       oneriSutunu: true,
       onDegisim: () => dayanakCiz(),
-      onMadde: (madde) => {
+      eylemler: (madde) => {
         if (!madde.dolu) {
-          maddeKipiAc(madde, { sonra: () => dayanakCiz() });
-          return;
+          return [{
+            etiket: "Metni gir", ana: true,
+            calistir: () => maddeKipiAc(madde, { sonra: () => dayanakCiz() }),
+          }];
         }
-        const yeri = dayanak.secilenler.findIndex((m) => m.kimlik === madde.kimlik);
-        if (yeri >= 0) dayanak.secilenler.splice(yeri, 1);
-        else dayanak.secilenler.push({
-          kimlik: madde.kimlik, baslik: maddeAdi(madde), metin: madde.paragraf,
-        });
-        dayanak.gorunum.secilenler = new Set(dayanak.secilenler.map((m) => m.kimlik));
-        $("#mevzuat-onizleme").innerHTML = madde.html || isaretliHtml(madde.paragraf);
-        dayanakCiz();
+        const secili = dayanak.secilenler.some((m) => m.kimlik === madde.kimlik);
+        return [{
+          etiket: secili ? "Dayanaktan çıkar" : "Dayanak olarak ekle",
+          ana: !secili,
+          calistir: () => {
+            const yeri = dayanak.secilenler.findIndex((m) => m.kimlik === madde.kimlik);
+            if (yeri >= 0) dayanak.secilenler.splice(yeri, 1);
+            else dayanak.secilenler.push({
+              kimlik: madde.kimlik, baslik: maddeAdi(madde), metin: madde.paragraf,
+            });
+            dayanak.gorunum.secilenler = new Set(dayanak.secilenler.map((m) => m.kimlik));
+            dayanakCiz();
+          },
+        }];
       },
     },
     dayanak.gorunum
@@ -834,21 +869,11 @@ function noksanlikOlaylariniBagla() {
 
 let oneriBaglami = { noksanlik: null, secili: new Set(), kayitlar: [] };
 
-async function oneriKipiAc(noksanlik) {
-  oneriBaglami = { noksanlik, secili: new Set(), kayitlar: [] };
+function oneriKipiAc(noksanlik) {
+  oneriBaglami = { noksanlik, secili: new Set(), kayitlar: onerileriSirala(noksanlik.metin) };
   $("#secim-ara").value = "";
-  $("#secim-listesi").innerHTML = `<div class="bos-durum"><div class="yukleniyor"></div></div>`;
   kipAc("#secim-kipi");
-  try {
-    oneriBaglami.kayitlar = await istek("/api/kutuphane/oneri/oner", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ metin: noksanlik.metin }),
-    });
-    oneriListesiniCiz();
-  } catch (hata) {
-    $("#secim-listesi").innerHTML = `<div class="bos-durum">${kacis(hata.message)}</div>`;
-  }
+  oneriListesiniCiz();
 }
 
 function oneriListesiniCiz() {
@@ -862,7 +887,11 @@ function oneriListesiniCiz() {
   const yuva = $("#secim-listesi");
   if (!kayitlar.length) {
     yuva.innerHTML = `<div class="bos-durum">
-      <svg><use href="#s-kitap"/></svg><div>Eşleşen kayıt yok.</div></div>`;
+      <svg><use href="#s-kalem"/></svg>
+      <div>${onerileriOku().length ? "Eşleşen öneri yok." : "Henüz öneri eklemediniz."}</div>
+      <div style="font-size:12px;margin-top:6px">
+        Aşağıdaki “Kütüphaneye yeni kayıt” ile kendi kalıplarınızı oluşturun.
+      </div></div>`;
     return;
   }
 
@@ -900,6 +929,126 @@ function oneriyiUygula() {
   durumuKaydet();
   kipKapat("#secim-kipi");
   noksanlikKartlariniCiz();
+}
+
+/* ====================================================================== */
+/* MÜFETTİŞ ÖNERİLERİ — tarayıcıda saklanır                                */
+/*                                                                         */
+/* Öneriler müfettişin kendi kalıplarıdır ve kişiye özeldir; bu yüzden     */
+/* sunucuda değil tarayıcıda tutulur. Böylece sunucusuz kurulumda da       */
+/* (Vercel'de dosya sistemi salt okunurdur) eklenip düzenlenebilirler.     */
+/* Tarayıcı verisi silinebileceği için dışa/içe aktarma da sunulur.        */
+/* ====================================================================== */
+
+const ONERI_ANAHTARI = "mufettis-programi-oneriler-v1";
+
+const yeniOneriKimligi = () =>
+  "o" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+function onerileriOku() {
+  try {
+    const ham = localStorage.getItem(ONERI_ANAHTARI);
+    const liste = ham ? JSON.parse(ham) : [];
+    return Array.isArray(liste) ? liste : [];
+  } catch (hata) {
+    return [];
+  }
+}
+
+function onerileriYaz(liste) {
+  try {
+    localStorage.setItem(ONERI_ANAHTARI, JSON.stringify(liste));
+    return true;
+  } catch (hata) {
+    bildir("Öneriler kaydedilemedi: tarayıcı deposu dolu ya da kapalı.", "hata");
+    return false;
+  }
+}
+
+function oneriKaydet(kayit, kimlik) {
+  const liste = onerileriOku();
+  const temiz = {
+    id: kimlik || yeniOneriKimligi(),
+    baslik: (kayit.baslik || "").trim(),
+    anahtar: String(kayit.anahtar || "").split(",").map((a) => a.trim()).filter(Boolean),
+    metin: (kayit.metin || "").trim(),
+  };
+  const yeri = liste.findIndex((k) => k.id === temiz.id);
+  if (yeri >= 0) liste[yeri] = temiz;
+  else liste.push(temiz);
+  return onerileriYaz(liste) ? temiz : null;
+}
+
+function oneriSil(kimlik) {
+  return onerileriYaz(onerileriOku().filter((k) => k.id !== kimlik));
+}
+
+/** Türkçe duyarlı sadeleştirme — anahtar kelime eşleştirmesi için. */
+function sadelestir(metin) {
+  const harfler = { "ç": "c", "ğ": "g", "ı": "i", "ö": "o", "ş": "s", "ü": "u" };
+  return String(metin == null ? "" : metin)
+    .replace(/I/g, "ı")
+    .replace(/İ/g, "i")
+    .toLowerCase()
+    .replace(/[çğıöşü]/g, (h) => harfler[h])
+    .replace(/\s+/g, " ");
+}
+
+/** Önerileri, noksanlık metniyle ilgisine göre sıralar. */
+function onerileriSirala(noksanlikMetni) {
+  const hedef = sadelestir(noksanlikMetni);
+  return onerileriOku()
+    .map((k) => ({
+      ...k,
+      puan: (k.anahtar || []).filter((a) => hedef.includes(sadelestir(a))).length,
+    }))
+    .sort((a, b) => b.puan - a.puan || a.baslik.localeCompare(b.baslik, "tr"));
+}
+
+function onerileriDisaAktar() {
+  const liste = onerileriOku();
+  if (!liste.length) {
+    bildir("Dışa aktarılacak öneri yok.", "hata");
+    return;
+  }
+  const blob = new Blob([JSON.stringify(liste, null, 2)], { type: "application/json" });
+  const adres = URL.createObjectURL(blob);
+  const bag = document.createElement("a");
+  bag.href = adres;
+  bag.download = "mufettis-onerileri.json";
+  document.body.appendChild(bag);
+  bag.click();
+  bag.remove();
+  URL.revokeObjectURL(adres);
+  bildir(liste.length + " öneri dosyaya aktarıldı.", "basarili");
+}
+
+async function onerileriIceAktar(dosya) {
+  if (!dosya) return;
+  try {
+    const gelen = JSON.parse(await dosya.text());
+    if (!Array.isArray(gelen)) throw new Error("Dosya bir öneri listesi değil.");
+    const mevcut = onerileriOku();
+    const kimlikler = new Set(mevcut.map((k) => k.id));
+    let eklenen = 0;
+    gelen.forEach((k) => {
+      if (!k || !k.baslik || !k.metin) return;
+      if (k.id && kimlikler.has(k.id)) return;   // aynısı zaten var
+      mevcut.push({
+        id: k.id || yeniOneriKimligi(),
+        baslik: String(k.baslik).trim(),
+        anahtar: Array.isArray(k.anahtar) ? k.anahtar : [],
+        metin: String(k.metin).trim(),
+      });
+      eklenen += 1;
+    });
+    if (onerileriYaz(mevcut)) {
+      bildir(eklenen + " öneri içe aktarıldı.", "basarili");
+      oneriKutuphanesiniCiz();
+    }
+  } catch (hata) {
+    bildir("Dosya okunamadı: " + hata.message, "hata");
+  }
 }
 
 /* ====================================================================== */
@@ -1108,64 +1257,59 @@ async function kutuphaneMevzuatCiz() {
       yuva: "#kut-sutunlar",
       oneriSutunu: false,
       onDegisim: () => kutuphaneMevzuatCiz(),
-      onMadde: (madde) => {
-        kutGorunum.maddeKimlik = madde.kimlik;
-        kutGorunum.secili = madde;
-        $("#kut-onizleme").innerHTML = madde.dolu
-          ? (madde.html || isaretliHtml(madde.paragraf))
-          : '<span style="color:var(--sari)">Bu maddenin metni henüz girilmedi. “Seçili maddeyi düzenle” ile doldurabilirsiniz.</span>';
-        kutuphaneMevzuatCiz();
-      },
+      eylemler: (madde) => [{
+        etiket: madde.dolu ? "Metni düzenle" : "Metni gir",
+        ana: !madde.dolu,
+        calistir: () => maddeKipiAc(madde, { sonra: () => kutuphaneMevzuatCiz() }),
+      }],
     },
     kutGorunum
   );
 
-  $("#kut-madde-duzenle").disabled = !kutGorunum.secili;
   $("#kut-madde-yeni").disabled = !kutGorunum.mevzuatId;
 }
 
-async function oneriKutuphanesiniCiz() {
+function oneriKutuphanesiniCiz() {
   const yuva = $("#kutuphane-listesi");
-  yuva.innerHTML = `<div class="bos-durum"><div class="yukleniyor"></div></div>`;
-  try {
-    const kayitlar = await istek("/api/kutuphane/oneri");
-    const arama = kucult($("#kutuphane-ara").value.trim());
-    const suzulmus = kayitlar.filter(
-      (k) =>
-        !arama ||
-        kucult(k.baslik + " " + k.metin + " " + (k.anahtar || []).join(" ")).includes(arama)
-    );
-    if (!suzulmus.length) {
-      yuva.innerHTML = `<div class="bos-durum">
-        <svg><use href="#s-kitap"/></svg><div>Kayıt yok.</div></div>`;
-      return;
-    }
-    yuva.innerHTML = suzulmus
-      .map(
-        (k) => `<div class="kayit-satiri" data-id="${k.id}">
-          <div class="ust">
-            <span class="ad">${kacis(k.baslik)}</span>
-            <span class="etiket">${(k.anahtar || []).length} anahtar</span>
-          </div>
-          <div class="metin">${k.html || isaretliHtml(k.metin)}</div>
-        </div>`
-      )
-      .join("");
-    yuva.querySelectorAll(".kayit-satiri").forEach((satir) => {
-      satir.addEventListener("click", () =>
-        kayitKipiAc(kayitlar.find((k) => k.id === satir.dataset.id))
-      );
-    });
-  } catch (hata) {
-    yuva.innerHTML = `<div class="bos-durum">${kacis(hata.message)}</div>`;
+  const kayitlar = onerileriOku();
+  const arama = kucult($("#kutuphane-ara").value.trim());
+  const suzulmus = kayitlar.filter(
+    (k) =>
+      !arama ||
+      kucult(k.baslik + " " + k.metin + " " + (k.anahtar || []).join(" ")).includes(arama)
+  );
+
+  $("#oneri-sayaci").textContent = `${kayitlar.length} öneri`;
+
+  if (!suzulmus.length) {
+    yuva.innerHTML = `<div class="bos-durum">
+      <svg><use href="#s-kalem"/></svg>
+      <div>${kayitlar.length ? "Eşleşen öneri yok." : "Henüz öneri eklemediniz."}</div>
+      <div style="font-size:12px;margin-top:6px">
+        ${kayitlar.length ? "Aramayı değiştirin." : "“Yeni öneri” ile ilk kalıbınızı oluşturun."}
+      </div></div>`;
+    return;
   }
+
+  yuva.innerHTML = suzulmus
+    .map(
+      (k) => `<div class="kayit-satiri" data-id="${k.id}">
+        <div class="ust">
+          <span class="ad">${kacis(k.baslik)}</span>
+          <span class="etiket">${(k.anahtar || []).length} anahtar</span>
+        </div>
+        <div class="metin">${isaretliHtml(k.metin)}</div>
+      </div>`
+    )
+    .join("");
+  yuva.querySelectorAll(".kayit-satiri").forEach((satir) => {
+    satir.addEventListener("click", () =>
+      kayitKipiAc(kayitlar.find((k) => k.id === satir.dataset.id))
+    );
+  });
 }
 
 function kayitKipiAc(kayit) {
-  if (!yerelKurulum) {
-    bildir("Bu kurulumda kütüphane salt okunurdur; öneri düzenlenemez.", "hata");
-    return;
-  }
   duzenlenenKayit = kayit || null;
   $("#kayit-kip-baslik").textContent = kayit ? "Öneriyi Düzenle" : "Yeni Müfettiş Önerisi";
   $("#kayit-baslik").value = kayit ? kayit.baslik : "";
@@ -1182,7 +1326,7 @@ function kayitOnizlemeGuncelle() {
     '<span style="color:var(--metin-sonuk)">Metin girildikçe burada görünür.</span>';
 }
 
-async function kaydiKaydet() {
+function kaydiKaydet() {
   const govde = {
     baslik: $("#kayit-baslik").value.trim(),
     anahtar: $("#kayit-anahtar").value,
@@ -1192,40 +1336,36 @@ async function kaydiKaydet() {
     bildir("Başlık ve metin zorunludur.", "hata");
     return;
   }
-  try {
-    if (duzenlenenKayit) {
-      await istek(`/api/kutuphane/oneri/${duzenlenenKayit.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(govde),
-      });
-      bildir("Kayıt güncellendi.", "basarili");
-    } else {
-      await istek("/api/kutuphane/oneri", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(govde),
-      });
-      bildir("Kayıt eklendi.", "basarili");
-    }
-    kipKapat("#kayit-kipi");
-    oneriKutuphanesiniCiz();
-  } catch (hata) {
-    bildir(hata.message, "hata");
-  }
+  const kayit = oneriKaydet(govde, duzenlenenKayit ? duzenlenenKayit.id : null);
+  if (!kayit) return;
+  bildir(duzenlenenKayit ? "Öneri güncellendi." : "Öneri eklendi.", "basarili");
+  kipKapat("#kayit-kipi");
+  oneriListesiniTazele(kayit.id);
 }
 
-async function kaydiSil() {
-  if (!duzenlenenKayit) return;
-  if (!confirm(`“${duzenlenenKayit.baslik}” kaydı silinsin mi?`)) return;
-  try {
-    await istek(`/api/kutuphane/oneri/${duzenlenenKayit.id}`, { method: "DELETE" });
-    bildir("Kayıt silindi.", "basarili");
-    kipKapat("#kayit-kipi");
-    oneriKutuphanesiniCiz();
-  } catch (hata) {
-    bildir(hata.message, "hata");
+/**
+ * Öneri listelerini günceller. Kayıt kipi hem Kütüphane sekmesinden hem de
+ * seçim penceresinin içinden açılabildiği için ikisi de tazelenir; seçim
+ * penceresi açıksa yeni eklenen öneri doğrudan seçili gelir.
+ */
+function oneriListesiniTazele(secilecekKimlik) {
+  if ($("#sayfa-kutuphane").classList.contains("etkin")) oneriKutuphanesiniCiz();
+  if (!$("#secim-kipi").classList.contains("acik")) return;
+  oneriBaglami.kayitlar = onerileriSirala(oneriBaglami.noksanlik.metin);
+  if (secilecekKimlik) {
+    oneriBaglami.secili.clear();
+    oneriBaglami.secili.add(secilecekKimlik);
   }
+  oneriListesiniCiz();
+}
+
+function kaydiSil() {
+  if (!duzenlenenKayit) return;
+  if (!confirm(`“${duzenlenenKayit.baslik}” önerisi silinsin mi?`)) return;
+  if (!oneriSil(duzenlenenKayit.id)) return;
+  bildir("Öneri silindi.", "basarili");
+  kipKapat("#kayit-kipi");
+  oneriListesiniTazele();
 }
 
 /* ====================================================================== */
@@ -1346,9 +1486,6 @@ function olaylariBagla() {
     })
   );
   $("#kut-mevzuat-ara").addEventListener("input", kutuphaneMevzuatCiz);
-  $("#kut-madde-duzenle").addEventListener("click", () => {
-    if (kutGorunum.secili) maddeKipiAc(kutGorunum.secili, { sonra: () => kutuphaneMevzuatCiz() });
-  });
   $("#kut-madde-yeni").addEventListener("click", () => {
     const mevzuat = mevzuatBul(kutGorunum.turId, kutGorunum.mevzuatId);
     if (!mevzuat) return;
@@ -1361,6 +1498,12 @@ function olaylariBagla() {
   $("#kut-mevzuat-yeni").addEventListener("click", yeniMevzuatKipiAc);
   $("#kutuphane-ara").addEventListener("input", oneriKutuphanesiniCiz);
   $("#yeni-kayit").addEventListener("click", () => kayitKipiAc(null));
+  $("#oneri-disa").addEventListener("click", onerileriDisaAktar);
+  $("#oneri-ice").addEventListener("click", () => $("#oneri-dosya").click());
+  $("#oneri-dosya").addEventListener("change", (e) => {
+    onerileriIceAktar(e.target.files[0]);
+    e.target.value = "";
+  });
   $("#kayit-metin").addEventListener("input", kayitOnizlemeGuncelle);
   $("#kayit-kaydet").addEventListener("click", kaydiKaydet);
   $("#kayit-sil").addEventListener("click", kaydiSil);
@@ -1400,8 +1543,7 @@ async function ortamiOgren() {
   }
   if (yerelKurulum) return;
   // Kütüphaneyi değiştiren düğmeleri kapat ve sebebini açıkla.
-  ["#kut-madde-duzenle", "#kut-madde-yeni", "#kut-mevzuat-yeni", "#yeni-kayit",
-   "#mevzuat-madde-yeni", "#secimden-yeni"].forEach((secici) => {
+  ["#kut-madde-yeni", "#kut-mevzuat-yeni", "#mevzuat-madde-yeni"].forEach((secici) => {
     const d = $(secici);
     if (d) { d.disabled = true; d.title = "Bu kurulumda kütüphane salt okunurdur."; }
   });

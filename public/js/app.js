@@ -608,10 +608,6 @@ function dayanagiUygula() {
 let maddeDuzenleme = { madde: null, yeni: false, sonra: null };
 
 function maddeKipiAc(madde, secenekler = {}) {
-  if (!yerelKurulum) {
-    bildir("Bu kurulumda kütüphane salt okunurdur; madde metni düzenlenemez.", "hata");
-    return;
-  }
   maddeDuzenleme = { madde, yeni: Boolean(secenekler.yeni), sonra: secenekler.sonra || null };
   $("#madde-kip-baslik").textContent = secenekler.yeni ? "Yeni Madde" : "Madde Düzenle";
   $("#madde-yol").innerHTML =

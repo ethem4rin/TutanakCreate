@@ -523,8 +523,7 @@ function dayanakCiz() {
     dayanak.gorunum
   );
 
-  const mevzuatSecili = Boolean(dayanak.gorunum.mevzuatId);
-  $("#mevzuat-madde-yeni").disabled = !mevzuatSecili;
+  $("#mevzuat-madde-yeni").disabled = false;
 
   $("#mevzuat-tepsi").innerHTML = dayanak.secilenler.length
     ? `<span class="tepsi-etiket">Seçilen dayanaklar</span>` +
@@ -1430,7 +1429,10 @@ function olaylariBagla() {
   $("#mevzuat-uygula").addEventListener("click", dayanagiUygula);
   $("#mevzuat-madde-yeni").addEventListener("click", () => {
     const mevzuat = mevzuatBul(dayanak.gorunum.turId, dayanak.gorunum.mevzuatId);
-    if (!mevzuat) return;
+    if (!mevzuat) {
+      bildir("Önce sol sütundan bir kanun / yönetmelik seçin.", "uyari");
+      return;
+    }
     maddeKipiAc(
       { tur_id: dayanak.gorunum.turId, mevzuat_id: mevzuat.id,
         mevzuat_ad: mevzuat.ad, atif: mevzuat.atif, no: "", baslik: "", ceza: "",

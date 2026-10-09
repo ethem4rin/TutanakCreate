@@ -1543,7 +1543,7 @@ async function ortamiOgren() {
   }
   if (yerelKurulum) return;
   // Kütüphaneyi değiştiren düğmeleri kapat ve sebebini açıkla.
-  ["#kut-madde-yeni", "#kut-mevzuat-yeni", "#mevzuat-madde-yeni"].forEach((secici) => {
+  ["#kut-madde-yeni", "#kut-mevzuat-yeni"].forEach((secici) => {
     const d = $(secici);
     if (d) { d.disabled = true; d.title = "Bu kurulumda kütüphane salt okunurdur."; }
   });

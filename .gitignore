@@ -1,0 +1,28 @@
+# Gizli / kişisel veri — örnek tutanak ve bildirim gerçek kişi ve şirket
+# bilgileri taşır, depoya gönderilmez.
+ornek/
+
+# Çalışma dosyaları: yüklenen tutanaklar ve üretilen bildirimler
+calisma/yuklenen/*
+calisma/cikti/*
+!calisma/yuklenen/.gitkeep
+!calisma/cikti/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Ortam değişkenleri
+.env
+.env.*
+!.env.example
+
+# Araçlar / editör
+.vercel/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

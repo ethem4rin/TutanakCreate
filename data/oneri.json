@@ -1,0 +1,50 @@
+[
+  {
+    "id": "oneri-calisma-suresi",
+    "baslik": "Haftalık 45 saat + fazla çalışma yuvarlaması",
+    "anahtar": ["çalışma süresi", "45 saat", "yarım saat", "fazla çalışma"],
+    "metin": "__Buna göre;__ a) tutanak tarihi itibariyle işyerinde çalışma düzeninin haftalık 45 saati aşmayacak şekilde uygulanması b) fazla çalışma ücretinin hesaplanmasında yarım saate kadar olan sürelerin yarım saate, yarım saati aşan sürelerin ise bir saate tamamlanarak hesaplanması, sağlanmalıdır."
+  },
+  {
+    "id": "oneri-hafta-tatili",
+    "baslik": "Hafta tatili kullandırılması ve %50 zamlı ödeme",
+    "anahtar": ["hafta tatili", "yirmidört saat", "%50"],
+    "metin": "__Buna göre__, İlgili mevzuat hükümleri gereğince işyeri çalışanlarına tatil gününden önce 63 üncü maddeye göre belirlenen iş günlerinde çalışmaları koşuluyla yedi günlük bir zaman dilimi içinde kesintisiz en az yirmidört saat hafta tatili kullandırılması, hafta tatili çalışması yapan işçilere bu çalışmanın karşılığı olarak 7.5 saate kadar olan çalışmalar için 7,5 saat üzerinden saat ücretinin %50 fazlası ile hafta tatili ücretlerinin hesaplanıp ücret hesap pusulalarında tahakkuk ettirilerek ödenmesi gerekmektedir."
+  },
+  {
+    "id": "oneri-ubgt",
+    "baslik": "Ulusal bayram ve genel tatil ücretlerinin uygulanması",
+    "anahtar": ["ulusal bayram", "genel tatil", "yevmiye"],
+    "metin": "__Buna göre;__ Tutanak tarihi itibariyle işyerinde ulusal bayram ve genel tatil günü ücretlerinin çalışılan her gün için 1 yevmiye olacak şekilde uygulanmasına devam edilmesi gerekmektedir."
+  },
+  {
+    "id": "oneri-ara-dinlenme",
+    "baslik": "Ara dinlenmesinin mevzuata uygun kullandırılması",
+    "anahtar": ["ara dinlenme", "mola"],
+    "metin": "__Buna göre;__ işyerinde günlük çalışma süresinin ortalama bir zamanında, yedibuçuk saatten fazla süreli çalışmalarda en az bir saat olmak üzere ara dinlenmesinin aralıksız kullandırılması, ara dinlenmelerinin işin başlangıcında veya bitiminde kullandırılması uygulamasına son verilmesi sağlanmalıdır."
+  },
+  {
+    "id": "oneri-is-sozlesmesi",
+    "baslik": "İş sözleşmelerinin imzalanması ve bir suretinin verilmesi",
+    "anahtar": ["iş sözleşmesi", "imza", "kaşe", "suret"],
+    "metin": "__Buna göre;__ işyerinde düzenlenen yazılı iş sözleşmelerinin işvereni temsile yetkili kişinin imza ve kaşesini de taşıyacak şekilde düzenlenmesi, imzalanan iş sözleşmelerinin birer suretinin tüm çalışanlara verilmesi sağlanmalıdır."
+  },
+  {
+    "id": "oneri-ucret-hesap-pusulasi",
+    "baslik": "Ücret hesap pusulalarının mevzuata uygun düzenlenmesi",
+    "anahtar": ["ücret hesap pusulası", "bordro", "tahakkuk"],
+    "metin": "__Buna göre;__ işçilere düzenlenen ücret hesap pusulalarında ödemenin günü ve ilişkin olduğu dönem ile fazla çalışma, hafta tatili, ulusal bayram ve genel tatil ücretleri gibi asıl ücrete yapılan her çeşit eklemeler ile her çeşit kesintilerin ayrı ayrı gösterilmesi sağlanmalıdır."
+  },
+  {
+    "id": "oneri-yillik-izin",
+    "baslik": "Yıllık ücretli iznin süre ve bölünme kurallarına uygun kullandırılması",
+    "anahtar": ["yıllık izin", "on gün", "bölünme"],
+    "metin": "__Buna göre;__ işyeri çalışanlarının yıllık ücretli izin sürelerinin hizmet sürelerine göre mevzuatta öngörülen asgari süreler üzerinden hesaplanması, izinlerin bölümler hâlinde kullandırılması hâlinde bir bölümünün on günden aşağı olmayacak şekilde planlanması ve uygulanması sağlanmalıdır."
+  },
+  {
+    "id": "oneri-fazla-calisma-onayi",
+    "baslik": "Fazla çalışma için yazılı onay alınması",
+    "anahtar": ["fazla çalışma onayı", "muvafakat"],
+    "metin": "__Buna göre;__ fazla çalışma ve fazla sürelerle çalışma yaptırılan işçilerden her yıl başında yazılı onay alınması ve bu onayların işçi özlük dosyalarında saklanması sağlanmalıdır."
+  }
+]

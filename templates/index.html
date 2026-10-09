@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Müfettiş Programı — Noksanlık Bildirimi</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+</head>
+<body>
+
+<!-- Yeniden kullanılan simgeler -->
+<svg class="gizli" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="s-yukle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+  </symbol>
+  <symbol id="s-liste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+    <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+  </symbol>
+  <symbol id="s-belge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+    <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+  </symbol>
+  <symbol id="s-kitap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+  </symbol>
+  <symbol id="s-onay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+  <symbol id="s-arti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  <symbol id="s-kapat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </symbol>
+  <symbol id="s-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+  </symbol>
+  <symbol id="s-geri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+  </symbol>
+  <symbol id="s-kalem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/>
+  </symbol>
+  <symbol id="s-cop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+  </symbol>
+  <symbol id="s-goz" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+  </symbol>
+  <symbol id="s-indir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+  </symbol>
+  <symbol id="s-bilgi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+  </symbol>
+  <symbol id="s-yenile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+  </symbol>
+</svg>
+
+<div class="kabuk">
+
+  <!-- ============================== YAN MENÜ ============================== -->
+  <nav class="yan-menu">
+    <div class="logo">MP</div>
+    <button class="menu-dugme etkin" data-sayfa="tutanak" data-ipucu="1 · Tutanak">
+      <svg><use href="#s-yukle"/></svg>
+    </button>
+    <button class="menu-dugme" data-sayfa="noksanliklar" data-ipucu="2 · Noksanlıklar">
+      <svg><use href="#s-liste"/></svg>
+    </button>
+    <button class="menu-dugme" data-sayfa="belge" data-ipucu="3 · Belge Bilgileri">
+      <svg><use href="#s-belge"/></svg>
+    </button>
+    <button class="menu-dugme" data-sayfa="kutuphane" data-ipucu="Kütüphane">
+      <svg><use href="#s-kitap"/></svg>
+    </button>
+    <div style="flex:1 1 auto"></div>
+    <button class="menu-dugme" id="sifirla-dugme" data-ipucu="Çalışmayı sıfırla">
+      <svg><use href="#s-yenile"/></svg>
+    </button>
+  </nav>
+
+  <!-- ================================ GÖVDE ============================== -->
+  <main class="govde">
+
+    <header class="ust-serit">
+      <div>
+        <h1 class="selam">Müfettiş Programı</h1>
+        <div class="alt-yazi" id="ust-alt-yazi">Noksanlık / Aykırılık Bildirimi hazırlama</div>
+      </div>
+      <div class="adim-serit">
+        <button class="adim etkin" data-sayfa="tutanak"><span class="sayac">1</span> Tutanak</button>
+        <svg class="adim-ok" width="14" height="14"><use href="#s-ok"/></svg>
+        <button class="adim" data-sayfa="noksanliklar"><span class="sayac">2</span> Noksanlıklar</button>
+        <svg class="adim-ok" width="14" height="14"><use href="#s-ok"/></svg>
+        <button class="adim" data-sayfa="belge"><span class="sayac">3</span> Belge</button>
+      </div>
+    </header>
+
+    <!-- --------------------------- 1. AŞAMA: TUTANAK --------------------- -->
+    <section class="sayfa etkin" id="sayfa-tutanak">
+
+      <div class="kart" id="yukleme-karti">
+        <div class="kart-baslik">
+          <h3><svg><use href="#s-yukle"/></svg> Teftiş Tutanağını Yükle</h3>
+          <span class="not">Word (.docx) biçiminde</span>
+        </div>
+        <div class="birak-alani" id="birak-alani">
+          <svg><use href="#s-yukle"/></svg>
+          <div class="baslik">Tutanağı buraya sürükleyin</div>
+          <div class="alt">ya da dosya seçmek için tıklayın · yalnızca .docx</div>
+          <input type="file" id="dosya-girdisi" accept=".docx" class="gizli">
+        </div>
+      </div>
+
+      <div id="tutanak-sonuc" class="gizli">
+
+        <div class="kart">
+          <div class="kart-baslik">
+            <h3><svg><use href="#s-bilgi"/></svg> İşyeri ve Teftiş Künyesi</h3>
+            <span class="not" id="kaynak-dosya"></span>
+          </div>
+          <div class="izgara iki">
+            <div class="alan">
+              <label>İşyeri Unvanı <span class="etiket bilgi">tutanaktan</span></label>
+              <input type="text" id="k-unvan">
+            </div>
+            <div class="alan">
+              <label>SGK / İşyeri Sicil No <span class="etiket bilgi">tutanaktan</span></label>
+              <input type="text" id="k-sicil">
+            </div>
+          </div>
+          <div class="izgara" style="margin-top:14px">
+            <div class="alan">
+              <label>İşyeri Adresi <span class="etiket bilgi">tutanaktan</span></label>
+              <input type="text" id="k-adres">
+            </div>
+          </div>
+          <div class="izgara" style="margin-top:14px">
+            <div class="alan">
+              <label>Giriş Paragrafı <span class="etiket bilgi">tutanaktan türetildi</span></label>
+              <textarea id="k-giris" style="min-height:120px"></textarea>
+              <span class="ipucu">Görev yazısı tarih/sayısı, program adı ve teftiş tarihleri tutanaktan okundu. Gerekirse düzenleyin.</span>
+            </div>
+          </div>
+          <div class="izgara uc" style="margin-top:14px">
+            <div class="alan">
+              <label>1. İş Müfettişi</label>
+              <input type="text" id="k-mufettis1">
+            </div>
+            <div class="alan">
+              <label>2. İş Müfettişi</label>
+              <input type="text" id="k-mufettis2">
+            </div>
+            <div class="alan">
+              <label>İşveren Vekili</label>
+              <input type="text" id="k-vekil">
+            </div>
+          </div>
+        </div>
+
+        <div class="kart">
+          <div class="kart-baslik">
+            <h3><svg><use href="#s-liste"/></svg> Tutanaktaki Noksanlıklar</h3>
+            <div class="dugme-sirasi">
+              <span class="not" id="secim-sayisi"></span>
+              <button class="dugme kucuk sade" id="tumunu-goster">Tüm paragrafları göster</button>
+            </div>
+          </div>
+          <div class="bos-bilgi" style="text-align:left">
+            Tutanakta <strong>kalın (bold)</strong> yazılmış paragraflar noksanlık adayı olarak
+            işaretlendi. Kalın yazılmamış bir tespiti de noksanlık olarak eklemek için
+            “Tüm paragrafları göster” ile listeyi açıp tıklayın.
+          </div>
+          <div id="paragraf-listesi"></div>
+          <div class="dugme-sirasi" style="margin-top:18px">
+            <button class="dugme ana" id="noksanliga-gec">
+              Seçilenlerle devam et <svg><use href="#s-ok"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ------------------------ 2. AŞAMA: NOKSANLIKLAR ------------------- -->
+    <section class="sayfa" id="sayfa-noksanliklar">
+      <div class="kart">
+        <div class="kart-baslik">
+          <h3><svg><use href="#s-liste"/></svg> Noksanlıklar · Mevzuat · Müfettiş Önerisi</h3>
+          <div class="dugme-sirasi">
+            <span class="etiket" id="noksanlik-ozet">0 madde</span>
+            <button class="dugme kucuk" id="belgeye-gec">
+              Belge bilgilerine geç <svg><use href="#s-ok"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="noksanlik-kartlari"></div>
+      </div>
+    </section>
+
+    <!-- --------------------------- 3. AŞAMA: BELGE ----------------------- -->
+    <section class="sayfa" id="sayfa-belge">
+
+      <div class="kart">
+        <div class="kart-baslik"><h3><svg><use href="#s-belge"/></svg> Yazı Künyesi</h3></div>
+        <div class="izgara iki">
+          <div class="alan">
+            <label>Sayı</label>
+            <input type="text" id="b-sayi" placeholder="34283/05-34282/05">
+          </div>
+          <div class="alan">
+            <label>Tarih</label>
+            <input type="text" id="b-tarih" placeholder="07.08.2026">
+          </div>
+          <div class="alan">
+            <label>Müfettiş E-postası</label>
+            <input type="text" id="b-eposta" placeholder="ad.soyad@csgb.gov.tr">
+            <span class="ipucu">Sayfa altlığındaki iletişim satırına yazılır.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kart">
+        <div class="kart-baslik">
+          <h3><svg><use href="#s-bilgi"/></svg> Teftişe Ara Verme</h3>
+          <span class="not">Noksanlıkların giderileceği tarih ve saat</span>
+        </div>
+        <div class="izgara iki">
+          <div class="alan">
+            <label>Bildirim Tarihi</label>
+            <input type="text" id="b-bildirim-tarihi" placeholder="05/10/2026">
+          </div>
+          <div class="alan">
+            <label>Saat</label>
+            <input type="text" id="b-bildirim-saati" placeholder="10.00">
+          </div>
+        </div>
+      </div>
+
+      <div class="kart">
+        <div class="kart-baslik">
+          <h3><svg><use href="#s-kalem"/></svg> Tebellüğ Eden</h3>
+          <button class="dugme kucuk sade" id="vekilden-doldur">İşveren vekilinden doldur</button>
+        </div>
+        <div class="izgara iki">
+          <div class="alan"><label>Adı Soyadı</label><input type="text" id="t-ad"></div>
+          <div class="alan"><label>Baba/Ana Adı</label><input type="text" id="t-baba"></div>
+          <div class="alan"><label>Doğum Yeri / Tarihi</label><input type="text" id="t-dogum"></div>
+          <div class="alan"><label>T.C. Kimlik Numarası</label><input type="text" id="t-tckn"></div>
+          <div class="alan"><label>Görevi</label><input type="text" id="t-gorev"></div>
+          <div class="alan"><label>Tarih</label><input type="text" id="t-tarih"></div>
+        </div>
+      </div>
+
+      <div class="kart">
+        <div class="kart-baslik"><h3><svg><use href="#s-onay"/></svg> Özet ve Çıktı</h3></div>
+        <div class="izgara uc" id="belge-ozet"></div>
+        <div class="ayirac"></div>
+        <div class="dugme-sirasi">
+          <button class="dugme" id="onizle-dugme"><svg><use href="#s-goz"/></svg> Önizle</button>
+          <button class="dugme ana" id="olustur-dugme"><svg><use href="#s-indir"/></svg> Word Belgesini Oluştur</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ------------------------------ KÜTÜPHANE -------------------------- -->
+    <section class="sayfa" id="sayfa-kutuphane">
+
+      <div class="kart">
+        <div class="kart-baslik">
+          <h3><svg><use href="#s-kitap"/></svg> Kütüphane</h3>
+          <div class="dugme-sirasi">
+            <button class="dugme kucuk kut-sekme ana" data-sekme="mevzuat">Mevzuat</button>
+            <button class="dugme kucuk kut-sekme" data-sekme="oneri">Müfettiş Önerileri</button>
+          </div>
+        </div>
+
+        <!-- Mevzuat: kademeli gezgin -->
+        <div id="kut-mevzuat">
+          <div class="bos-bilgi" style="text-align:left">
+            Bakanlığın <strong>“Dayanak Seç”</strong> ekranındaki düzen:
+            <strong>Mevzuat Türü → Mevzuat → Madde</strong>. Bir maddeye tıklayın, bildirime
+            yazılacak metni düzenleyin. <span class="etiket uyari">metin girilmedi</span>
+            işaretli maddelerin metni henüz boştur.
+          </div>
+          <div class="alan" style="margin-bottom:12px">
+            <input type="search" id="kut-mevzuat-ara" placeholder="Madde no, başlık, anahtar kelime veya metin içinde ara…">
+          </div>
+          <div class="bos-bilgi gizli" id="salt-okunur-not"
+             style="text-align:left;border-color:rgba(245,192,74,.35);color:var(--sari)">
+          Bu kurulumda kütüphane <strong>salt okunurdur</strong>. Mevzuat ve öneri
+          düzenlemelerini kendi bilgisayarınızda yapıp depoya gönderin; bildirim
+          hazırlama ve Word çıktısı burada tam olarak çalışır.
+        </div>
+        <div id="kut-sutunlar"></div>
+          <div class="dayanak-onizleme" id="kut-onizleme">Bir madde seçin.</div>
+          <div class="dugme-sirasi" style="margin-top:12px">
+            <button class="dugme kucuk" id="kut-madde-duzenle" disabled>
+              <svg><use href="#s-kalem"/></svg> Seçili maddeyi düzenle
+            </button>
+            <button class="dugme kucuk" id="kut-madde-yeni" disabled>
+              <svg><use href="#s-arti"/></svg> Bu mevzuata madde ekle
+            </button>
+            <button class="dugme kucuk" id="kut-mevzuat-yeni">
+              <svg><use href="#s-arti"/></svg> Yeni kanun / yönetmelik
+            </button>
+          </div>
+        </div>
+
+        <!-- Müfettiş önerileri: düz liste -->
+        <div id="kut-oneri" class="gizli">
+          <div class="bos-bilgi" style="text-align:left">
+            Metinlerde <code>**kalın**</code> ve <code>__kalın + italik + altı çizili__</code>
+            işaretleri kullanılabilir. İkincisi “Buna göre;” kalıbı içindir.
+            Kayıtlar <code>data/oneri.json</code> dosyasında saklanır.
+          </div>
+          <div class="dugme-sirasi" style="margin-bottom:12px">
+            <input type="search" id="kutuphane-ara" placeholder="Başlık, anahtar kelime veya metin içinde ara…" style="flex:1 1 240px">
+            <button class="dugme kucuk" id="yeni-kayit"><svg><use href="#s-arti"/></svg> Yeni öneri</button>
+          </div>
+          <div id="kutuphane-listesi"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ======================= KİP: DAYANAK SEÇ (MEVZUAT) =================== -->
+<div class="kip-perde" id="mevzuat-kipi">
+  <div class="kip" style="width:min(1000px,100%)">
+    <div class="kip-ust">
+      <h3>Dayanak Seç</h3>
+      <button class="dugme sade kucuk" data-kapat><svg><use href="#s-kapat"/></svg></button>
+    </div>
+    <div style="padding:14px 20px 0">
+      <input type="search" id="mevzuat-ara" placeholder="Madde no, başlık veya metin içinde ara… (örn. 63, ara dinlenme, hafta tatili)">
+    </div>
+    <div class="kip-orta">
+      <div id="mevzuat-sutunlar"></div>
+      <div class="dayanak-onizleme" id="mevzuat-onizleme">
+        Soldan mevzuat türünü, ardından mevzuatı ve maddeyi seçin.
+        Seçtiğiniz madde bildirime bu şekilde yazılır.
+      </div>
+      <div class="tepsi" id="mevzuat-tepsi"></div>
+    </div>
+    <div class="kip-alt">
+      <button class="dugme kucuk" id="mevzuat-madde-yeni" disabled>
+        <svg><use href="#s-arti"/></svg> Bu mevzuata madde ekle
+      </button>
+      <div class="dugme-sirasi">
+        <button class="dugme" data-kapat>Vazgeç</button>
+        <button class="dugme ana" id="mevzuat-uygula">Seç</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== KİP: MÜFETTİŞ ÖNERİSİ SEÇ ===================== -->
+<div class="kip-perde" id="secim-kipi">
+  <div class="kip">
+    <div class="kip-ust">
+      <h3 id="secim-kip-baslik">Müfettiş Önerisi Seç</h3>
+      <button class="dugme sade kucuk" data-kapat><svg><use href="#s-kapat"/></svg></button>
+    </div>
+    <div style="padding:14px 20px 0">
+      <input type="search" id="secim-ara" placeholder="Ara…">
+    </div>
+    <div class="kip-orta" id="secim-listesi"></div>
+    <div class="kip-alt">
+      <button class="dugme kucuk" id="secimden-yeni"><svg><use href="#s-arti"/></svg> Kütüphaneye yeni kayıt</button>
+      <div class="dugme-sirasi">
+        <button class="dugme" data-kapat>Vazgeç</button>
+        <button class="dugme ana" id="secimi-uygula">Seçimi Uygula</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================= KİP: MADDE DÜZENLE ========================= -->
+<div class="kip-perde" id="madde-kipi">
+  <div class="kip">
+    <div class="kip-ust">
+      <h3 id="madde-kip-baslik">Madde Düzenle</h3>
+      <button class="dugme sade kucuk" data-kapat><svg><use href="#s-kapat"/></svg></button>
+    </div>
+    <div class="kip-orta">
+      <div class="bos-bilgi" style="text-align:left" id="madde-yol"></div>
+      <div class="izgara uc">
+        <div class="alan">
+          <label>Madde No</label>
+          <input type="text" id="madde-no" placeholder="63  ·  63/1  ·  6/(4)">
+        </div>
+        <div class="alan">
+          <label>Madde Başlığı</label>
+          <input type="text" id="madde-baslik" placeholder="Çalışma Süresi">
+        </div>
+        <div class="alan">
+          <label>Ceza Maddesi</label>
+          <input type="text" id="madde-ceza" placeholder="104">
+        </div>
+      </div>
+      <div class="izgara" style="margin-top:14px">
+        <div class="alan">
+          <label>Anahtar Kelimeler</label>
+          <input type="text" id="madde-anahtar" placeholder="çalışma süresi, 45 saat, fazla çalışma">
+          <span class="ipucu">Virgülle ayırın. Noksanlık metnine göre otomatik öneri için kullanılır.</span>
+        </div>
+        <div class="alan">
+          <label>Bildirime Yazılacak Paragraf</label>
+          <textarea id="madde-paragraf" style="min-height:190px"></textarea>
+          <span class="ipucu">
+            Madde başlığını <code>**Çalışma Süresi**</code> gibi iki yıldız arasına alın.
+            Bu metin bildirime birebir yazılır.
+          </span>
+        </div>
+        <div class="alan">
+          <label>Kalıptan Oluştur</label>
+          <textarea id="madde-alinti" style="min-height:90px" placeholder="Maddenin tırnak içine alınacak metnini buraya yapıştırın…"></textarea>
+          <div class="dugme-sirasi">
+            <select id="madde-kapanis" style="flex:0 0 240px">
+              <option value="Hükmü amirdir.">… Hükmü amirdir.</option>
+              <option value="Hükmü,">… Hükmü,</option>
+              <option value="hükmüne yer verilmiştir.">… hükmüne yer verilmiştir.</option>
+            </select>
+            <button class="dugme kucuk" id="madde-kalip-uret">Paragrafı kalıptan yaz</button>
+          </div>
+        </div>
+        <div class="alan">
+          <label>Önizleme</label>
+          <div class="dayanak-onizleme" id="madde-onizleme"></div>
+        </div>
+      </div>
+    </div>
+    <div class="kip-alt">
+      <button class="dugme tehlike kucuk gizli" id="madde-sil"><svg><use href="#s-cop"/></svg> Sil</button>
+      <div class="dugme-sirasi" style="margin-left:auto">
+        <button class="dugme" data-kapat>Vazgeç</button>
+        <button class="dugme ana" id="madde-kaydet">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= KİP: YENİ MEVZUAT EKLE ======================= -->
+<div class="kip-perde" id="mevzuat-ekle-kipi">
+  <div class="kip" style="width:min(640px,100%)">
+    <div class="kip-ust">
+      <h3>Yeni Kanun / Yönetmelik</h3>
+      <button class="dugme sade kucuk" data-kapat><svg><use href="#s-kapat"/></svg></button>
+    </div>
+    <div class="kip-orta">
+      <div class="izgara">
+        <div class="alan">
+          <label>Mevzuat Türü</label>
+          <select id="yeni-mevzuat-tur"></select>
+        </div>
+        <div class="alan">
+          <label>Adı</label>
+          <input type="text" id="yeni-mevzuat-ad" placeholder="6098 - Türk Borçlar Kanunu">
+          <span class="ipucu">Listede görüneceği ad.</span>
+        </div>
+        <div class="alan">
+          <label>Atıf Biçimi</label>
+          <input type="text" id="yeni-mevzuat-atif" placeholder="6098 sayılı Türk Borçlar Kanunu'nun">
+          <span class="ipucu">
+            Paragraf kalıbının başına gelir. Ek çekimine dikkat:
+            “… Kanunu<strong>'nun</strong>”, “… Yönetmeliği<strong>'nin</strong>”.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="kip-alt">
+      <div></div>
+      <div class="dugme-sirasi">
+        <button class="dugme" data-kapat>Vazgeç</button>
+        <button class="dugme ana" id="yeni-mevzuat-kaydet">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================== KİP: KAYIT DÜZENLE ======================= -->
+<div class="kip-perde" id="kayit-kipi">
+  <div class="kip">
+    <div class="kip-ust">
+      <h3 id="kayit-kip-baslik">Yeni Müfettiş Önerisi</h3>
+      <button class="dugme sade kucuk" data-kapat><svg><use href="#s-kapat"/></svg></button>
+    </div>
+    <div class="kip-orta">
+      <div class="izgara">
+        <div class="alan">
+          <label>Başlık</label>
+          <input type="text" id="kayit-baslik" placeholder="Haftalık 45 saat + fazla çalışma yuvarlaması">
+        </div>
+        <div class="alan">
+          <label>Anahtar Kelimeler</label>
+          <input type="text" id="kayit-anahtar" placeholder="çalışma süresi, 45 saat, yarım saat">
+          <span class="ipucu">Virgülle ayırın. Noksanlık metnine göre otomatik sıralama için kullanılır.</span>
+        </div>
+        <div class="alan">
+          <label>Metin</label>
+          <textarea id="kayit-metin" style="min-height:220px"></textarea>
+          <span class="ipucu">**kalın** · __kalın+italik+altı çizili__</span>
+        </div>
+        <div class="alan">
+          <label>Önizleme</label>
+          <div class="secim-parcasi"><div class="icerik" id="kayit-onizleme"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="kip-alt">
+      <button class="dugme tehlike kucuk gizli" id="kayit-sil"><svg><use href="#s-cop"/></svg> Sil</button>
+      <div class="dugme-sirasi" style="margin-left:auto">
+        <button class="dugme" data-kapat>Vazgeç</button>
+        <button class="dugme ana" id="kayit-kaydet">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ KİP: ÖNİZLEME =========================== -->
+<div class="kip-perde" id="onizleme-kipi">
+  <div class="kip" style="width:min(960px,100%)">
+    <div class="kip-ust">
+      <h3>Belge Önizlemesi</h3>
+      <button class="dugme sade kucuk" data-kapat><svg><use href="#s-kapat"/></svg></button>
+    </div>
+    <div class="kip-orta"><div class="onizleme-sayfa" id="onizleme-govde"></div></div>
+    <div class="kip-alt">
+      <span class="not" style="color:var(--metin-sonuk);font-size:12px">
+        Yaklaşık görünümdür; Word çıktısı örnek bildirimin biçimini birebir taşır.
+      </span>
+      <button class="dugme ana" id="onizlemeden-olustur"><svg><use href="#s-indir"/></svg> Belgeyi Oluştur</button>
+    </div>
+  </div>
+</div>
+
+<div class="bildirim-yuvasi" id="bildirim-yuvasi"></div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

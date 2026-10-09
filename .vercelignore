@@ -1,0 +1,10 @@
+# Dağıtım paketine girmesi gerekmeyenler
+ornek/
+mevzuat_pdf/
+calisma/
+tools/
+.claude/
+README.md
+requirements-arac.txt
+__pycache__/
+*.pyc

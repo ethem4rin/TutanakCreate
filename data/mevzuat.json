@@ -1,0 +1,1014 @@
+{
+  "surum": 2,
+  "turler": [
+    {
+      "id": "kanun",
+      "ad": "Kanun",
+      "mevzuat": [
+        {
+          "id": "4857",
+          "ad": "4857 - İş Kanunu",
+          "atif": "4857 sayılı İş Kanunu'nun",
+          "maddeler": [
+            {
+              "no": "3",
+              "baslik": "İşyerini bildirme",
+              "ceza": "",
+              "anahtar": [
+                "işyeri bildirimi",
+                "işyeri bildirme",
+                "bölge müdürlüğü"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **İşyerini bildirme** başlıklı 3. maddesinde; “Bu Kanunun kapsamına giren nitelikte bir işyerini kuran, her ne suretle olursa olsun devralan, çalışma konusunu kısmen veya tamamen değiştiren veya herhangi bir sebeple faaliyetine son veren ve işyerini kapatan işveren, işyerinin unvan ve adresini, çalıştırılan işçi sayısını, çalışma konusunu, işin başlama veya bitme gününü, kendi adını ve soyadını yahut unvanını, adresini, varsa işveren vekili veya vekillerinin adı, soyadı ve adreslerini bir ay içinde bölge müdürlüğüne bildirmek zorundadır. Bu Kanunun 2 nci maddesinin altıncı fıkrasına göre iş alan alt işveren; kendi işyerinin tescili için asıl işverenden aldığı yazılı alt işverenlik sözleşmesi ve gerekli belgelerle birlikte, birinci fıkra hükmüne göre bildirim yapmakla yükümlüdür. Bölge müdürlüğünce tescili yapılan bu işyerine ait belgeler gerektiğinde iş müfettişlerince incelenir. İnceleme sonucunda muvazaalı işlemin tespiti halinde, bu tespite ilişkin gerekçeli müfettiş raporu işverenlere tebliğ edilir. Bu rapora karşı tebliğ tarihinden itibaren otuz iş günü içinde işverenlerce yetkili iş mahkemesine itiraz edilebilir. İtiraz üzerine görülecek olan dava basit yargılama usulüne göre dört ay içinde sonuçlandırılır. Mahkemece verilen kararın temyizi hâlinde Yargıtay altı ay içinde kesin olarak karar verir. Kamu idarelerince bu raporlara karşı yetkili iş mahkemelerine itiraz edilmesi ve mahkeme kararlarına karşı diğer kanun yollarına başvurulması zorunludur. Rapora otuz iş günü içinde itiraz edilmemiş veya mahkeme muvazaalı işlemin tespitini onamış ise tescil işlemi iptal edilir ve alt işverenin işçileri başlangıçtan itibaren asıl işverenin işçileri sayılır. Ancak, şirketlerin tescil kayıtları ise ticaret sicili memurluklarının gönderdiği belgeler üzerinden yapılır ve bu belgeler ilgili ticaret sicili memurluğunca bir ay içinde Çalışma ve Sosyal Güvenlik Bakanlığı ilgili bölge müdürlüklerine gönderilir. Asıl işveren-alt işveren ilişkisinin kurulması, bildirimi ve işyerinin tescili ile yapılacak sözleşmede bulunması gerekli diğer hususlara ilişkin usul ve esaslar, Çalışma ve Sosyal Güvenlik Bakanlığı tarafından çıkarılacak yönetmelikle belirlenir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "5",
+              "baslik": "Eşit davranma ilkesi",
+              "ceza": "",
+              "anahtar": [
+                "eşit davranma",
+                "ayrımcılık",
+                "cinsiyet",
+                "gebelik"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Eşit davranma ilkesi** başlıklı 5. maddesinde; “İş ilişkisinde dil, ırk, renk, cinsiyet, engellilik, siyasal düşünce, felsefî inanç, din ve mezhep ve benzeri sebeplere dayalı ayrım yapılamaz. İşveren, esaslı sebepler olmadıkça tam süreli çalışan işçi karşısında kısmî süreli çalışan işçiye, belirsiz süreli çalışan işçi karşısında belirli süreli çalışan işçiye farklı işlem yapamaz. İşveren, biyolojik veya işin niteliğine ilişkin sebepler zorunlu kılmadıkça, bir işçiye, iş sözleşmesinin yapılmasında, şartlarının oluşturulmasında, uygulanmasında ve sona ermesinde, cinsiyet veya gebelik nedeniyle doğrudan veya dolaylı farklı işlem yapamaz. Aynı veya eşit değerde bir iş için cinsiyet nedeniyle daha düşük ücret kararlaştırılamaz. İşçinin cinsiyeti nedeniyle özel koruyucu hükümlerin uygulanması, daha düşük bir ücretin uygulanmasını haklı kılmaz. İş ilişkisinde veya sona ermesinde yukarıdaki fıkra hükümlerine aykırı davranıldığında işçi, dört aya kadar ücreti tutarındaki uygun bir tazminattan başka yoksun bırakıldığı haklarını da talep edebilir. 2821 sayılı Sendikalar Kanununun 31 inci maddesi hükümleri saklıdır. 20 nci madde hükümleri saklı kalmak üzere işverenin yukarıdaki fıkra hükümlerine aykırı davrandığını işçi ispat etmekle yükümlüdür. Ancak, işçi bir ihlalin varlığı ihtimalini güçlü bir biçimde gösteren bir durumu ortaya koyduğunda, işveren böyle bir ihlalin mevcut olmadığını ispat etmekle yükümlü olur.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "7",
+              "baslik": "Geçici iş ilişkisi",
+              "ceza": "",
+              "anahtar": [
+                "geçici iş ilişkisi",
+                "özel istihdam bürosu"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Geçici iş ilişkisi** başlıklı 7. maddesinde; “Geçici iş ilişkisi, özel istihdam bürosu aracılığıyla ya da holding bünyesi içinde veya aynı şirketler topluluğuna bağlı başka bir işyerinde görevlendirme yapılmak suretiyle kurulabilir. Özel istihdam bürosu aracılığıyla geçici iş ilişkisi, Türkiye İş Kurumunca izin verilen özel istihdam bürosunun bir işverenle geçici işçi sağlama sözleşmesi yaparak bir işçisini geçici olarak bu işverene devri ile; a) Bu Kanunun 13 üncü maddesinin beşinci fıkrası ile 74 üncü maddesinde belirtilen hâllerde, işçinin askerlik hizmeti hâlinde ve iş sözleşmesinin askıda kaldığı diğer hâllerde, b) Mevsimlik tarım işlerinde, c) Ev hizmetlerinde, d) İşletmenin günlük işlerinden sayılmayan ve aralıklı olarak gördürülen işlerde, e) İş sağlığı ve güvenliği bakımından acil olan işlerde veya üretimi önemli ölçüde etkileyen zorlayıcı nedenlerin ortaya çıkması hâlinde, f) İşletmenin ortalama mal ve hizmet üretim kapasitesinin geçici iş ilişkisi kurulmasını gerektirecek ölçüde ve öngörülemeyen şekilde artması hâlinde, g) Mevsimlik işler hariç dönemsellik arz eden iş artışları hâlinde, kurulabilir. Geçici işçi sağlama sözleşmesi ikinci fıkranın (a) bendinde sayılan hâllerin devamı süresince, (b) ve (c) bentlerinde sayılan hâllerde süre sınırı olmaksızın, diğer bentlerde sayılan hâllerde ise en fazla dört ay süreyle kurulabilir. Yapılan bu sözleşme ikinci fıkranın (g) bendi hariç toplam sekiz ayı geçmemek üzere en fazla iki defa yenilenebilir. Geçici işçi çalıştıran işveren, belirtilen sürenin sonunda aynı iş için altı ay geçmedikçe yeniden geçici işçi çalıştıramaz. Bu Kanunun 29 uncu maddesi kapsamında toplu işçi çıkarılan işyerlerinde sekiz ay süresince, kamu kurum ve kuruluşlarında ve yer altında maden çıkarılan işyerlerinde bu maddenin ikinci fıkrası kapsamında geçici iş ilişkisi kurulamaz. Geçici işçi çalıştıran işveren, grev ve lokavtın uygulanması sırasında 18/10/2012 tarihli ve 6356 sayılı Sendikalar ve Toplu İş Sözleşmesi Kanununun 65 inci maddesi hükümleri saklı kalmak kaydıyla geçici iş ilişkisiyle işçi çalıştıramaz. İkinci fıkranın (f) bendi kapsamında geçici iş ilişkisi ile çalıştırılan işçi sayısı, işyerinde çalıştırılan işçi sayısının dörtte birini geçemez. Ancak, on ve daha az işçi çalıştırılan işyerlerinde beş işçiye kadar geçici iş ilişkisi kurulabilir. İşçi sayısının tespitinde, kısmi süreli iş sözleşmesine göre çalışanlar, çalışma süreleri dikkate alınarak tam süreli çalışmaya dönüştürülür. Geçici işçi sağlama sözleşmesi ile çalışan işçi, 30 uncu maddenin uygulanmasında özel istihdam bürosu ve geçici işçi çalıştıran işverenin işçi sayısına dâhil edilmez. Geçici işçi çalıştıran işveren, iş sözleşmesi feshedilen işçisini fesih tarihinden itibaren altı ay geçmeden geçici iş ilişkisi kapsamında çalıştıramaz. Geçici işçi, geçici işçi çalıştıran işverenden özel istihdam bürosunun hizmet bedeline mahsup edilmek üzere avans veya borç alamaz. Geçici işçi çalıştıran işveren; a) İşin gereği ve geçici işçi sağlama sözleşmesine uygun olarak geçici işçisine talimat verme yetkisine sahiptir. b) İşyerindeki açık iş pozisyonlarını geçici işçisine bildirmek ve Türkiye İş Kurumu tarafından istenecek belgeleri belirlenen sürelerle saklamakla yükümlüdür. c) Geçici işçinin iş kazası ve meslek hastalığı hâllerini özel istihdam bürosuna derhâl, 31/5/2006 tarihli ve 5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanununun 13 üncü ve 14 üncü maddelerine göre ilgili mercilere bildirmekle yükümlüdür. d) Geçici işçileri çalıştıkları dönemlerde, işyerindeki sosyal hizmetlerden eşit muamele ilkesince yararlandırır. Geçici işçiler, çalışmadıkları dönemlerde ise özel istihdam bürosundaki eğitim ve çocuk bakım hizmetlerinden yararlandırılır. e) İşyerindeki geçici işçilerin istihdam durumuna ilişkin bilgileri varsa işyeri sendika temsilcisine bildirmekle yükümlüdür. f) 20/6/2012 tarihli ve 6331 sayılı İş Sağlığı ve Güvenliği Kanununun 17 nci maddesinin altıncı fıkrasında öngörülen eğitimleri vermekle ve iş sağlığı ve güvenliği açısından gereken tedbirleri almakla, geçici işçi de bu eğitimlere katılmakla yükümlüdür. Geçici işçinin, geçici işçiyi çalıştıran işverenin işyerindeki çalışma süresince temel çalışma koşulları, bu işçilerin aynı işveren tarafından aynı iş için doğrudan istihdamı hâlinde sağlanacak koşulların altında olamaz. Geçici iş ilişkisinde işveren özel istihdam bürosudur. Özel istihdam bürosu aracılığıyla geçici iş ilişkisi, geçici işçi ile iş sözleşmesi, geçici işçi çalıştıran işveren ile geçici işçi sağlama sözleşmesi yapmak suretiyle yazılı olarak kurulur. Özel istihdam bürosu ile geçici işçi çalıştıran işveren arasında yapılacak geçici işçi sağlama sözleşmesinde; sözleşmenin başlangıç ve bitiş tarihi, işin niteliği, özel istihdam bürosunun hizmet bedeli, varsa geçici işçi çalıştıran işverenin ve özel istihdam bürosunun özel yükümlülükleri yer alır. Geçici işçinin, Türkiye İş Kurumundan veya bir başka özel istihdam bürosundan hizmet almasını ya da iş görme edimini yerine getirdikten sonra geçici işçi olarak çalıştığı işveren veya farklı bir işverenin işyerinde çalışmasını engelleyen hükümler konulamaz. Geçici işçi ile yapılacak iş sözleşmesinde, işçinin ne kadar süre içerisinde işe çağrılmazsa haklı nedenle iş sözleşmesini feshedebileceği belirtilir. Bu süre üç ayı geçemez. İkinci fıkranın (f) bendi kapsamında kurulan geçici iş ilişkisinde, geçici işçi çalıştıran işveren işyerinde bir ayın üzerinde çalışan geçici işçilerin ücretlerinin ödenip ödenmediğini çalıştığı süre boyunca her ay kontrol etmekle, özel istihdam bürosu ise ücretin ödendiğini gösteren belgeleri aylık olarak geçici işçi çalıştıran işverene ibraz etmekle yükümlüdür. Geçici işçi çalıştıran işveren, ödenmeyen ücretler mevcut ise bunlar ödenene kadar özel istihdam bürosunun alacağını ödemeyerek, özel istihdam bürosunun alacağından mahsup etmek kaydıyla geçici işçilerin en çok üç aya kadar olan ücretlerini doğrudan işçilerin banka hesabına yatırır. Ücreti ödenmeyen işçiler ve ödenmeyen ücret tutarları geçici işçi çalıştıran işveren tarafından çalışma ve iş kurumu il müdürlüğüne bildirilir. Sözleşmede belirtilen sürenin dolmasına rağmen geçici iş ilişkisinin devam etmesi hâlinde, geçici işçi çalıştıran işveren ile işçi arasında sözleşmenin sona erme tarihinden itibaren belirsiz süreli iş sözleşmesi kurulmuş sayılır. Bu durumda özel istihdam bürosu işçinin geçici iş ilişkisinden kaynaklanan ücretinden, işçiyi gözetme borcundan ve sosyal sigorta primlerinden sözleşme süresiyle sınırlı olmak üzere sorumludur. Geçici işçi, işyerine ve işe ilişkin olmak kaydıyla kusuru ile neden olduğu zarardan, geçici işçi çalıştıran işverene karşı sorumludur. İşverenin, devir sırasında yazılı rızasını almak suretiyle bir işçisini, holding bünyesi içinde veya aynı şirketler topluluğuna bağlı başka bir işyerinde iş görme edimini yerine getirmek üzere geçici olarak devretmesi hâlinde de geçici iş ilişkisi kurulmuş olur. Bu fıkra kapsamında geçici iş ilişkisi, yazılı olarak altı ayı geçmemek üzere kurulabilir ve en fazla iki defa yenilenebilir. İşçisini geçici olarak devreden işverenin ücret ödeme yükümlülüğü devam eder. Geçici iş ilişkisi kurulan işveren, işçinin kendisinde çalıştığı sürede ödenmeyen ücretinden, işçiyi gözetme borcundan ve sosyal sigorta primlerinden, devreden işveren ile birlikte sorumludur. Dördüncü, beşinci, onuncu ve on dördüncü fıkralar ve dokuzuncu fıkranın (a) ve (f) bentleri ile (d) bendinin birinci cümlesinde düzenlenen hak ve yükümlülükler bu fıkraya göre kurulan geçici iş ilişkisinde de uygulanır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "8",
+              "baslik": "Tanım ve şekil",
+              "ceza": "",
+              "anahtar": [
+                "iş sözleşmesi",
+                "yazılı sözleşme",
+                "sözleşme sureti",
+                "imza",
+                "kaşe"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Tanım ve şekil** başlıklı 8. maddesinde; “İş sözleşmesi, bir tarafın (işçi) bağımlı olarak iş görmeyi, diğer tarafın (işveren) da ücret ödemeyi üstlenmesinden oluşan sözleşmedir. İş sözleşmesi, Kanunda aksi belirtilmedikçe, özel bir şekle tâbi değildir. Süresi bir yıl ve daha fazla olan iş sözleşmelerinin yazılı şekilde yapılması zorunludur. Bu belgeler damga vergisi ve her çeşit resim ve harçtan muaftır. Yazılı sözleşme yapılmayan hallerde işveren işçiye en geç iki ay içinde genel ve özel çalışma koşullarını, günlük ya da haftalık çalışma süresini, temel ücreti ve varsa ücret eklerini, ücret ödeme dönemini, süresi belirli ise sözleşmenin süresini, fesih halinde tarafların uymak zorunda oldukları hükümleri gösteren yazılı bir belge vermekle yükümlüdür. Süresi bir ayı geçmeyen belirli süreli iş sözleşmelerinde bu fıkra hükmü uygulanmaz. İş sözleşmesi iki aylık süre dolmadan sona ermiş ise, bu bilgilerin en geç sona erme tarihinde işçiye yazılı olarak verilmesi zorunludur.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "14",
+              "baslik": "Çağrı üzerine çalışma ve uzaktan çalışma",
+              "ceza": "",
+              "anahtar": [
+                "çağrı üzerine çalışma",
+                "uzaktan çalışma",
+                "kısmi süreli"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Çağrı üzerine çalışma ve uzaktan çalışma** başlıklı 14. maddesinde; “Yazılı sözleşme ile işçinin yapmayı üstlendiği işle ilgili olarak kendisine ihtiyaç duyulması halinde iş görme ediminin yerine getirileceğinin kararlaştırıldığı iş ilişkisi, çağrı üzerine çalışmaya dayalı kısmi süreli bir iş sözleşmesidir. Hafta, ay veya yıl gibi bir zaman dilimi içinde işçinin ne kadar süreyle çalışacağını taraflar belirlemedikleri takdirde, haftalık çalışma süresi yirmi saat kararlaştırılmış sayılır. Çağrı üzerine çalıştırılmak için belirlenen sürede işçi çalıştırılsın veya çalıştırılmasın ücrete hak kazanır. İşçiden iş görme borcunu yerine getirmesini çağrı yoluyla talep hakkına sahip olan işveren, bu çağrıyı, aksi kararlaştırılmadıkça, işçinin çalışacağı zamandan en az dört gün önce yapmak zorundadır. Süreye uygun çağrı üzerine işçi iş görme edimini yerine getirmekle yükümlüdür. Sözleşmede günlük çalışma süresi kararlaştırılmamış ise, işveren her çağrıda işçiyi günde en az dört saat üst üste çalıştırmak zorundadır. Uzaktan çalışma; işçinin, işveren tarafından oluşturulan iş organizasyonu kapsamında iş görme edimini evinde ya da teknolojik iletişim araçları ile işyeri dışında yerine getirmesi esasına dayalı ve yazılı olarak kurulan iş ilişkisidir. Dördüncü fıkraya göre yapılacak iş sözleşmesinde; işin tanımı, yapılma şekli, işin süresi ve yeri, ücret ve ücretin ödenmesine ilişkin hususlar, işveren tarafından sağlanan ekipman ve bunların korunmasına ilişkin yükümlülükler, işverenin işçiyle iletişim kurması ile genel ve özel çalışma şartlarına ilişkin hükümler yer alır. Uzaktan çalışmada işçiler, esaslı neden olmadıkça salt iş sözleşmesinin niteliğinden ötürü emsal işçiye göre farklı işleme tabi tutulamaz. İşveren, uzaktan çalışma ilişkisiyle iş verdiği çalışanın yaptığı işin niteliğini dikkate alarak iş sağlığı ve güvenliği önlemleri hususunda çalışanı bilgilendirmek, gerekli eğitimi vermek, sağlık gözetimini sağlamak ve sağladığı ekipmanla ilgili gerekli iş güvenliği tedbirlerini almakla yükümlüdür. Uzaktan çalışmanın usul ve esasları, işin niteliği dikkate alınarak hangi işlerde uzaktan çalışmanın yapılamayacağı, verilerin korunması ve paylaşılmasına ilişkin işletme kurallarının uygulanması ile diğer hususlar Çalışma ve Sosyal Güvenlik Bakanlığı tarafından çıkarılan yönetmelikle belirlenir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "28",
+              "baslik": "Çalışma belgesi",
+              "ceza": "",
+              "anahtar": [
+                "çalışma belgesi"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Çalışma belgesi** başlıklı 28. maddesinde; “İşten ayrılan işçiye, işveren tarafından işinin çeşidinin ne olduğunu ve süresini gösteren bir belge verilir. Belgenin vaktinde verilmemesinden veya belgede doğru olmayan bilgiler bulunmasından zarar gören işçi veyahut işçiyi işine alan yeni işveren eski işverenden tazminat isteyebilir. Bu belgeler her türlü resim ve harçtan muaftır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "29",
+              "baslik": "Toplu işçi çıkarma",
+              "ceza": "",
+              "anahtar": [
+                "toplu işçi çıkarma",
+                "toplu çıkarma"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Toplu işçi çıkarma** başlıklı 29. maddesinde; “İşveren; ekonomik, teknolojik, yapısal ve benzeri işletme, işyeri veya işin gerekleri sonucu toplu işçi çıkarmak istediğinde, bunu en az otuz gün önceden bir yazı ile, işyeri sendika temsilcilerine, ilgili bölge müdürlüğüne ve Türkiye İş Kurumuna bildirir. İşyerinde çalışan işçi sayısı: a) 20 ile 100 işçi arasında ise, en az 10 işçinin, b) 101 ile 300 işçi arasında ise, en az yüzde on oranında işçinin, c) 301 ve daha fazla ise, en az 30 işçinin, İşine 17 nci madde uyarınca ve bir aylık süre içinde aynı tarihte veya farklı tarihlerde son verilmesi toplu işçi çıkarma sayılır. Birinci fıkra uyarınca yapılacak bildirimde işçi çıkarmanın sebepleri, bundan etkilenecek işçi sayısı ve grupları ile işe son verme işlemlerinin hangi zaman diliminde gerçekleşeceğine ilişkin bilgilerin bulunması zorunludur. Bildirimden sonra işyeri sendika temsilcileri ile işveren arasında yapılacak görüşmelerde, toplu işçi çıkarmanın önlenmesi ya da çıkarılacak işçi sayısının azaltılması yahut çıkarmanın işçiler açısından olumsuz etkilerinin en aza indirilmesi konuları ele alınır. Görüşmelerin sonunda, toplantının yapıldığını gösteren bir belge düzenlenir. Fesih bildirimleri, işverenin toplu işçi çıkarma isteğini bölge müdürlüğüne bildirmesinden otuz gün sonra hüküm doğurur. İşyerinin bütünüyle kapatılarak kesin ve devamlı suretle faaliyete son verilmesi halinde, işveren sadece durumu en az otuz gün önceden ilgili bölge müdürlüğüne ve Türkiye İş Kurumuna bildirmek ve işyerinde ilan etmekle yükümlüdür. İşveren toplu işçi çıkarmanın kesinleşmesinden itibaren altı ay içinde aynı nitelikteki iş için yeniden işçi almak istediği takdirde nitelikleri uygun olanları tercihen işe çağırır. Mevsim ve kampanya işlerinde çalışan işçilerin işten çıkarılmaları hakkında, işten çıkarma bu işlerin niteliğine bağlı olarak yapılıyorsa, toplu işçi çıkarmaya ilişkin hükümler uygulanmaz. İşveren toplu işçi çıkarılmasına ilişkin hükümleri 18, 19, 20 ve 21 inci madde hükümlerinin uygulanmasını engellemek amacıyla kullanamaz; aksi halde işçi bu maddelere göre dava açabilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "30",
+              "baslik": "Engelli ve eski hükümlü çalıştırma zorunluluğu",
+              "ceza": "",
+              "anahtar": [
+                "engelli",
+                "eski hükümlü",
+                "kontenjan"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Engelli ve eski hükümlü çalıştırma zorunluluğu** başlıklı 30. maddesinde; “İşverenler, elli veya daha fazla işçi çalıştırdıkları özel sektör işyerlerinde yüzde üç engelli, kamu işyerlerinde ise yüzde dört engelli ve yüzde iki eski hükümlü işçiyi veya 21/6/1927 tarihli ve 1111 sayılı Askerlik Kanunu veya 16/6/1927 tarihli ve 1076 sayılı Yedek Subaylar ve Yedek Askeri Memurlar Kanunu kapsamına giren ve askerlik hizmetini yaparken 12/4/1991 tarihli ve 3713 sayılı Terörle Mücadele Kanununun 21 inci maddesinde sayılan terör olaylarının sebep ve tesiri sonucu malul sayılmayacak şekilde yaralananları meslek, beden ve ruhi durumlarına uygun işlerde çalıştırmakla yükümlüdürler. Aynı il sınırları içinde birden fazla işyeri bulunan işverenin bu kapsamda çalıştırmakla yükümlü olduğu işçi sayısı, toplam işçi sayısına göre hesaplanır. Bu kapsamda çalıştırılacak işçi sayısının tespitinde belirli ve belirsiz süreli iş sözleşmesine göre çalıştırılan işçiler esas alınır. Kısmi süreli iş sözleşmesine göre çalışanlar, çalışma süreleri dikkate alınarak tam süreli çalışmaya dönüştürülür. Oranın hesaplanmasında yarıma kadar kesirler dikkate alınmaz, yarım ve daha fazla olanlar tama dönüştürülür. İşyerinin işçisi iken engelli hâle gelenlere öncelik tanınır. İşverenler çalıştırmakla yükümlü oldukları işçileri Türkiye İş Kurumu aracılığı ile sağlarlar. Bu kapsamda çalıştırılacak işçilerin nitelikleri, hangi işlerde çalıştırılabilecekleri, bunların işyerlerinde genel hükümler dışında bağlı olacakları özel çalışma ile mesleğe yöneltilmeleri, mesleki yönden işverence nasıl işe alınacakları, Aile ve Sosyal Politikalar Bakanlığının görüşü alınarak Çalışma ve Sosyal Güvenlik Bakanlığınca çıkarılacak yönetmelikle düzenlenir. Yer altı ve su altı işlerinde engelli işçi çalıştırılamaz ve yukarıdaki hükümler uyarınca işyerlerindeki işçi sayısının tespitinde yer altı ve su altı işlerinde çalışanlar hesaba katılmaz. Bir işyerinden malulen ayrılmak zorunda kalıp da sonradan maluliyeti ortadan kalkan işçiler eski işyerlerinde tekrar işe alınmalarını istedikleri takdirde, işveren bunları eski işleri veya benzeri işlerde boş yer varsa derhal, yoksa boşalacak ilk işe başka isteklilere tercih ederek, o andaki şartlarla işe almak zorundadır. Aranan şartlar bulunduğu halde işveren iş sözleşmesi yapma yükümlülüğünü yerine getirmezse, işe alınma isteğinde bulunan eski işçiye altı aylık ücret tutarında tazminat öder. Özel sektör işverenlerince bu madde kapsamında çalıştırılan 17/7/1964 tarihli ve 506 sayılı Sosyal Sigortalar Kanununa tabi engelli sigortalılar ile 1/7/2005 tarihli ve 5378 sayılı Kanunun 14 üncü maddesinde belirtilen korumalı işyerlerinde çalıştırılan engelli sigortalıların, aynı Kanunun 72 nci ve 73 üncü maddelerinde sayılan ve 78 inci maddesiyle belirlenen prime esas kazanç alt sınırı üzerinden hesaplanan sigorta primine ait işveren hisselerinin tamamı, kontenjan fazlası engelli çalıştıran, yükümlü olmadıkları halde engelli çalıştıran işverenlerin bu şekilde çalıştırdıkları her bir engelli için prime esas kazanç alt sınırı üzerinden hesaplanan sigorta primine ait işveren hisselerinin tamamı Hazinece karşılanır. İşveren hissesine ait primlerin Hazinece karşılanabilmesi için işverenlerin çalıştırdıkları sigortalılarla ilgili olarak 506 sayılı Kanun uyarınca aylık prim ve hizmet belgelerinin yasal süresi içerisinde Sosyal Güvenlik Kurumuna verilmesi ve sigortalıların tamamına ait sigorta primlerinin sigortalı hissesine isabet eden tutarı ile Hazinece karşılanmayan işveren hissesine ait tutarın ödenmiş olması şarttır. Bu fıkraya göre işveren tarafından ödenmesi gereken primlerin geç ödenmesi halinde, Hazinece Sosyal Güvenlik Kurumuna yapılacak ödemenin gecikmesinden kaynaklanan gecikme zammı, işverenden tahsil edilir. Hazinece karşılanan prim tutarları gelir ve kurumlar vergisi uygulamalarında gider veya maliyet unsuru olarak dikkate alınmaz. Bu fıkrada düzenlenen teşvik, kamu idareleri hariç 506 sayılı Kanun kapsamındaki sigortalılara ilişkin matrah ve oranlar üzerinden olmak üzere, 506 sayılı Kanunun geçici 20 nci maddesi kapsamındaki sandıkların statülerine tabi personeli için de uygulanır. Bu fıkranın uygulanmasına ilişkin usul ve esaslar Maliye Bakanlığı ile Çalışma ve Sosyal Güvenlik Bakanlığı ve Hazine Müsteşarlığı tarafından müştereken belirlenir. Bu maddeye aykırılık hallerinde 101 inci madde uyarınca tahsil edilecek cezalar, engellilerin ve eski hükümlülerin kendi işini kurmaları, engellinin iş bulmasını sağlayacak destek teknolojileri, engellinin işe yerleştirilmesi, işe ve işyerine uyumunun sağlanması ve bu gibi projelerde kullanılır. Tahsil edilen cezaların kullanımına ilişkin hususlar, Türkiye İş Kurumunun koordinatörlüğünde, Çalışma ve Sosyal Güvenlik Bakanlığı Çalışma Genel Müdürlüğü ile İş Sağlığı ve Güvenliği Genel Müdürlüğü, Aile ve Sosyal Politikalar Bakanlığı Engelli ve Yaşlı Hizmetleri Genel Müdürlüğü, Adalet Bakanlığı Ceza ve Tevkif Evleri Genel Müdürlüğü, en çok işçi ve işvereni temsil eden üst kuruluşların ve en çok engelliyi temsil eden üst kuruluşun birer temsilcisinden oluşan komisyon tarafından karara bağlanır. Komisyonun çalışma usul ve esasları Çalışma ve Sosyal Güvenlik Bakanlığınca çıkarılan yönetmelikle düzenlenir. Eski hükümlü çalıştırılmasında, kanunlardaki kamu güvenliği ile ilgili hizmetlere ilişkin özel hükümler saklıdır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "32",
+              "baslik": "Ücret ve ücretin ödenmesi",
+              "ceza": "",
+              "anahtar": [
+                "ücret",
+                "ücret ödemesi",
+                "ayda bir",
+                "banka",
+                "ödenmemiş ücret"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Ücret ve ücretin ödenmesi** başlıklı 32. maddesinde; “Genel anlamda ücret bir kimseye bir iş karşılığında işveren veya üçüncü kişiler tarafından sağlanan ve para ile ödenen tutardır. Ücret, prim, ikramiye ve bu nitelikteki her çeşit istihkak kural olarak, Türk parası ile işyerinde veya özel olarak açılan bir banka hesabına ödenir. Ücret, prim, ikramiye ve bu nitelikteki her çeşit istihkak, yabancı para olarak kararlaştırılmış ise ödeme günündeki rayice göre Türk parası ile ödeme yapılabilir. Çalıştırılan işçilerin ücret, prim, ikramiye ve bu nitelikteki her çeşit istihkakının özel olarak açılan banka hesabına yatırılmak suretiyle ödenmesi hususunda; tabi olduğu vergi mükellefiyeti türü, işletme büyüklüğü, çalıştırdığı işçi sayısı, işyerinin bulunduğu il ve benzeri gibi unsurları dikkate alarak işverenleri veya üçüncü kişileri zorunlu tutmaya, banka hesabına yatırılacak ücret, prim, ikramiye ve bu nitelikteki her çeşit istihkakının, brüt ya da kanuni kesintiler düşüldükten sonra kalan net miktar üzerinden olup olmayacağını belirlemeye Çalışma ve Sosyal Güvenlik Bakanlığı, Maliye Bakanlığı ve Hazine Müsteşarlığından sorumlu Devlet Bakanlığı müştereken yetkilidir. Çalıştırdığı işçilerin ücret, prim, ikramiye ve bu nitelikteki her çeşit istihkakını özel olarak açılan banka hesapları vasıtasıyla ödeme zorunluluğuna tabi tutulan işverenler veya üçüncü kişiler, işçilerinin ücret, prim, ikramiye ve bu nitelikteki her çeşit istihkaklarını özel olarak açılan banka hesapları dışında ödeyemezler. İşçinin ücret, prim, ikramiye ve bu nitelikteki her çeşit istihkakının özel olarak açılan banka hesaplarına yatırılmak suretiyle ödenmesine ilişkin diğer usûl ve esaslar anılan bakanlıklarca müştereken çıkarılacak yönetmelikle düzenlenir. Emre muharrer senetle (bono ile), kuponla veya yurtta geçerli parayı temsil ettiği iddia olunan bir senetle veya diğer herhangi bir şekilde ücret ödemesi yapılamaz. Ücret en geç ayda bir ödenir. İş sözleşmeleri veya toplu iş sözleşmeleri ile ödeme süresi bir haftaya kadar indirilebilir. İş sözleşmelerinin sona ermesinde, işçinin ücreti ile sözleşme ve Kanundan doğan para ile ölçülmesi mümkün menfaatlerinin tam olarak ödenmesi zorunludur. Meyhane ve benzeri eğlence yerleri ve perakende mal satan dükkan ve mağazalarda, buralarda çalışanlar hariç, ücret ödemesi yapılamaz. Ücret alacaklarında zamanaşımı süresi beş yıldır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "37",
+              "baslik": "Ücret hesap pusulası",
+              "ceza": "",
+              "anahtar": [
+                "ücret hesap pusulası",
+                "bordro",
+                "kesinti",
+                "tahakkuk"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Ücret hesap pusulası** başlıklı 37. maddesinde; “İşveren işyerinde veya bankaya yaptığı ödemelerde işçiye ücret hesabını gösterir imzalı veya işyerinin özel işaretini taşıyan bir pusula vermek zorundadır. Bu pusulada ödemenin günü ve ilişkin olduğu dönem ile fazla çalışma, hafta tatili, bayram ve genel tatil ücretleri gibi asıl ücrete yapılan her çeşit eklemeler tutarının ve vergi, sigorta primi, avans mahsubu, nafaka ve icra gibi her çeşit kesintilerin ayrı ayrı gösterilmesi gerekir. Bu işlemler damga vergisi ve her çeşit resim ve harçtan muaftır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "38",
+              "baslik": "Ücret kesme cezası",
+              "ceza": "",
+              "anahtar": [
+                "ücret kesme cezası"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Ücret kesme cezası** başlıklı 38. maddesinde; “İşveren toplu sözleşme veya iş sözleşmelerinde gösterilmiş olan sebepler dışında işçiye ücret kesme cezası veremez. İşçi ücretlerinden ceza olarak yapılacak kesintilerin işçiye derhal sebepleriyle beraber bildirilmesi gerekir. İşçi ücretlerinden bu yolda yapılacak kesintiler bir ayda iki gündelikten veya parça başına yahut yapılan iş miktarına göre verilen ücretlerde işçinin iki günlük kazancından fazla olamaz. Bu paralar işçilerin eğitimi ve sosyal hizmetleri için kullanılıp harcanmak üzere Çalışma ve Sosyal Güvenlik Bakanlığı hesabına Bakanlıkça belirtilecek Türkiye'de kurulu bulunan ve mevduat kabul etme yetkisini haiz bankalardan birine, kesildiği tarihten itibaren bir ay içinde yatırılır. Her işveren işyerinde bu paraların ayrı bir hesabını tutmaya mecburdur. Birikmiş bulunan ceza paralarının nerelere ve ne kadar verileceği Çalışma ve Sosyal Güvenlik Bakanının başkanlık edeceği ve işçi temsilcilerinin de katılacağı bir kurul tarafından karara bağlanır. Bu kurulun kimlerden teşekkül edeceği, nasıl ve hangi esaslara göre çalışacağı çıkarılacak bir yönetmelikte gösterilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "39",
+              "baslik": "Asgari ücret",
+              "ceza": "",
+              "anahtar": [
+                "asgari ücret"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Asgari ücret** başlıklı 39. maddesinde; “İş sözleşmesi ile çalışan ve bu Kanunun kapsamında olan veya olmayan her türlü işçinin ekonomik ve sosyal durumlarının düzenlenmesi için Çalışma ve Sosyal Güvenlik Bakanlığınca Asgari Ücret Tespit Komisyonu aracılığı ile ücretlerin asgari sınırları en geç iki yılda bir belirlenir. Komisyon kararları kesindir. Kararlar Resmi Gazetede yayımlanarak yürürlüğe girer. Komisyonun toplanma ve çalışma şekli, asgari ücretlerin tespiti sırasında uygulanacak esaslar ile başkan, üye ve raportörlere verilecek huzur hakları Maliye Bakanlığı ve Çalışma ve Sosyal Güvenlik Bakanlığının birlikte hazırlayacakları yönetmelikte belirtilir. Asgari Ücret Tespit Komisyonunun sekretarya hizmetleri, Çalışma ve Sosyal Güvenlik Bakanlığı tarafından yerine getirilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "41",
+              "baslik": "Fazla çalışma ücreti",
+              "ceza": "",
+              "anahtar": [
+                "fazla çalışma ücreti",
+                "yüzde elli",
+                "%50",
+                "270 saat",
+                "zamlı ücret"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Fazla çalışma ücreti** başlıklı 41. maddesinde; “Ülkenin genel yararları yahut işin niteliği veya üretimin artırılması gibi nedenlerle fazla çalışma yapılabilir. Fazla çalışma, Kanunda yazılı koşullar çerçevesinde, haftalık kırkbeş saati aşan çalışmalardır. 63 üncü madde hükmüne göre denkleştirme esasının uygulandığı hallerde, işçinin haftalık ortalama çalışma süresi, normal haftalık iş süresini aşmamak koşulu ile, bazı haftalarda toplam kırkbeş saati aşsa dahi bu çalışmalar fazla çalışma sayılmaz. Her bir saat fazla çalışma için verilecek ücret normal çalışma ücretinin saat başına düşen miktarının yüzde elli yükseltilmesi suretiyle ödenir. Haftalık çalışma süresinin sözleşmelerle kırkbeş saatin altında belirlendiği durumlarda yukarıda belirtilen esaslar dahilinde uygulanan ortalama haftalık çalışma süresini aşan ve kırkbeş saate kadar yapılan çalışmalar fazla sürelerle çalışmalardır. Fazla sürelerle çalışmalarda, her bir saat fazla çalışma için verilecek ücret normal çalışma ücretinin saat başına düşen miktarının yüzde yirmibeş yükseltilmesiyle ödenir. Fazla çalışma veya fazla sürelerle çalışma yapan işçi isterse, bu çalışmalar karşılığı zamlı ücret yerine, fazla çalıştığı her saat karşılığında bir saat otuz dakikayı, fazla sürelerle çalıştığı her saat karşılığında bir saat onbeş dakikayı serbest zaman olarak kullanabilir. İşçi hak ettiği serbest zamanı altı ay zarfında, çalışma süreleri içinde ve ücretinde bir kesinti olmadan kullanır. 63 üncü maddenin son fıkrasında yazılı sağlık nedenlerine dayanan kısa veya sınırlı süreli işlerde ve 69 uncu maddede belirtilen gece çalışmasında fazla çalışma yapılamaz. Fazla saatlerle çalışmak için işçinin onayının alınması gerekir. Fazla çalışma süresinin toplamı bir yılda ikiyüzyetmiş saatten fazla olamaz. Bu Kanunun 42 nci ve 43 üncü maddelerinde sayılan hâller dışında yer altında maden işlerinde çalışan işçilere fazla çalışma yaptırılamaz. Yer altında maden işlerinde çalışan işçilere, bu Kanunun 42 nci ve 43 üncü maddelerinde sayılan hâllerde haftalık otuz yedi buçuk saati aşan her bir saat fazla çalışma için verilecek ücret, normal çalışma ücretinin saat başına düşen miktarının yüzde yüzden az olmamak üzere arttırılması suretiyle ödenir. Fazla çalışma ve fazla sürelerle çalışmaların ne şekilde uygulanacağı çıkarılacak yönetmelikte gösterilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "46",
+              "baslik": "Hafta tatili ücreti",
+              "ceza": "",
+              "anahtar": [
+                "hafta tatili",
+                "yirmidört saat",
+                "kesintisiz dinlenme",
+                "yedi günlük"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Hafta tatili ücreti** başlıklı 46. maddesinde; “Bu Kanun kapsamına giren işyerlerinde, işçilere tatil gününden önce 63 üncü maddeye göre belirlenen iş günlerinde çalışmış olmaları koşulu ile yedi günlük bir zaman dilimi içinde kesintisiz en az yirmidört saat dinlenme (hafta tatili) verilir. Ancak Kültür ve Turizm Bakanlığı tarafından turizm işletmesi belgesi verilen konaklama tesislerinde çalışan işçilerin bu fıkra kapsamında hak kazandığı hafta tatili, işçinin yazılı talebi veya onayı ile hak kazandığı günü takip eden dört gün içinde kullandırılabilir. Bu halde işçinin hak kazandığı hafta tatilinde yaptığı çalışmaların günlük normal çalışma süresi kadarlık kısmı fazla çalışmanın hesabında dikkate alınmaz. İşçi verdiği onayı otuz gün önceden işverene yazılı olarak bildirimde bulunmak kaydıyla geri alabilir. Çalışılmayan hafta tatili günü için işveren tarafından bir iş karşılığı olmaksızın o günün ücreti tam olarak ödenir. Şu kadar ki; a) Çalışmadığı halde kanunen çalışma süresinden sayılan zamanlar ile günlük ücret ödenen veya ödenmeyen kanundan veya sözleşmeden doğan tatil günleri, b) Ek 2 nci maddede sayılan izin süreleri, c) Bir haftalık süre içinde kalmak üzere işveren tarafından verilen diğer izinlerle hekim raporuyla verilen hastalık ve dinlenme izinleri, Çalışılmış günler gibi hesaba katılır. Zorlayıcı ve ekonomik bir sebep olmadan işyerindeki çalışmanın haftanın bir veya birkaç gününde işveren tarafından tatil edilmesi halinde haftanın çalışılmayan günleri ücretli hafta tatiline hak kazanmak için çalışılmış sayılır. Bir işyerinde işin bir haftadan fazla bir süre ile tatil edilmesini gerektiren zorlayıcı sebepler ortaya çıktığı zaman, 24 ve 25 inci maddelerin (III) numaralı bentlerinde gösterilen zorlayıcı sebeplerden ötürü çalışılmayan günler için işçilere ödenen yarım ücret hafta tatili günü için de ödenir. Yüzde usulünün uygulandığı işyerlerinde hafta tatili ücreti işverence işçiye ödenir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "46/2",
+              "baslik": "Hafta tatili ücreti",
+              "ceza": "",
+              "anahtar": [
+                "çalışılmayan hafta tatili",
+                "bir iş karşılığı olmaksızın"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Hafta tatili ücreti** başlıklı 46. maddesinin 2. fıkrasında; “Çalışılmayan hafta tatili günü için işveren tarafından bir iş karşılığı olmaksızın o günün ücreti tam olarak ödenir.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "47",
+              "baslik": "Genel tatil ücreti",
+              "ceza": "",
+              "anahtar": [
+                "ulusal bayram",
+                "genel tatil",
+                "yevmiye"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Genel tatil ücreti** başlıklı 47. maddesinde; “Bu Kanun kapsamına giren işyerlerinde çalışan işçilere, kanunlarda ulusal bayram ve genel tatil günü olarak kabul edilen günlerde çalışmazlarsa, bir iş karşılığı olmaksızın o günün ücretleri tam olarak, tatil yapmayarak çalışırlarsa ayrıca çalışılan her gün için bir günlük ücreti ödenir. Yüzde usulünün uygulandığı işyerlerinde işçilerin ulusal bayram ve genel tatil ücretleri işverence işçiye ödenir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "52",
+              "baslik": "Yüzdelerin belgelenmesi",
+              "ceza": "",
+              "anahtar": [
+                "yüzde bordrosu",
+                "yüzde usulü"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Yüzdelerin belgelenmesi** başlıklı 52. maddesinde; “Yüzde usulünün uygulandığı işyerlerinde işveren, her hesap pusulasının genel toplamını gösteren bir belgeyi işçilerin kendi aralarından seçecekleri bir temsilciye vermekle yükümlüdür. Bu belgelerin şekli ve uygulama usulleri iş sözleşmelerinde veya toplu iş sözleşmelerinde gösterilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "53",
+              "baslik": "Yıllık ücretli izin hakkı ve izin süreleri",
+              "ceza": "",
+              "anahtar": [
+                "yıllık izin",
+                "yıllık ücretli izin",
+                "14 gün",
+                "20 gün",
+                "26 gün",
+                "50 yaş"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Yıllık ücretli izin hakkı ve izin süreleri** başlıklı 53. maddesinde; “İşyerinde işe başladığı günden itibaren, deneme süresi de içinde olmak üzere, en az bir yıl çalışmış olan işçilere yıllık ücretli izin verilir. Yıllık ücretli izin hakkından vazgeçilemez. Niteliklerinden ötürü bir yıldan az süren mevsimlik veya kampanya işlerinde çalışanlara bu Kanunun yıllık ücretli izinlere ilişkin hükümleri uygulanmaz. İşçilere verilecek yıllık ücretli izin süresi, hizmet süresi; a) Bir yıldan beş yıla kadar (beş yıl dahil) olanlara ondört günden, b) Beş yıldan fazla onbeş yıldan az olanlara yirmi günden, c) Onbeş yıl (dahil) ve daha fazla olanlara yirmialtı günden, Az olamaz. Yer altı işlerinde çalışan işçilerin yıllık ücretli izin süreleri dörder gün arttırılarak uygulanır. Ancak onsekiz ve daha küçük yaştaki işçilerle elli ve daha yukarı yaştaki işçilere verilecek yıllık ücretli izin süresi yirmi günden az olamaz. Yıllık izin süreleri iş sözleşmeleri ve toplu iş sözleşmeleri ile artırılabilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "54",
+              "baslik": "Yıllık ücretli izne hak kazanma ve izni kullanma dönemi",
+              "ceza": "",
+              "anahtar": [
+                "izne hak kazanma",
+                "hizmet süresi birleştirme",
+                "mevsimlik"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Yıllık ücretli izne hak kazanma ve izni kullanma dönemi** başlıklı 54. maddesinde; “Yıllık ücretli izine hak kazanmak için gerekli sürenin hesabında işçilerin, aynı işverenin bir veya çeşitli işyerlerinde çalıştıkları süreler birleştirilerek göz önüne alınır. Şu kadar ki, bir işverenin bu Kanun kapsamına giren işyerinde çalışmakta olan işçilerin aynı işverenin işyerlerinde bu Kanun kapsamına girmeksizin geçirmiş bulundukları süreler de hesaba katılır. Bir yıllık süre içinde 55 inci maddede sayılan haller dışındaki sebeplerle işçinin devamının kesilmesi halinde bu boşlukları karşılayacak kadar hizmet süresi eklenir ve bu suretle işçinin izin hakkını elde etmesi için gereken bir yıllık hizmet süresinin bitiş tarihi gelecek hizmet yılına aktarılır. İşçinin gelecek izin hakları için geçmesi gereken bir yıllık hizmet süresi, bir önceki izin hakkının doğduğu günden başlayarak gelecek hizmet yılına doğru ve yukarıdaki fıkra ve 55 inci madde hükümleri gereğince hesaplanır. İşçi yukarıdaki fıkralar ve 55 inci madde hükümlerine göre hesaplanacak her hizmet yılına karşılık, yıllık iznini gelecek hizmet yılı içinde kullanır. Aynı bakanlığa bağlı işyerleri ile aynı bakanlığa bağlı tüzel kişilerin işyerlerinde geçen süreler ve kamu iktisadi teşebbüsleri yahut özel kanuna veya Cumhurbaşkanlığı kararnamesine dayanılarak kurulan banka ve kuruluşlar veya bunlara bağlı işyerlerinde geçen süreler, işçinin yıllık ücretli izin hakkının hesaplanmasında göz önünde bulundurulur.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "56",
+              "baslik": "Yıllık ücretli iznin uygulanması",
+              "ceza": "",
+              "anahtar": [
+                "izin bölünmesi",
+                "on günden aşağı",
+                "yıllık izin kullandırma"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Yıllık ücretli iznin uygulanması** başlıklı 56. maddesinde; “Yıllık ücretli izin işveren tarafından bölünemez. Bu iznin 53 üncü maddede gösterilen süreler içinde işveren tarafından sürekli bir şekilde verilmesi zorunludur. Ancak, 53 üncü maddede öngörülen izin süreleri, tarafların anlaşması ile bir bölümü on günden aşağı olmamak üzere bölümler hâlinde kullanılabilir. İşveren tarafından yıl içinde verilmiş bulunan diğer ücretli ve ücretsiz izinler veya dinlenme ve hastalık izinleri yıllık izne mahsup edilemez. Yıllık ücretli izin günlerinin hesabında izin süresine rastlayan ulusal bayram, hafta tatili ve genel tatil günleri izin süresinden sayılmaz. Yıllık ücretli izinleri işyerinin kurulu bulunduğu yerden başka bir yerde geçirecek olanlara istemde bulunmaları ve bu hususu belgelemeleri koşulu ile gidiş ve dönüşlerinde yolda geçecek süreleri karşılamak üzere işveren toplam dört güne kadar ücretsiz izin vermek zorundadır. İşveren, işyerinde çalışan işçilerin yıllık ücretli izinlerini gösterir izin kayıt belgesi tutmak zorundadır. Alt işveren işçilerinden, alt işvereni değiştiği hâlde aynı işyerinde çalışmaya devam edenlerin yıllık ücretli izin süresi, aynı işyerinde çalıştıkları süreler dikkate alınarak hesaplanır. Asıl işveren, alt işveren tarafından çalıştırılan işçilerin hak kazandıkları yıllık ücretli izin sürelerinin kullanılıp kullanılmadığını kontrol etmek ve ilgili yıl içinde kullanılmasını sağlamakla, alt işveren ise altıncı fıkraya göre tutmak zorunda olduğu izin kayıt belgesinin bir örneğini asıl işverene vermekle yükümlüdür.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "57",
+              "baslik": "Yıllık izin ücreti",
+              "ceza": "",
+              "anahtar": [
+                "izin ücreti",
+                "peşin ödeme",
+                "avans"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Yıllık izin ücreti** başlıklı 57. maddesinde; “İşveren, yıllık ücretli iznini kullanan her işçiye, yıllık izin dönemine ilişkin ücretini ilgili işçinin izine başlamasından önce peşin olarak ödemek veya avans olarak vermek zorundadır. Bu ücretin hesabında 50 nci madde hükmü uygulanır. Günlük, haftalık veya aylık olarak belirli bir ücrete dayanmayıp da akort, komisyon ücreti, kâra katılma ve yüzde usulü ücret gibi belirli olmayan süre ve tutar üzerinden ücret alan işçinin izin süresi için verilecek ücret, son bir yıllık süre içinde kazandığı ücretin fiili olarak çalıştığı günlere bölünmesi suretiyle bulunacak ortalama üzerinden hesaplanır. Ancak, son bir yıl içinde işçi ücretine zam yapıldığı takdirde, izin ücreti işçinin izine çıktığı ayın başı ile zammın yapıldığı tarih arasında alınan ücretin aynı süre içinde çalışılan günlere bölünmesi suretiyle hesaplanır. Yüzde usulünün uygulandığı yerlerde bu ücret, yüzdelerden toplanan para dışında işveren tarafından ödenir. Yıllık ücretli izin süresine rastlayan hafta tatili, ulusal bayram ve genel tatil ücretleri ayrıca ödenir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "60",
+              "baslik": "İzinlere ilişkin düzenlemeler",
+              "ceza": "",
+              "anahtar": [
+                "izin yönetmeliği",
+                "izin kaydı"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **İzinlere ilişkin düzenlemeler** başlıklı 60. maddesinde; “Yıllık ücretli izinlerin, yürütülen işlerin niteliğine göre yıl boyunca hangi dönemlerde kullanılacağı, izinlerin ne suretle ve kimler tarafından verileceği veya sıraya bağlı tutulacağı, yıllık izninin faydalı olması için işveren tarafından alınması gereken tedbirler ve izinlerin kullanılması konusuna ilişkin usuller ve işverence tutulması zorunlu kayıtların şekli Çalışma ve Sosyal Güvenlik Bakanlığı tarafından hazırlanacak bir yönetmelikle gösterilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "63",
+              "baslik": "Çalışma süresi",
+              "ceza": "",
+              "anahtar": [
+                "çalışma süresi",
+                "haftalık 45 saat",
+                "kırkbeş",
+                "fazla çalışma",
+                "vardiya",
+                "haftada 50 saat"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Çalışma süresi** başlıklı 63. maddesinde; “Genel bakımdan çalışma süresi haftada en çok kırkbeş saattir. Aksi kararlaştırılmamışsa bu süre, işyerlerinde haftanın çalışılan günlerine eşit ölçüde bölünerek uygulanır. Yer altı maden işlerinde çalışan işçilerin çalışma süresi; günde en çok yedi buçuk, haftada en çok otuz yedi buçuk saattir. Tarafların anlaşması ile haftalık normal çalışma süresi, işyerlerinde haftanın çalışılan günlerine, günde onbir saati aşmamak koşulu ile farklı şekilde dağıtılabilir. Bu halde, iki aylık süre içinde işçinin haftalık ortalama çalışma süresi, normal haftalık çalışma süresini aşamaz. Denkleştirme süresi toplu iş sözleşmeleri ile dört aya kadar artırılabilir. Turizm sektöründe dört aylık süre içinde işçinin haftalık ortalama çalışma süresi, normal haftalık çalışma süresini aşamaz; denkleştirme süresi toplu iş sözleşmeleri ile altı aya kadar artırılabilir. Çalışma sürelerinin yukarıdaki esaslar çerçevesinde uygulama şekilleri, Çalışma ve Sosyal Güvenlik Bakanlığı tarafından hazırlanacak bir yönetmelikle düzenlenir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "63/2",
+              "baslik": "Çalışma süresi",
+              "ceza": "",
+              "anahtar": [
+                "denkleştirme",
+                "günlük 11 saat",
+                "onbir saat",
+                "haftalık ortalama"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Çalışma süresi** başlıklı 63. maddesinin 2. fıkrasında; “Tarafların anlaşması ile haftalık normal çalışma süresi, işyerlerinde haftanın çalışılan günlerine, günde onbir saati aşmamak koşulu ile farklı şekilde dağıtılabilir. Bu halde, iki aylık süre içinde işçinin haftalık ortalama çalışma süresi, normal haftalık çalışma süresini aşamaz. Denkleştirme süresi toplu iş sözleşmeleri ile dört aya kadar artırılabilir. Turizm sektöründe dört aylık süre içinde işçinin haftalık ortalama çalışma süresi, normal haftalık çalışma süresini aşamaz; denkleştirme süresi toplu iş sözleşmeleri ile altı aya kadar artırılabilir.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "64",
+              "baslik": "Telafi çalışması",
+              "ceza": "",
+              "anahtar": [
+                "telafi çalışması",
+                "telafi"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Telafi çalışması** başlıklı 64. maddesinde; “Zorunlu nedenlerle işin durması, ulusal bayram ve genel tatillerden önce veya sonra işyerinin tatil edilmesi veya benzer nedenlerle işyerinde normal çalışma sürelerinin önemli ölçüde altında çalışılması veya tamamen tatil edilmesi ya da işçinin talebi ile kendisine izin verilmesi hallerinde, işveren dört ay içinde çalışılmayan süreler için telafi çalışması yaptırabilir. Cumhurbaşkanı bu süreyi iki katına kadar artırmaya yetkilidir. Bu çalışmalar fazla çalışma veya fazla sürelerle çalışma sayılmaz. Telafi çalışmaları, günlük en çok çalışma süresini aşmamak koşulu ile günde üç saatten fazla olamaz. Tatil günlerinde telafi çalışması yaptırılamaz.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "68",
+              "baslik": "Ara dinlenmesi",
+              "ceza": "",
+              "anahtar": [
+                "ara dinlenme",
+                "ara dinlenmesi",
+                "mola",
+                "yedibuçuk saat"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Ara dinlenmesi** başlıklı 68. maddesinde; “Günlük çalışma süresinin ortalama bir zamanında o yerin gelenekleri ve işin gereğine göre ayarlanmak suretiyle işçilere; a) Dört saat veya daha kısa süreli işlerde onbeş dakika, b) Dört saatten fazla ve yedibuçuk saate kadar (yedibuçuk saat dahil) süreli işlerde yarım saat, c) Yedibuçuk saatten fazla süreli işlerde bir saat, ara dinlenmesi verilir. Bu dinlenme süreleri en az olup aralıksız verilir. Ancak bu süreler, iklim, mevsim, o yerdeki gelenekler ve işin niteliği göz önünde tutularak sözleşmeler ile aralı olarak kullandırılabilir. Dinlenmeler bir işyerinde işçilere aynı veya değişik saatlerde kullandırılabilir. Ara dinlenmeleri çalışma süresinden sayılmaz.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "69",
+              "baslik": "Gece süresi ve gece çalışmaları",
+              "ceza": "",
+              "anahtar": [
+                "gece çalışması",
+                "gece süresi",
+                "20.00",
+                "06.00",
+                "gece postası"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Gece süresi ve gece çalışmaları** başlıklı 69. maddesinde; “Çalışma hayatında \"gece\" en geç saat 20.00'de başlayarak en erken saat 06.00'ya kadar geçen ve her halde en fazla onbir saat süren dönemdir. Bazı işlerin niteliğine ve gereğine göre yahut yurdun bazı bölgelerinin özellikleri bakımından, çalışma hayatına ilişkin \"gece\" başlangıcının daha geriye alınması veya yaz ve kış saatlerinin ayarlanması, yahut gün döneminin başlama ve bitme saatlerinin belirtilmesi suretiyle birinci fıkradaki hükmün uygulama şekillerini tespit etmek yahut bazı gece çalışmalarına herhangi bir oranda fazla ücret ödenmesi usulünü koymak veyahut gece işletilmelerinde ekonomik bir zorunluluk bulunmayan işyerlerinde işçilerin gece çalışmalarını yasak etmek üzere yönetmelikler çıkartılabilir. İşçilerin gece çalışmaları yedibuçuk saati geçemez. Ancak, turizm, özel güvenlik, sağlık hizmeti ve 30/5/2013 tarihli ve 6491 sayılı Türk Petrol Kanunu uyarınca petrol araştırma, arama ve sondaj faaliyetleri kapsamında yürütülen işlerde işçinin yazılı onayının alınması şartıyla yedi buçuk saatin üzerinde gece çalışması yaptırılabilir. Gece ve gündüz işletilen ve nöbetleşe işçi postaları kullanılan işlerde, bir çalışma haftası gece çalıştırılan işçilerin, ondan sonra gelen ikinci çalışma haftası gündüz çalıştırılmaları suretiyle postalar sıraya konur. Gece ve gündüz postalarında iki haftalık nöbetleşme esası da uygulanabilir. Postası değiştirilecek işçi kesintisiz en az onbir saat dinlendirilmeden diğer postada çalıştırılamaz.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "72",
+              "baslik": "Yer ve su altında çalıştırma yasağı",
+              "ceza": "",
+              "anahtar": [
+                "yer altı",
+                "su altı",
+                "maden"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Yer ve su altında çalıştırma yasağı** başlıklı 72. maddesinde; “Maden ocakları ile kablo döşemesi, kanalizasyon ve tünel inşaatı gibi yer altında veya su altında çalışılacak işlerde onsekiz yaşını doldurmamış erkek ve her yaştaki kadınların çalıştırılması yasaktır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "73",
+              "baslik": "Gece çalıştırma yasağı",
+              "ceza": "",
+              "anahtar": [
+                "çocuk işçi",
+                "genç işçi",
+                "gece çalıştırma yasağı"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Gece çalıştırma yasağı** başlıklı 73. maddesinde; “Sanayie ait işlerde onsekiz yaşını doldurmamış çocuk ve genç işçilerin gece çalıştırılması yasaktır. Onsekiz yaşını doldurmuş kadın işçilerin gece postalarında çalıştırılmasına ilişkin usul ve esaslar Sağlık Bakanlığının görüşü alınarak Çalışma ve Sosyal Güvenlik Bakanlığınca hazırlanacak bir yönetmelikte gösterilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "74",
+              "baslik": "Analık halinde çalışma ve süt izni",
+              "ceza": "",
+              "anahtar": [
+                "analık izni",
+                "doğum",
+                "süt izni",
+                "gebelik",
+                "kadın çalışan",
+                "emzirme"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Analık halinde çalışma ve süt izni** başlıklı 74. maddesinde; “Kadın işçilerin doğumdan önce sekiz ve doğumdan sonra onaltı hafta olmak üzere toplam yirmidört haftalık süre için çalıştırılmamaları esastır. Çoğul gebelik halinde doğumdan önce çalıştırılmayacak sekiz haftalık süreye iki hafta süre eklenir. Ancak, sağlık durumu uygun olduğu takdirde, doktorun onayı ile kadın işçi isterse doğumdan önceki iki haftaya kadar işyerinde çalışabilir. Bu durumda, kadın işçinin çalıştığı süreler doğum sonrası sürelere eklenir. Kadın işçinin erken doğum yapması halinde ise doğumdan önce kullanamadığı çalıştırılmayacak süreler, doğum sonrası sürelere eklenmek suretiyle kullandırılır. Doğumda veya doğum sonrasında annenin ölümü hâlinde, doğum sonrası kullanılamayan süreler babaya kullandırılır. Üç yaşını doldurmamış çocuğu evlat edinen eşlerden birine veya evlat edinene çocuğun aileye fiilen teslim edildiği tarihten itibaren sekiz hafta analık hâli izni kullandırılır. Bir veya daha fazla çocuğa eşiyle birlikte veya münferit olarak koruyucu aile olan işçiye, çocuğun teslim edildiği tarihten sonra isteği üzerine on gün ücretsiz izin verilir. Birinci fıkra uyarınca kullanılan doğum sonrası analık hâli izninin bitiminden itibaren çocuğunun bakımı ve yetiştirilmesi amacıyla ve çocuğun hayatta olması kaydıyla kadın işçi ile üç yaşını doldurmamış çocuğu evlat edinen kadın veya erkek işçilere istekleri hâlinde birinci doğumda altmış gün, ikinci doğumda yüz yirmi gün, sonraki doğumlarda ise yüz seksen gün süreyle haftalık çalışma süresinin yarısı kadar ücretsiz izin verilir. Çoğul doğum hâlinde bu sürelere otuzar gün eklenir. Çocuğun engelli doğması hâlinde bu süre üç yüz altmış gün olarak uygulanır. Bu fıkra hükümlerinden yararlanılan süre içerisinde süt iznine ilişkin hükümler uygulanmaz. Yukarıda öngörülen süreler işçinin sağlık durumuna ve işin özelliğine göre doğumdan önce ve sonra gerekirse artırılabilir. Bu süreler hekim raporu ile belirtilir. Hamilelik süresince kadın işçiye periyodik kontroller için ücretli izin verilir. Hekim raporu ile gerekli görüldüğü takdirde, hamile kadın işçi sağlığına uygun daha hafif işlerde çalıştırılır. Bu halde işçinin ücretinde bir indirim yapılmaz. İsteği halinde kadın işçiye, yirmidört haftalık sürenin tamamlanmasından veya çoğul gebelik halinde yirmialtı haftalık süreden sonra altı aya kadar ücretsiz izin verilir. Bu izin, üç yaşını doldurmamış çocuğu evlat edinme hâlinde eşlerden birine veya evlat edinene verilir. Bu süre, yıllık ücretli izin hakkının hesabında dikkate alınmaz. Kadın işçilere bir yaşından küçük çocuklarını emzirmeleri için günde toplam birbuçuk saat süt izni verilir. Bu sürenin hangi saatler arasında ve kaça bölünerek kulllanılacağını işçi kendisi belirler. Bu süre günlük çalışma süresinden sayılır. Bu madde hükümleri iş sözleşmesi ile çalışan ve bu Kanunun kapsamında olan veya olmayan her türlü işçi için uygulanır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "75",
+              "baslik": "İşçi özlük dosyası",
+              "ceza": "",
+              "anahtar": [
+                "özlük dosyası",
+                "özlük",
+                "belge saklama"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **İşçi özlük dosyası** başlıklı 75. maddesinde; “İşveren çalıştırdığı her işçi için bir özlük dosyası düzenler. İşveren bu dosyada, işçinin kimlik bilgilerinin yanında, bu Kanun ve diğer kanunlar uyarınca düzenlemek zorunda olduğu her türlü belge ve kayıtları saklamak ve bunları istendiği zaman yetkili memur ve mercilere göstermek zorundadır. İşveren, işçi hakkında edindiği bilgileri dürüstlük kuralları ve hukuka uygun olarak kullanmak ve gizli kalmasında işçinin haklı çıkarı bulunan bilgileri açıklamamakla yükümlüdür.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "92/2",
+              "baslik": "Yetkili makam ve memurlar",
+              "ceza": "",
+              "anahtar": [
+                "teftiş",
+                "bilgi verme",
+                "müfettiş"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Yetkili makam ve memurlar** başlıklı 92. maddesinin 2. fıkrasında; “Teftiş, denetleme ve incelemeler sırasında işverenler, işçiler ve bu işle ilgili görülen başka kişiler izleme, denetleme ve teftişle görevli iş müfettişleri (…) tarafından çağrıldıkları zaman gelmek, ifade ve bilgi vermek, gerekli olan belge ve delilleri getirip göstermek ve vermek; iş müfettişlerinin birinci fıkrada yazılı görevlerini yapmaları için kendilerine her çeşit kolaylığı göstermek, bu yoldaki isteklerini geciktirmeksizin yerine getirmekle yükümlüdürler.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "96/1",
+              "baslik": "İşçi ve işverenin sorumluluğu",
+              "ceza": "",
+              "anahtar": [
+                "ifade",
+                "telkin",
+                "gerçeği saklama"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **İşçi ve işverenin sorumluluğu** başlıklı 96. maddesinin 1. fıkrasında; “İş denetimi ve teftişine yetkili iş müfettişleri tarafından ifade ve bilgilerine başvurulan işçilere, işverenlerin gerek doğrudan doğruya ve gerek dolayısıyla telkinlerde bulunmaları, işçileri gerçeği saklamaya yahut değiştirmeye sevk veya herhangi bir suretle zorlamaları veyahut işçilerin ilgili makamlara başvurmaları, haber ve ifade vermeleri üzerine, bunlara karşı kötü davranışlarda bulunmaları yasaktır.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "96/2",
+              "baslik": "İşçi ve işverenin sorumluluğu",
+              "ceza": "",
+              "anahtar": [
+                "gerçeğe uygun olmayan haber",
+                "şikayet"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **İşçi ve işverenin sorumluluğu** başlıklı 96. maddesinin 2. fıkrasında; “İşçilerin çalıştıkları veya ayrıldıkları işyerleriyle işverenleri hakkında gerçeğe uygun olmayan haberler vererek gereksiz işlemlerle uğraştırılmaları veya işverenleri haksız yere kötü duruma düşürmeye kalkışmaları ve iş müfettişlerince kendilerinden sorulan hususlar için doğru olmayan cevaplar vererek denetim ve teftişin yapılmasını güçleştirmek veya yanlış bir sonuca vardırmak gibi kötü niyetli davranışlarda bulunmaları yasaktır.” Hükmü amirdir.",
+              "dogrulandi": false
+            }
+          ]
+        },
+        {
+          "id": "6331",
+          "ad": "6331 - İş Sağlığı ve Güvenliği Kanunu",
+          "atif": "6331 sayılı İş Sağlığı ve Güvenliği Kanunu'nun",
+          "maddeler": []
+        },
+        {
+          "id": "6735",
+          "ad": "6735 - Uluslararası İşgücü Kanunu",
+          "atif": "6735 sayılı Uluslararası İşgücü Kanunu'nun",
+          "maddeler": []
+        },
+        {
+          "id": "6356",
+          "ad": "6356 - Sendikalar ve Toplu İş Sözleşmesi Kanunu",
+          "atif": "6356 sayılı Sendikalar ve Toplu İş Sözleşmesi Kanunu'nun",
+          "maddeler": []
+        },
+        {
+          "id": "5544",
+          "ad": "5544 - Mesleki Yeterlilik Kurumu Kanunu",
+          "atif": "5544 sayılı Mesleki Yeterlilik Kurumu Kanunu'nun",
+          "maddeler": []
+        },
+        {
+          "id": "4447",
+          "ad": "4447 - İşsizlik Sigortası Kanunu",
+          "atif": "4447 sayılı İşsizlik Sigortası Kanunu'nun",
+          "maddeler": []
+        },
+        {
+          "id": "4632",
+          "ad": "4632 - Bireysel Emeklilik Tasarruf ve Yatırım Sistemi Kanunu",
+          "atif": "4632 sayılı Bireysel Emeklilik Tasarruf ve Yatırım Sistemi Kanunu'nun",
+          "maddeler": []
+        },
+        {
+          "id": "4904",
+          "ad": "4904 - Türkiye İş Kurumu Kanunu",
+          "atif": "4904 sayılı Türkiye İş Kurumu Kanunu'nun",
+          "maddeler": []
+        },
+        {
+          "id": "854",
+          "ad": "854 - Deniz İş Kanunu",
+          "atif": "854 sayılı Deniz İş Kanunu'nun",
+          "maddeler": []
+        }
+      ]
+    },
+    {
+      "id": "yonetmelik",
+      "ad": "Yönetmelik",
+      "mevzuat": [
+        {
+          "id": "uzaktan-calisma",
+          "ad": "Uzaktan Çalışma Yönetmeliği",
+          "atif": "Uzaktan Çalışma Yönetmeliği'nin",
+          "maddeler": [
+            {
+              "no": "5",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "7",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "11",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "12",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "13",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            }
+          ]
+        },
+        {
+          "id": "yillik-izin",
+          "ad": "Yıllık Ücretli İzin Yönetmeliği",
+          "atif": "Yıllık Ücretli İzin Yönetmeliği'nin",
+          "maddeler": [
+            {
+              "no": "6/(2)",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
+              "ceza": "104",
+              "anahtar": [
+                "izin kullandırma",
+                "sürekli izin",
+                "bölünemez"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Yıllık Ücretli İznin Uygulanması** başlıklı 6. maddesinin 2. fıkrasında; “Bu iznin 53 üncü maddede gösterilen süreler içinde işveren tarafından sürekli bir şekilde verilmesi zorunludur.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "6/(4)",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
+              "ceza": "104",
+              "anahtar": [
+                "mahsup",
+                "diğer izinler",
+                "hastalık izni"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Yıllık Ücretli İznin Uygulanması** başlıklı 6. maddesinin 4. fıkrasında; “İşveren tarafından yıl içinde verilmiş bulunan diğer ücretli ve ücretsiz izinler veya dinlenme ve hastalık izinleri yıllık izne mahsup edilemez.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "6/(5)",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
+              "ceza": "104",
+              "anahtar": [
+                "ulusal bayram",
+                "hafta tatili",
+                "izin süresine rastlayan"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Yıllık Ücretli İznin Uygulanması** başlıklı 6. maddesinin 5. fıkrasında; “Yıllık ücretli izin günlerinin hesabında izin süresine rastlayan ulusal bayram, hafta tatili ve genel tatil günleri izin süresinden sayılmaz.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "6/(6)",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
+              "ceza": "104",
+              "anahtar": [
+                "yol izni",
+                "başka yerde geçirme"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Yıllık Ücretli İznin Uygulanması** başlıklı 6. maddesinin 6. fıkrasında; “Yıllık ücretli izinleri işyerinin kurulu bulunduğu yerden başka bir yerde geçirecek olanlara istemde bulunmaları ve bu hususu belgelemeleri koşulu ile gidiş ve dönüşlerinde yolda geçecek süreleri karşılamak üzere işveren toplam dört güne kadar ücretsiz yol izni vermek zorundadır.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "6/(7)",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
+              "ceza": "104",
+              "anahtar": [
+                "bildirim süresi",
+                "fesih",
+                "izin süresi"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Yıllık Ücretli İznin Uygulanması** başlıklı 6. maddesinin 7. fıkrasında; “İşveren tarafından iş sözleşmesinin feshedilmesi halinde İş Kanununun 17 nci maddesinde belirtilen bildirim süresi ile 27 nci maddesi gereğince işçiye verilmesi zorunlu yeni iş arama izinleri, yıllık ücretli izin süreleri ile iç içe giremez.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "6(8)",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
+              "ceza": "104",
+              "anahtar": [
+                "izin kayıt belgesi",
+                "yıllık izin kaydı",
+                "izin defteri"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Yıllık Ücretli İznin Uygulanması** başlıklı 6. maddesinin 8. fıkrasında; “İşveren, işyerinde çalışan işçilerin yıllık ücretli izinlerini gösterir izin kayıt belgesi tutmak zorundadır.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "6/(9)",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
+              "ceza": "104",
+              "anahtar": [
+                "alt işveren",
+                "aynı işyeri",
+                "izin süresi"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Yıllık Ücretli İznin Uygulanması** başlıklı 6. maddesinin 9. fıkrasında; “Alt işveren işçilerinden, alt işvereni değiştiği hâlde aynı işyerinde çalışmaya devam edenlerin yıllık ücretli izin süresi, aynı işyerinde çalıştıkları süreler dikkate alınarak hesaplanır. Asıl işveren, alt işveren tarafından çalıştırılan işçilerin hak kazandıkları yıllık ücretli izin sürelerinin kullanılıp kullanılmadığını kontrol etmek ve ilgili yıl içinde kullanılmasını sağlamakla, alt işveren ise tutmak zorunda olduğu izin kayıt belgesinin bir örneğini asıl işverene vermekle yükümlüdür.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "13(1)",
+              "baslik": "Kısmi Süreli ve Çağrı Üzerine Çalışmalarda Yıllık Ücretli İzin",
+              "ceza": "104",
+              "anahtar": [
+                "kısmi süreli",
+                "çağrı üzerine",
+                "yıllık izin"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Kısmi Süreli ve Çağrı Üzerine Çalışmalarda Yıllık Ücretli İzin** başlıklı 13. maddesinin 1. fıkrasında; “Kısmi süreli ya da çağrı üzerine iş sözleşmesi ile çalışanlar yıllık ücretli izin hakkından tam süreli çalışanlar gibi yararlanır ve farklı işleme tabi tutulamaz.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "13(2)",
+              "baslik": "Kısmi Süreli ve Çağrı Üzerine Çalışmalarda Yıllık Ücretli İzin",
+              "ceza": "104",
+              "anahtar": [
+                "kısmi süreli",
+                "çağrı üzerine",
+                "izin kullandırma"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Kısmi Süreli ve Çağrı Üzerine Çalışmalarda Yıllık Ücretli İzin** başlıklı 13. maddesinin 2. fıkrasında; “Kısmi süreli ya da çağrı üzerine iş sözleşmesi ile çalışanlar iş sözleşmeleri devam ettiği sürece her yıl için hak ettikleri izinleri, bir sonraki yıl izin süresi içine isabet eden kısmi süreli iş günlerinde çalışmayarak kullanır.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "15",
+              "baslik": "İzin Kurulunun Oluşumu",
+              "ceza": "104",
+              "anahtar": [
+                "izin kurulu",
+                "yüzden fazla işçi"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **İzin Kurulunun Oluşumu** başlıklı 15. maddesinde; “İşçi sayısı yüzden fazla olan işyerlerinde işveren veya işveren vekilini temsilen bir, işçileri temsilen iki kişi olmak üzere toplam üç kişiden oluşan izin kurulu kurulur. Kurula işveren temsilcisi başkanlık eder. Kurulun başkanı dışında kalan işçi üyeleri ve yedekleri işyerinde varsa, işyeri sendika temsilcileri tarafından seçilir. Sendika temsilcileri seçilmemiş işyerinde izin kurulunun işçi üyeleri ve yedekleri, o işyerindeki işçilerin yarıdan bir fazlasının katılacağı bir toplantıda açık oyla seçilir. İzin kurulu başkanı ile üye ve yedekleri işyerinde işveren tarafından ilan edilir. Asil üyelerin yokluğunda yedeklerin biri başkanın çağrısı üzerine toplantıya katılır. Herhangi bir nedenle eksilen üye ve yedekler aynı şekilde tamamlanır. İzin kurulu üyelerinin seçimi iki yılda bir yapılır. Yeni izin kurulu üyeleri seçilinceye kadar eski kurul üyeleri görevine devam eder. Bu Yönetmeliğin yürürlüğe girmesinden sonra yeni açılacak işyerlerinde seçim, işyerlerinin faaliyete geçtiği tarihi takip eden bir yıl içerisinde yapılır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "21(2)",
+              "baslik": "Ücretin Ödenmesi",
+              "ceza": "104",
+              "anahtar": [
+                "izin ücreti",
+                "peşin ödeme",
+                "izin dönemi ücreti"
+              ],
+              "paragraf": "Yıllık Ücretli İzin Yönetmeliği'nin **Ücretin Ödenmesi** başlıklı 21. maddesinin 2. fıkrasında; “İşveren veya işveren vekili, yıllık ücretli iznini kullanan her işçiye izin dönemine ilişkin ücreti ile ödenmesi bu döneme rastlayan diğer ücret ve ücret niteliğindeki haklarını izine başlamadan önce peşin olarak vermek veya avans olarak ödemek zorundadır.” Hükmü amirdir.",
+              "dogrulandi": false
+            }
+          ]
+        },
+        {
+          "id": "calisma-sureleri",
+          "ad": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği",
+          "atif": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin",
+          "maddeler": [
+            {
+              "no": "3/(2)",
+              "baslik": "Çalışma Süresi",
+              "ceza": "104",
+              "anahtar": [
+                "ara dinlenme",
+                "kesintisiz oniki saat",
+                "yirmidört saat",
+                "dinlenme süresi"
+              ],
+              "paragraf": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin **Çalışma Süresi** başlıklı 3. maddesinin 2. fıkrasında; “Ara dinlenmeleri, iklim, mevsim, yöredeki gelenekler ve işin niteliği göz önünde tutularak, yirmidört saat içinde kesintisiz oniki saat dinlenme süresi dikkate alınarak düzenlenir. 4857 sayılı İş Kanununun 69 uncu maddesinin son fıkrası hükmü saklıdır.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "7/(3)",
+              "baslik": "Telafi Çalışması",
+              "ceza": "104",
+              "anahtar": [
+                "telafi çalışması",
+                "zorunlu neden"
+              ],
+              "paragraf": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin **Telafi Çalışması** başlıklı 7. maddesinin 3. fıkrasında; “Telafi çalışması, kaynağını oluşturan zorunlu nedenin ortadan kalkması ve işyerinin normal çalışma dönemine başlamasını takip eden 2 ay içerisinde yaptırılır. Telafi çalışması, günlük en çok çalışma süresi olan 11 saati aşmamak koşulu ile günde 3 saatten fazla olamaz. Telafi çalışması, tatil günlerinde yaptırılamaz.” Hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
+              "no": "9",
+              "baslik": "Çalışma Süresinin Belgelenmesi",
+              "ceza": "104",
+              "anahtar": [
+                "çalışma süresinin belgelenmesi",
+                "puantaj",
+                "çalışma süresi kaydı"
+              ],
+              "paragraf": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin **Çalışma Süresinin Belgelenmesi** başlıklı 9. maddesinde; “İşveren, işçilerin çalışma sürelerini uygun araçlarla belgelemek zorundadır.” Hükmü amirdir.",
+              "dogrulandi": true
+            }
+          ]
+        },
+        {
+          "id": "cocuk-genc-isci",
+          "ad": "Çocuk ve Genç İşçilerin Çalıştırılma Usul ve Esasları Hakkında Yönetmelik",
+          "atif": "Çocuk ve Genç İşçilerin Çalıştırılma Usul ve Esasları Hakkında Yönetmeliğin",
+          "maddeler": [
+            {
+              "no": "5",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "6",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "8",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "9",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "10",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "11",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            }
+          ]
+        },
+        {
+          "id": "kadin-gece-postasi",
+          "ad": "Kadın Çalışanların Gece Postalarında Çalıştırılma Koşulları Hakkında Yönetmelik",
+          "atif": "Kadın Çalışanların Gece Postalarında Çalıştırılma Koşulları Hakkında Yönetmeliğin",
+          "maddeler": [
+            {
+              "no": "5",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "6",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "9",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            }
+          ]
+        },
+        {
+          "id": "postalar-halinde",
+          "ad": "Postalar Halinde İşçi Çalıştırılarak Yürütülen İşlerde Çalışmalara İlişkin Özel Usul ve Esaslar Hakkında Yönetmelik",
+          "atif": "Postalar Halinde İşçi Çalıştırılarak Yürütülen İşlerde Çalışmalara İlişkin Özel Usul ve Esaslar Hakkında Yönetmeliğin",
+          "maddeler": [
+            {
+              "no": "3",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "4",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "5",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "6",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "7",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "8",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "9",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "10",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "11",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            }
+          ]
+        },
+        {
+          "id": "haftalik-bolunemeyen",
+          "ad": "Haftalık İş Günlerine Bölünemeyen Çalışma Süreleri Yönetmeliği",
+          "atif": "Haftalık İş Günlerine Bölünemeyen Çalışma Süreleri Yönetmeliği'nin",
+          "maddeler": [
+            {
+              "no": "4",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "5",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "6",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "7",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "8",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "9",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "15",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "16",
+              "baslik": "",
+              "ceza": "104",
+              "anahtar": [],
+              "paragraf": "",
+              "dogrulandi": false
+            }
+          ]
+        },
+        {
+          "id": "fazla-calisma",
+          "ad": "İş Kanununa İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği",
+          "atif": "İş Kanunu'na İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin",
+          "maddeler": [
+            {
+              "no": "5",
+              "baslik": "Fazla Çalışmada Sınır",
+              "ceza": "104",
+              "anahtar": [
+                "yarım saat",
+                "fazla çalışma hesabı",
+                "yuvarlama",
+                "270 saat",
+                "ikiyüzyetmiş"
+              ],
+              "paragraf": "İş Kanunu'na İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin **Fazla Çalışmada Sınır** başlıklı 5. maddesinde; “Fazla çalışma süresinin toplamı bir yılda ikiyüzyetmiş saatten fazla olamaz. Bu süre sınırı, işyerlerine veya yürütülen işlere değil, işçilerin şahıslarına ilişkindir. Fazla çalışma veya fazla sürelerle çalışma sürelerinin hesabında yarım saatten az olan süreler yarım saat, yarım saati aşan süreler ise bir saat sayılır.” Hükmü amirdir.",
+              "dogrulandi": true
+            },
+            {
+              "no": "9",
+              "baslik": "Fazla Çalışma Yaptırılacak İşçinin Onayı",
+              "ceza": "104",
+              "anahtar": [
+                "fazla çalışma onayı",
+                "yazılı onay",
+                "muvafakat"
+              ],
+              "paragraf": "İş Kanunu'na İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin **Fazla Çalışma Yaptırılacak İşçinin Onayı** başlıklı 9. maddesinde; “Fazla çalışma ve fazla sürelerle çalışma yaptırmak için işçinin yazılı onayının alınması gerekir. Zorunlu nedenlerle veya olağanüstü durumlarda yapılan fazla çalışma ve fazla sürelerle çalışma için bu onay aranmaz. Fazla çalışma ihtiyacı olan işverence bu onay iş sözleşmesinin yapılması esnasında ya da bu ihtiyaç ortaya çıktığında alınır ve işçi özlük dosyasında saklanır. Fazla çalışma veya fazla sürelerle çalışma yapmak istemeyen işçi verdiği onayı otuz gün önceden işverene yazılı olarak bildirimde bulunmak kaydıyla geri alabilir.” Hükmü amirdir.",
+              "dogrulandi": true
+            }
+          ]
+        },
+        {
+          "id": "gemi-adamlari",
+          "ad": "Gemi Adamlarının İkamet Yerleri, Sağlık ve İaşelerine Dair Yönetmelik",
+          "atif": "Gemi Adamlarının İkamet Yerleri, Sağlık ve İaşelerine Dair Yönetmeliğin",
+          "maddeler": []
+        },
+        {
+          "id": "bes",
+          "ad": "Bireysel Emeklilik Sistemi Hakkında Yönetmelik",
+          "atif": "Bireysel Emeklilik Sistemi Hakkında Yönetmeliğin",
+          "maddeler": []
+        },
+        {
+          "id": "otomatik-bes",
+          "ad": "Çalışanların İşverenleri Aracılığıyla Otomatik Olarak Emeklilik Planına Dahil Edilmesine İlişkin Yönetmelik",
+          "atif": "Çalışanların İşverenleri Aracılığıyla Otomatik Olarak Emeklilik Planına Dahil Edilmesine İlişkin Yönetmeliğin",
+          "maddeler": []
+        },
+        {
+          "id": "tarimda-is-araciligi",
+          "ad": "Tarımda İş Aracılığı Yönetmeliği",
+          "atif": "Tarımda İş Aracılığı Yönetmeliği'nin",
+          "maddeler": []
+        }
+      ]
+    },
+    {
+      "id": "cbk",
+      "ad": "CBK",
+      "mevzuat": []
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+"""Müfettiş Programı — çekirdek modüller."""

@@ -1,0 +1,4 @@
+# tools/ altındaki komut satırı araçları için ek bağımlılıklar
+# (mevzuat.gov.tr PDF'lerinden madde metni ayıklamak için)
+-r requirements.txt
+PyMuPDF>=1.24

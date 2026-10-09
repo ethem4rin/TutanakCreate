@@ -8,6 +8,7 @@
 
 const SAKLAMA_ANAHTARI = "mufettis-programi-durum-v2";
 const EKSTRA_MADDELER_ANAHTARI = "mufettis-ekstra-maddeler-v1";
+const EKSTRA_MEVZUATLAR_ANAHTARI = "mufettis-ekstra-mevzuatlar-v1";
 
 /** Sunucusuz kurulumda (Vercel) kütüphane salt okunurdur. */
 let yerelKurulum = true;
@@ -256,6 +257,36 @@ function ekstraMaddeleriKaydet(liste) {
   try { localStorage.setItem(EKSTRA_MADDELER_ANAHTARI, JSON.stringify(liste)); } catch { /* kota dolu */ }
 }
 
+function ekstraMevzuatlariYukle() {
+  try { return JSON.parse(localStorage.getItem(EKSTRA_MEVZUATLAR_ANAHTARI) || "[]"); }
+  catch { return []; }
+}
+
+function ekstraMevzuatlariKaydet(liste) {
+  try { localStorage.setItem(EKSTRA_MEVZUATLAR_ANAHTARI, JSON.stringify(liste)); } catch { /* kota dolu */ }
+}
+
+/**
+ * Mevzuat ağacına localStorage'daki ekstra mevzuatları merge eder.
+ */
+function ekstraMevzuatlariMergeEt(agac) {
+  const liste = ekstraMevzuatlariYukle();
+  if (!liste.length) return;
+  liste.forEach((em) => {
+    const tur = agac.find((t) => t.id === em.tur_id);
+    if (!tur) return;
+    const mevcut = tur.mevzuat.find((m) => m.id === em.id);
+    if (!mevcut) {
+      tur.mevzuat.push({
+        id: em.id,
+        ad: em.ad,
+        atif: em.atif,
+        maddeler: []
+      });
+    }
+  });
+}
+
 /**
  * Mevzuat ağacına localStorage'daki ekstra maddeleri merge eder.
  * Aynı no'ya sahip madde varsa üzerine yazar (düzenleme), yoksa ekler.
@@ -292,6 +323,7 @@ let mevzuatAgaci = null;
 async function mevzuatAgaciniYukle(zorla = false) {
   if (!mevzuatAgaci || zorla) {
     mevzuatAgaci = await istek("/api/mevzuat");
+    ekstraMevzuatlariMergeEt(mevzuatAgaci);
     ekstraMaddeleriMergeEt(mevzuatAgaci);
   }
   return mevzuatAgaci;
@@ -743,23 +775,33 @@ function yeniMevzuatKipiAc() {
 
 async function yeniMevzuatKaydet() {
   const turId = $("#yeni-mevzuat-tur").value;
+  const govde = {
+    ad: $("#yeni-mevzuat-ad").value.trim(),
+    atif: $("#yeni-mevzuat-atif").value.trim(),
+  };
+  
+  let sunucuBasarili = false;
   try {
     await istek(`/api/mevzuat/${turId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ad: $("#yeni-mevzuat-ad").value.trim(),
-        atif: $("#yeni-mevzuat-atif").value.trim(),
-      }),
+      body: JSON.stringify(govde),
     });
-    await mevzuatAgaciniYukle(true);
-    kipKapat("#mevzuat-ekle-kipi");
-    bildir("Mevzuat eklendi.", "basarili");
-    if ($("#sayfa-kutuphane").classList.contains("etkin")) kutuphaneMevzuatCiz();
-    if ($("#mevzuat-kipi").classList.contains("acik")) dayanakCiz();
-  } catch (hata) {
-    bildir(hata.message, "hata");
+    sunucuBasarili = true;
+  } catch { /* salt-okunur — localStorage fallback */ }
+
+  if (!sunucuBasarili) {
+    const liste = ekstraMevzuatlariYukle();
+    const id = "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    liste.push({ tur_id: turId, id, ad: govde.ad, atif: govde.atif });
+    ekstraMevzuatlariKaydet(liste);
   }
+
+  await mevzuatAgaciniYukle(true);
+  kipKapat("#mevzuat-ekle-kipi");
+  bildir("Mevzuat eklendi.", "basarili");
+  if ($("#sayfa-kutuphane").classList.contains("etkin")) kutuphaneMevzuatCiz();
+  if ($("#mevzuat-kipi").classList.contains("acik")) dayanakCiz();
 }
 
 /* ====================================================================== */
@@ -1613,11 +1655,6 @@ async function ortamiOgren() {
     yerelKurulum = true;
   }
   if (yerelKurulum) return;
-  // Kütüphaneyi değiştiren düğmeleri kapat ve sebebini açıkla.
-  ["#kut-madde-yeni", "#kut-mevzuat-yeni"].forEach((secici) => {
-    const d = $(secici);
-    if (d) { d.disabled = true; d.title = "Bu kurulumda kütüphane salt okunurdur."; }
-  });
   $("#salt-okunur-not").classList.remove("gizli");
 }
 

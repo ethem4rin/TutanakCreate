@@ -487,51 +487,44 @@
     </div>
     <div class="kip-orta">
       <div class="bos-bilgi" style="text-align:left" id="madde-yol"></div>
-      <div class="izgara uc">
+      <div class="izgara iki" style="margin-top:4px">
         <div class="alan">
           <label>Madde No</label>
-          <input type="text" id="madde-no" placeholder="63  ·  63/1  ·  6/(4)">
+          <input type="text" id="madde-no" placeholder="örn. 63">
         </div>
         <div class="alan">
-          <label>Madde Başlığı</label>
-          <input type="text" id="madde-baslik" placeholder="Çalışma Süresi">
-        </div>
-        <div class="alan">
-          <label>Ceza Maddesi</label>
-          <input type="text" id="madde-ceza" placeholder="104">
+          <label>Madde Başlığı <span class="etiket bilgi">isteğe bağlı</span></label>
+          <input type="text" id="madde-baslik" placeholder="örn. Çalışma Süresi">
         </div>
       </div>
       <div class="izgara" style="margin-top:14px">
         <div class="alan">
-          <label>Anahtar Kelimeler</label>
-          <input type="text" id="madde-anahtar" placeholder="çalışma süresi, 45 saat, fazla çalışma">
-          <span class="ipucu">Virgülle ayırın. Noksanlık metnine göre otomatik öneri için kullanılır.</span>
+          <label>Madde Metni</label>
+          <textarea id="madde-metni" style="min-height:170px"
+            placeholder="Kanun/yönetmelik maddesinin metnini buraya yazın veya yapıştırın. Tırnak işaretleri ve “hükmü amirdir” otomatik eklenir."></textarea>
+          <span class="ipucu">Sadece maddenin metnini girin — gerisini sistem biçimlendirir.</span>
         </div>
         <div class="alan">
-          <label>Bildirime Yazılacak Paragraf</label>
-          <textarea id="madde-paragraf" style="min-height:190px"></textarea>
-          <span class="ipucu">
-            Madde başlığını <code>**Çalışma Süresi**</code> gibi iki yıldız arasına alın.
-            Bu metin bildirime birebir yazılır.
-          </span>
-        </div>
-        <div class="alan">
-          <label>Kalıptan Oluştur</label>
-          <textarea id="madde-alinti" style="min-height:90px" placeholder="Maddenin tırnak içine alınacak metnini buraya yapıştırın…"></textarea>
-          <div class="dugme-sirasi">
-            <select id="madde-kapanis" style="flex:0 0 240px">
-              <option value="Hükmü amirdir.">… Hükmü amirdir.</option>
-              <option value="Hükmü,">… Hükmü,</option>
-              <option value="hükmüne yer verilmiştir.">… hükmüne yer verilmiştir.</option>
-            </select>
-            <button class="dugme kucuk" id="madde-kalip-uret">Paragrafı kalıptan yaz</button>
-          </div>
-        </div>
-        <div class="alan">
-          <label>Önizleme</label>
+          <label>Bildirime böyle yazılacak (önizleme)</label>
           <div class="dayanak-onizleme" id="madde-onizleme"></div>
         </div>
       </div>
+      <details style="margin-top:14px">
+        <summary style="cursor:pointer;color:var(--metin-soluk);font-size:13px">
+          Gelişmiş (ceza maddesi, anahtar kelimeler) — isteğe bağlı
+        </summary>
+        <div class="izgara iki" style="margin-top:12px">
+          <div class="alan">
+            <label>Ceza Maddesi</label>
+            <input type="text" id="madde-ceza" placeholder="104">
+          </div>
+          <div class="alan">
+            <label>Anahtar Kelimeler</label>
+            <input type="text" id="madde-anahtar" placeholder="çalışma süresi, 45 saat, fazla çalışma">
+            <span class="ipucu">Virgülle ayırın. Noksanlık metnine göre otomatik öneri için kullanılır.</span>
+          </div>
+        </div>
+      </details>
     </div>
     <div class="kip-alt">
       <button class="dugme tehlike kucuk gizli" id="madde-sil"><svg><use href="#s-cop"/></svg> Sil</button>

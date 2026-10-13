@@ -819,67 +819,69 @@ function dayanagiUygula() {
 
 let maddeDuzenleme = { madde: null, yeni: false, sonra: null };
 
+/** Bir maddenin tam paragrafından tırnak içindeki ham metni çıkarır. */
+function maddeMetniniAyikla(paragraf) {
+  if (!paragraf) return "";
+  const m = paragraf.match(/[“"]([\s\S]*)[”"]/);
+  return (m ? m[1] : paragraf).trim();
+}
+
+/** Ham madde metnini bildirime yazılacak tam paragrafa dönüştürür. */
+function maddeParagrafiKur(atif, no, baslik, metin) {
+  metin = (metin || "").trim();
+  if (!metin) return "";
+  const baslikParca = baslik && baslik.trim() ? ` **${baslik.trim()}** başlıklı` : "";
+  const noParca = no ? `${no}.` : "";
+  return `${atif || ""}${baslikParca} ${noParca} maddesinde; “${metin}” hükmü amirdir.`
+    .replace(/\s+/g, " ").trim();
+}
+
 function maddeKipiAc(madde, secenekler = {}) {
   maddeDuzenleme = { madde, yeni: Boolean(secenekler.yeni), sonra: secenekler.sonra || null };
   $("#madde-kip-baslik").textContent = secenekler.yeni ? "Yeni Madde" : "Madde Düzenle";
   $("#madde-yol").innerHTML =
-    `<strong>${kacis(madde.mevzuat_ad)}</strong><br>
-     <span style="color:var(--metin-sonuk)">Atıf biçimi: ${kacis(madde.atif || "—")}</span>`;
+    `<strong>${kacis(madde.mevzuat_ad)}</strong>`;
   $("#madde-no").value = secenekler.yeni ? "" : madde.no || "";
   $("#madde-baslik").value = madde.baslik || "";
   $("#madde-ceza").value = madde.ceza || "";
   $("#madde-anahtar").value = (madde.anahtar || []).join(", ");
-  $("#madde-paragraf").value = madde.paragraf || "";
-  $("#madde-alinti").value = "";
+  // Var olan paragraftan tırnak içindeki metni çıkarıp sade kutuya koy.
+  $("#madde-metni").value = maddeMetniniAyikla(madde.paragraf || "");
   $("#madde-sil").classList.toggle("gizli", Boolean(secenekler.yeni) || !madde.no);
   maddeOnizlemeGuncelle();
   kipAc("#madde-kipi");
-  setTimeout(() => $(secenekler.yeni ? "#madde-no" : "#madde-paragraf").focus(), 60);
+  setTimeout(() => $(secenekler.yeni ? "#madde-no" : "#madde-metni").focus(), 60);
 }
 
 function maddeOnizlemeGuncelle() {
-  const metin = $("#madde-paragraf").value;
-  $("#madde-onizleme").innerHTML = metin
-    ? isaretliHtml(metin)
-    : '<span style="color:var(--metin-sonuk)">Paragraf girildikçe burada görünür.</span>';
-}
-
-async function maddeKalipUret() {
-  const m = maddeDuzenleme.madde;
-  const alinti = $("#madde-alinti").value.trim();
-  if (!alinti) {
-    bildir("Önce maddenin tırnak içine alınacak metnini yazın.", "hata");
-    return;
-  }
-  try {
-    const sonuc = await istek("/api/mevzuat/kalip", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        atif: m.atif, no: $("#madde-no").value.trim(),
-        baslik: $("#madde-baslik").value.trim(), alinti,
-        kapanis: $("#madde-kapanis").value,
-      }),
-    });
-    $("#madde-paragraf").value = sonuc.paragraf;
-    maddeOnizlemeGuncelle();
-  } catch (hata) {
-    bildir(hata.message, "hata");
-  }
+  const m = maddeDuzenleme.madde || {};
+  const paragraf = maddeParagrafiKur(
+    m.atif, $("#madde-no").value.trim(), $("#madde-baslik").value.trim(), $("#madde-metni").value
+  );
+  $("#madde-onizleme").innerHTML = paragraf
+    ? isaretliHtml(paragraf)
+    : '<span style="color:var(--metin-sonuk)">Madde metni girildikçe burada görünür.</span>';
 }
 
 async function maddeyiKaydet() {
   const m = maddeDuzenleme.madde;
+  const no = $("#madde-no").value.trim();
+  const baslik = $("#madde-baslik").value.trim();
+  const metin = $("#madde-metni").value.trim();
   const govde = {
-    no: $("#madde-no").value.trim(),
-    baslik: $("#madde-baslik").value.trim(),
+    no,
+    baslik,
     ceza: $("#madde-ceza").value.trim(),
     anahtar: $("#madde-anahtar").value,
-    paragraf: $("#madde-paragraf").value.trim(),
+    paragraf: maddeParagrafiKur(m.atif, no, baslik, metin),
     eski_no: maddeDuzenleme.yeni ? "" : m.no,
   };
   if (!govde.no) {
     bildir("Madde numarası zorunludur.", "hata");
+    return;
+  }
+  if (!metin) {
+    bildir("Madde metni boş olamaz.", "hata");
     return;
   }
   // Sunucuya kaydetmeyi dene (Supabase varsa kalıcı olur). Sunucu yanıtı ne
@@ -1966,9 +1968,9 @@ function olaylariBagla() {
   $("#secimi-uygula").addEventListener("click", oneriyiUygula);
   $("#secimden-yeni").addEventListener("click", () => kayitKipiAc(null));
 
-  // Madde düzenleme kipi
-  $("#madde-paragraf").addEventListener("input", maddeOnizlemeGuncelle);
-  $("#madde-kalip-uret").addEventListener("click", maddeKalipUret);
+  // Madde düzenleme kipi (sade: madde metni + no + başlık → otomatik biçim)
+  ["#madde-metni", "#madde-no", "#madde-baslik"].forEach((s) =>
+    $(s).addEventListener("input", maddeOnizlemeGuncelle));
   $("#madde-kaydet").addEventListener("click", maddeyiKaydet);
   $("#madde-sil").addEventListener("click", maddeyiSil);
 

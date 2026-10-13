@@ -75,10 +75,16 @@
     <button class="menu-dugme" data-sayfa="belge" data-ipucu="3 · Belge Bilgileri">
       <svg><use href="#s-belge"/></svg>
     </button>
+    <button class="menu-dugme" data-sayfa="isveren" data-ipucu="İşveren Metni">
+      <svg><use href="#s-kalem"/></svg>
+    </button>
     <button class="menu-dugme" data-sayfa="kutuphane" data-ipucu="Kütüphane">
       <svg><use href="#s-kitap"/></svg>
     </button>
     <div style="flex:1 1 auto"></div>
+    <button class="menu-dugme" data-sayfa="calismalar" data-ipucu="Çalışmalarım">
+      <svg><use href="#s-belge"/></svg>
+    </button>
     <button class="menu-dugme" id="sifirla-dugme" data-ipucu="Çalışmayı sıfırla">
       <svg><use href="#s-yenile"/></svg>
     </button>
@@ -103,21 +109,6 @@
 
     <!-- --------------------------- 1. AŞAMA: TUTANAK --------------------- -->
     <section class="sayfa etkin" id="sayfa-tutanak">
-
-      <div class="kart" id="calismalarim-karti">
-        <div class="kart-baslik">
-          <h3><svg><use href="#s-belge"/></svg> Çalışmalarım</h3>
-          <div class="dugme-sirasi">
-            <span class="not" id="aktif-calisma-adi"></span>
-            <button class="dugme kucuk" id="calisma-kaydet"><svg><use href="#s-indir"/></svg> Çalışmayı Kaydet</button>
-          </div>
-        </div>
-        <div class="bos-bilgi" style="text-align:left">
-          Yarıda kalan bir çalışmayı daha sonra kaldığınız yerden sürdürebilmek için adıyla kaydedin.
-          Kayıtlı çalışmalar bu tarayıcıda saklanır; aşağıdan tıklayarak geri yükleyebilirsiniz.
-        </div>
-        <div id="calisma-listesi" style="margin-top:12px"></div>
-      </div>
 
       <div class="kart" id="yukleme-karti">
         <div class="kart-baslik">
@@ -290,6 +281,78 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- --------------------------- İŞVEREN METNİ ------------------------- -->
+    <section class="sayfa" id="sayfa-isveren">
+      <div class="kart">
+        <div class="kart-baslik">
+          <h3><svg><use href="#s-kalem"/></svg> İşveren Metni (2. Word)</h3>
+          <span class="not">Tutanaktan otomatik çekilir</span>
+        </div>
+        <div class="bos-bilgi" style="text-align:left">
+          Yüklediğiniz tutanaktaki <strong>işveren vekili beyanı</strong> (IX. bölüm) ve
+          <strong>kapanış cümlesi</strong> aşağıya otomatik getirildi. Gerekirse düzenleyin;
+          ardından imza bloğuyla birlikte ayrı bir Word belgesi oluşturun.
+        </div>
+        <div class="izgara iki" style="margin-top:14px">
+          <div class="alan">
+            <label>İşveren Vekili Adı <span class="etiket bilgi">tutanaktan</span></label>
+            <input type="text" id="iv-vekil-ad">
+          </div>
+          <div class="alan">
+            <label>Görevi</label>
+            <input type="text" id="iv-vekil-gorev" placeholder="İşveren Vekili">
+          </div>
+          <div class="alan">
+            <label>1. İş Müfettişi</label>
+            <input type="text" id="iv-mufettis1">
+          </div>
+          <div class="alan">
+            <label>2. İş Müfettişi</label>
+            <input type="text" id="iv-mufettis2">
+          </div>
+        </div>
+        <div class="izgara" style="margin-top:14px">
+          <div class="alan">
+            <label>İşveren Vekili Beyanı <span class="etiket bilgi">tutanaktan</span></label>
+            <textarea id="iv-beyan" style="min-height:260px"></textarea>
+            <span class="ipucu">Tutanaktaki “IX-) İşveren vekili … şeklinde ifade etmiştir.” paragrafı.</span>
+          </div>
+        </div>
+        <div class="izgara" style="margin-top:14px">
+          <div class="alan">
+            <label>Kapanış Cümlesi</label>
+            <textarea id="iv-kapanis" style="min-height:90px"></textarea>
+            <span class="ipucu">“İş bu tutanak … düzenlendi, okundu … imzalandı. TARİH”</span>
+          </div>
+        </div>
+        <div class="ayirac"></div>
+        <div class="dugme-sirasi">
+          <button class="dugme sade kucuk" id="iv-tutanaktan">Tutanaktan yeniden doldur</button>
+          <button class="dugme ana" id="iv-olustur">
+            <svg><use href="#s-indir"/></svg> İşveren Metni Word'ünü Oluştur
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------- ÇALIŞMALARIM -------------------------- -->
+    <section class="sayfa" id="sayfa-calismalar">
+      <div class="kart" id="calismalarim-karti">
+        <div class="kart-baslik">
+          <h3><svg><use href="#s-belge"/></svg> Çalışmalarım</h3>
+          <div class="dugme-sirasi">
+            <span class="not" id="aktif-calisma-adi"></span>
+            <button class="dugme kucuk" id="calisma-kaydet"><svg><use href="#s-indir"/></svg> Çalışmayı Kaydet</button>
+          </div>
+        </div>
+        <div class="bos-bilgi" style="text-align:left">
+          Yarıda kalan bir çalışmayı daha sonra kaldığınız yerden sürdürebilmek için adıyla kaydedin.
+          Kayıtlı çalışmalar bu tarayıcıda saklanır; aşağıdan “Devam et” ile geri yükleyebilirsiniz.
+        </div>
+        <div id="calisma-listesi" style="margin-top:12px"></div>
+      </div>
     </section>
 
     <!-- ------------------------------ KÜTÜPHANE -------------------------- -->

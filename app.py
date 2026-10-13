@@ -22,6 +22,7 @@ from flask import Flask, jsonify, render_template, request, send_file
 from werkzeug.exceptions import HTTPException, RequestEntityTooLarge
 
 from core import belge as belge_modulu
+from core import isveren as isveren_modulu
 from core import mevzuat as mevzuat_modulu
 from core import tutanak as tutanak_modulu
 from core.metin import html_onizleme
@@ -266,6 +267,32 @@ def bildirim_olustur():
         damga = datetime.now().strftime("%Y%m%d-%H%M%S")
         kopya = CIKTI_DIZINI / f"{ad} - Noksanlık Bildirimi {damga}.docx"
         kopya.write_bytes(akis.getvalue())
+
+    return send_file(
+        akis,
+        as_attachment=True,
+        download_name=dosya_adi,
+        mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    )
+
+
+@app.post("/api/isveren-metni")
+def isveren_metni_olustur():
+    """İşveren vekili beyanını içeren ikinci Word belgesini üretir."""
+    govde = request.get_json(silent=True) or {}
+    veri = isveren_modulu.IsverenVerisi.sozlukten(govde)
+    if not (veri.beyan or "").strip():
+        raise IstekHatasi("İşveren beyan metni boş olamaz.")
+
+    ad = _dosya_adi_temizle(govde.get("unvan") or veri.vekil_adi or "Isveren Metni")
+    dosya_adi = f"{ad} - İşveren Metni.docx"
+    akis = isveren_modulu.bellege_uret(veri)
+
+    if YEREL:
+        damga = datetime.now().strftime("%Y%m%d-%H%M%S")
+        kopya = CIKTI_DIZINI / f"{ad} - İşveren Metni {damga}.docx"
+        kopya.write_bytes(akis.getvalue())
+        akis.seek(0)
 
     return send_file(
         akis,

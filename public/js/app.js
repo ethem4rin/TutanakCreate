@@ -24,6 +24,7 @@ const durum = {
     tebAd: "", tebBaba: "", tebDogum: "", tebTckn: "", tebGorev: "", tebTarih: "",
     birlestir: false,
   },
+  isveren: null,   // {beyan, kapanis, vekilAd, vekilGorev, mufettis1, mufettis2}
   tumunuGoster: false,
 };
 
@@ -221,6 +222,8 @@ function sayfaAc(ad) {
     d.classList.toggle("etkin", d.dataset.sayfa === ad));
   if (ad === "kutuphane") kutuphaneAc();
   if (ad === "belge") belgeOzetiCiz();
+  if (ad === "isveren") isverenSayfasiniYaz();
+  if (ad === "calismalar") calismaListesiniCiz();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -327,6 +330,7 @@ async function tutanagiYukle(dosya) {
     durum.belge.tebGorev = veri.kunye.vekil_gorevi || "";
     durum.belge.tarih = veri.kunye.tutanak_tarihi || "";
     durum.belge.tebTarih = veri.kunye.tutanak_tarihi || "";
+    durum.isveren = isverenVarsayilani();
     durumuKaydet();
 
     alan.innerHTML = eskiHtml;
@@ -1320,6 +1324,84 @@ async function onerileriIceAktar(dosya) {
 }
 
 /* ====================================================================== */
+/* İŞVEREN METNİ — 2. Word (tutanaktan otomatik çekilir)                   */
+/* ====================================================================== */
+
+/** Tutanaktan (künye) işveren metni alanlarının varsayılanını üretir. */
+function isverenVarsayilani() {
+  const k = durum.kunye || {};
+  return {
+    beyan: k.isveren_beyani || "",
+    kapanis: k.tutanak_kapanisi || "",
+    vekilAd: k.vekil_adi || "",
+    vekilGorev: k.vekil_gorevi || "İşveren Vekili",
+    mufettis1: (k.mufettisler || [])[0] || "",
+    mufettis2: (k.mufettisler || [])[1] || "",
+  };
+}
+
+/** İşveren metni formunu durum.isveren'den doldurur. */
+function isverenSayfasiniYaz() {
+  if (!durum.isveren) durum.isveren = isverenVarsayilani();
+  const i = durum.isveren;
+  $("#iv-vekil-ad").value = i.vekilAd || "";
+  $("#iv-vekil-gorev").value = i.vekilGorev || "";
+  $("#iv-mufettis1").value = i.mufettis1 || "";
+  $("#iv-mufettis2").value = i.mufettis2 || "";
+  $("#iv-beyan").value = i.beyan || "";
+  $("#iv-kapanis").value = i.kapanis || "";
+}
+
+/** Formdaki değerleri durum.isveren'e yazar. */
+function isverenSayfasiniOku() {
+  durum.isveren = {
+    beyan: $("#iv-beyan").value,
+    kapanis: $("#iv-kapanis").value,
+    vekilAd: $("#iv-vekil-ad").value.trim(),
+    vekilGorev: $("#iv-vekil-gorev").value.trim(),
+    mufettis1: $("#iv-mufettis1").value.trim(),
+    mufettis2: $("#iv-mufettis2").value.trim(),
+  };
+  durumuKaydet();
+}
+
+async function isverenMetniniOlustur(dugme) {
+  isverenSayfasiniOku();
+  const i = durum.isveren || {};
+  if (!(i.beyan || "").trim()) {
+    bildir("İşveren beyan metni boş. Önce bir tutanak yükleyin veya metni girin.", "hata");
+    return;
+  }
+  const eskiHtml = dugme ? dugme.innerHTML : "";
+  if (dugme) { dugme.disabled = true; dugme.innerHTML = `<span class="yukleniyor"></span> Oluşturuluyor…`; }
+  try {
+    const blob = await istek("/api/isveren-metni", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        beyan: i.beyan, kapanis: i.kapanis,
+        vekil_adi: i.vekilAd, vekil_gorevi: i.vekilGorev,
+        mufettis_1: i.mufettis1, mufettis_2: i.mufettis2,
+        unvan: (durum.kunye && durum.kunye.unvan) || "",
+      }),
+    });
+    const adres = URL.createObjectURL(blob);
+    const bag = document.createElement("a");
+    bag.href = adres;
+    bag.download = `${(durum.kunye && durum.kunye.unvan) || i.vekilAd || "Isveren"} - İşveren Metni.docx`;
+    document.body.appendChild(bag);
+    bag.click();
+    bag.remove();
+    URL.revokeObjectURL(adres);
+    bildir("İşveren metni Word'ü oluşturuldu ve indirildi.", "basarili");
+  } catch (hata) {
+    bildir(hata.message, "hata");
+  } finally {
+    if (dugme) { dugme.disabled = false; dugme.innerHTML = eskiHtml; }
+  }
+}
+
+/* ====================================================================== */
 /* 3. AŞAMA — BELGE                                                        */
 /* ====================================================================== */
 
@@ -1701,6 +1783,20 @@ function olaylariBagla() {
   // Çalışmalarım (eski dosyalar)
   const calismaKaydetDugme = $("#calisma-kaydet");
   if (calismaKaydetDugme) calismaKaydetDugme.addEventListener("click", calismaKaydet);
+
+  // İşveren Metni (2. Word)
+  ["#iv-vekil-ad", "#iv-vekil-gorev", "#iv-mufettis1", "#iv-mufettis2", "#iv-beyan", "#iv-kapanis"]
+    .forEach((s) => { const el = $(s); if (el) el.addEventListener("input", isverenSayfasiniOku); });
+  const ivTutanaktan = $("#iv-tutanaktan");
+  if (ivTutanaktan) ivTutanaktan.addEventListener("click", () => {
+    if (!durum.kunye) { bildir("Önce bir tutanak yükleyin.", "uyari"); return; }
+    durum.isveren = isverenVarsayilani();
+    durumuKaydet();
+    isverenSayfasiniYaz();
+    bildir("İşveren metni tutanaktan yeniden dolduruldu.", "basarili");
+  });
+  const ivOlustur = $("#iv-olustur");
+  if (ivOlustur) ivOlustur.addEventListener("click", (e) => isverenMetniniOlustur(e.currentTarget));
 
   // Dosya yükleme
   dosyaGirdisiniBagla();

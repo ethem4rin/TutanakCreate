@@ -73,6 +73,10 @@ class Kunye:
     mufettisler: List[str] = field(default_factory=list)
     giris_metni: str = ""
 
+    # İkinci belge (İşveren Metni) için tutanaktan çekilen kısımlar
+    isveren_beyani: str = ""      # "IX-) İşveren vekili ... şeklinde ifade etmiştir."
+    tutanak_kapanisi: str = ""    # "İş bu tutanak ... düzenlendi, okundu ... imzalandı. TARİH"
+
 
 @dataclass
 class TutanakSonucu:
@@ -181,11 +185,11 @@ def _vekil_ayikla(ham: str) -> Dict[str, str]:
     sonuc["unvan"] = unvan.strip(" ./")
 
     kalan = kalan.strip()
-    for ayrac in ("–", "—", "-"):
+    for ayrac in (";", "–", "—", "-"):
         if ayrac in kalan:
             gorev, ad = kalan.split(ayrac, 1)
-            sonuc["gorev"] = gorev.strip()
-            sonuc["ad"] = ad.strip()
+            sonuc["gorev"] = gorev.strip(" ;")
+            sonuc["ad"] = re.sub(r"\s+", " ", ad.strip(" ;"))
             break
     else:
         sonuc["gorev"] = kalan
@@ -226,6 +230,39 @@ def _giris_bilgileri(belge, kunye: Kunye) -> None:
     eslesme = re.search(r"(?P<tarihler>\d[\d.,/\s]*\d)\s*tarih(?:ler)?inde", giris)
     if eslesme:
         kunye.teftis_tarihleri = re.sub(r"\s+", "", eslesme.group("tarihler"))
+
+
+def _isveren_beyani(belge) -> str:
+    """
+    Tutanaktaki işveren vekili beyanını (çoğunlukla "IX-) İşveren vekili ...
+    şeklinde ifade etmiştir." paragrafı) bulur ve tam metnini döndürür.
+    """
+    for paragraf in belge.paragraphs:
+        kucuk = tr_kucult(paragraf.text)
+        if "işveren vekili" in kucuk and (
+            "ifade etmiştir" in kucuk or "beyan etmiştir" in kucuk or "şeklinde ifade" in kucuk
+        ):
+            return paragraf.text.strip()
+    # Yedek: roma rakamı ile başlayıp "işveren vekili" geçen en uzun paragraf
+    aday = ""
+    for paragraf in belge.paragraphs:
+        metin = paragraf.text.strip()
+        if "işveren vekili" in tr_kucult(metin) and len(metin) > len(aday):
+            aday = metin
+    return aday
+
+
+def _tutanak_kapanisi(belge) -> str:
+    """"İş bu tutanak ... düzenlendi, okundu ... imzalandı ... TARİH" paragrafı."""
+    for paragraf in belge.paragraphs:
+        if "iş bu tutanak" in tr_kucult(paragraf.text):
+            return paragraf.text.strip()
+    # Yedek: "nüsha olarak düzenlendi" geçen paragraf
+    for paragraf in belge.paragraphs:
+        kucuk = tr_kucult(paragraf.text)
+        if "nüsha olarak düzenlendi" in kucuk or "nüsha olarak" in kucuk:
+            return paragraf.text.strip()
+    return ""
 
 
 def _tutanak_tarihi(belge) -> str:
@@ -283,6 +320,8 @@ def coz(kaynak) -> TutanakSonucu:
 
     kunye.mufettisler = _mufettisler(belge)
     kunye.tutanak_tarihi = _tutanak_tarihi(belge)
+    kunye.isveren_beyani = _isveren_beyani(belge)
+    kunye.tutanak_kapanisi = _tutanak_kapanisi(belge)
     _giris_bilgileri(belge, kunye)
     kunye.giris_metni = giris_metni_uret(kunye)
 

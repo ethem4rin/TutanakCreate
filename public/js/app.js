@@ -724,32 +724,22 @@ function dayanakCiz() {
       oneriSutunu: true,
       onDegisim: () => dayanakCiz(),
       eylemler: (madde) => {
+        // Boş maddeler için "Metni gir" satır içinde kalır; dolu maddelerin
+        // dayanak ekle/çıkar işlemi alt bardaki (footer) butona taşındı.
         if (!madde.dolu) {
           return [{
             etiket: "Metni gir", ana: true,
             calistir: () => maddeKipiAc(madde, { sonra: () => dayanakCiz() }),
           }];
         }
-        const secili = dayanak.secilenler.some((m) => m.kimlik === madde.kimlik);
-        return [{
-          etiket: secili ? "Dayanaktan çıkar" : "Dayanak olarak ekle",
-          ana: !secili,
-          calistir: () => {
-            const yeri = dayanak.secilenler.findIndex((m) => m.kimlik === madde.kimlik);
-            if (yeri >= 0) dayanak.secilenler.splice(yeri, 1);
-            else dayanak.secilenler.push({
-              kimlik: madde.kimlik, baslik: maddeAdi(madde), metin: madde.paragraf,
-            });
-            dayanak.gorunum.secilenler = new Set(dayanak.secilenler.map((m) => m.kimlik));
-            dayanakCiz();
-          },
-        }];
+        return [];
       },
     },
     dayanak.gorunum
   );
 
   $("#mevzuat-madde-yeni").disabled = false;
+  dayanakFooterGuncelle();
 
   $("#mevzuat-tepsi").innerHTML = dayanak.secilenler.length
     ? `<span class="tepsi-etiket">Seçilen dayanaklar</span>` +
@@ -769,6 +759,48 @@ function dayanakCiz() {
       dayanakCiz();
     })
   );
+}
+
+/** Açık (seçili) maddeyi bulur — footer butonu bunun üzerinde çalışır. */
+function dayanakAcikMadde() {
+  const kimlik = dayanak.gorunum.acikMadde;
+  if (!kimlik) return null;
+  return maddeBulKimlikle(kimlik);
+}
+
+/** Footer'daki "Dayanak olarak ekle" butonunu açık maddeye göre günceller. */
+function dayanakFooterGuncelle() {
+  const dugme = $("#mevzuat-dayanak-ekle");
+  if (!dugme) return;
+  const madde = dayanakAcikMadde();
+  if (!madde || !madde.dolu) {
+    dugme.disabled = true;
+    dugme.classList.remove("ana");
+    dugme.innerHTML = `<svg><use href="#s-kitap"/></svg> Dayanak olarak ekle`;
+    return;
+  }
+  dugme.disabled = false;
+  const secili = dayanak.secilenler.some((m) => m.kimlik === madde.kimlik);
+  dugme.classList.toggle("ana", !secili);
+  dugme.innerHTML = secili
+    ? `<svg><use href="#s-kapat"/></svg> Dayanaktan çıkar`
+    : `<svg><use href="#s-kitap"/></svg> Dayanak olarak ekle`;
+}
+
+/** Footer butonuna tıklanınca açık maddeyi dayanağa ekler/çıkarır. */
+function dayanakAcikMaddeyiDegistir() {
+  const madde = dayanakAcikMadde();
+  if (!madde || !madde.dolu) {
+    bildir("Önce listeden metni dolu bir madde açın.", "uyari");
+    return;
+  }
+  const yeri = dayanak.secilenler.findIndex((m) => m.kimlik === madde.kimlik);
+  if (yeri >= 0) dayanak.secilenler.splice(yeri, 1);
+  else dayanak.secilenler.push({
+    kimlik: madde.kimlik, baslik: maddeAdi(madde), metin: madde.paragraf,
+  });
+  dayanak.gorunum.secilenler = new Set(dayanak.secilenler.map((m) => m.kimlik));
+  dayanakCiz();
 }
 
 function dayanagiUygula() {
@@ -1914,6 +1946,7 @@ function olaylariBagla() {
     dayanakCiz();
   });
   $("#mevzuat-uygula").addEventListener("click", dayanagiUygula);
+  $("#mevzuat-dayanak-ekle").addEventListener("click", dayanakAcikMaddeyiDegistir);
   $("#mevzuat-madde-yeni").addEventListener("click", () => {
     const mevzuat = mevzuatBul(dayanak.gorunum.turId, dayanak.gorunum.mevzuatId);
     if (!mevzuat) {

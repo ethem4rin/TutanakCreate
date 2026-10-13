@@ -2,18 +2,18 @@
   "surum": 2,
   "turler": [
     {
-      "id": "kanun",
       "ad": "Kanun",
+      "id": "kanun",
       "mevzuat": [
         {
-          "id": "4857",
           "ad": "4857 - İş Kanunu",
+          "id": "4857",
           "atif": "4857 sayılı İş Kanunu'nun",
           "maddeler": [
             {
               "no": "3",
-              "baslik": "İşyerini bildirme",
               "ceza": "",
+              "baslik": "İşyerini bildirme",
               "anahtar": [
                 "işyeri bildirimi",
                 "işyeri bildirme",
@@ -24,8 +24,8 @@
             },
             {
               "no": "5",
-              "baslik": "Eşit davranma ilkesi",
               "ceza": "",
+              "baslik": "Eşit davranma ilkesi",
               "anahtar": [
                 "eşit davranma",
                 "ayrımcılık",
@@ -37,8 +37,8 @@
             },
             {
               "no": "7",
-              "baslik": "Geçici iş ilişkisi",
               "ceza": "",
+              "baslik": "Geçici iş ilişkisi",
               "anahtar": [
                 "geçici iş ilişkisi",
                 "özel istihdam bürosu"
@@ -48,8 +48,8 @@
             },
             {
               "no": "8",
-              "baslik": "Tanım ve şekil",
               "ceza": "",
+              "baslik": "Tanım ve şekil",
               "anahtar": [
                 "iş sözleşmesi",
                 "yazılı sözleşme",
@@ -62,8 +62,8 @@
             },
             {
               "no": "11",
-              "baslik": "Belirli ve belirsiz süreli iş sözleşmesi",
               "ceza": "",
+              "baslik": "Belirli ve belirsiz süreli iş sözleşmesi",
               "anahtar": [
                 "belirli süreli",
                 "belirsiz süreli",
@@ -77,8 +77,8 @@
             },
             {
               "no": "14",
-              "baslik": "Çağrı üzerine çalışma ve uzaktan çalışma",
               "ceza": "",
+              "baslik": "Çağrı üzerine çalışma ve uzaktan çalışma",
               "anahtar": [
                 "çağrı üzerine çalışma",
                 "uzaktan çalışma",
@@ -89,8 +89,8 @@
             },
             {
               "no": "28",
-              "baslik": "Çalışma belgesi",
               "ceza": "",
+              "baslik": "Çalışma belgesi",
               "anahtar": [
                 "çalışma belgesi"
               ],
@@ -99,8 +99,8 @@
             },
             {
               "no": "29",
-              "baslik": "Toplu işçi çıkarma",
               "ceza": "",
+              "baslik": "Toplu işçi çıkarma",
               "anahtar": [
                 "toplu işçi çıkarma",
                 "toplu çıkarma"
@@ -110,8 +110,8 @@
             },
             {
               "no": "30",
-              "baslik": "Engelli ve eski hükümlü çalıştırma zorunluluğu",
               "ceza": "",
+              "baslik": "Engelli ve eski hükümlü çalıştırma zorunluluğu",
               "anahtar": [
                 "engelli",
                 "eski hükümlü",
@@ -122,8 +122,8 @@
             },
             {
               "no": "32",
-              "baslik": "Ücret ve ücretin ödenmesi",
               "ceza": "",
+              "baslik": "Ücret ve ücretin ödenmesi",
               "anahtar": [
                 "ücret",
                 "ücret ödemesi",
@@ -136,8 +136,8 @@
             },
             {
               "no": "37",
-              "baslik": "Ücret hesap pusulası",
               "ceza": "",
+              "baslik": "Ücret hesap pusulası",
               "anahtar": [
                 "ücret hesap pusulası",
                 "bordro",
@@ -149,8 +149,8 @@
             },
             {
               "no": "38",
-              "baslik": "Ücret kesme cezası",
               "ceza": "",
+              "baslik": "Ücret kesme cezası",
               "anahtar": [
                 "ücret kesme cezası"
               ],
@@ -159,8 +159,8 @@
             },
             {
               "no": "39",
-              "baslik": "Asgari ücret",
               "ceza": "",
+              "baslik": "Asgari ücret",
               "anahtar": [
                 "asgari ücret"
               ],
@@ -169,8 +169,8 @@
             },
             {
               "no": "41",
-              "baslik": "Fazla çalışma ücreti",
               "ceza": "",
+              "baslik": "Fazla çalışma ücreti",
               "anahtar": [
                 "fazla çalışma ücreti",
                 "yüzde elli",
@@ -183,8 +183,8 @@
             },
             {
               "no": "46",
-              "baslik": "Hafta tatili ücreti",
               "ceza": "",
+              "baslik": "Hafta tatili ücreti",
               "anahtar": [
                 "hafta tatili",
                 "yirmidört saat",
@@ -196,8 +196,8 @@
             },
             {
               "no": "46/2",
-              "baslik": "Hafta tatili ücreti",
               "ceza": "",
+              "baslik": "Hafta tatili ücreti",
               "anahtar": [
                 "çalışılmayan hafta tatili",
                 "bir iş karşılığı olmaksızın"
@@ -207,8 +207,8 @@
             },
             {
               "no": "47",
-              "baslik": "Genel tatil ücreti",
               "ceza": "",
+              "baslik": "Genel tatil ücreti",
               "anahtar": [
                 "ulusal bayram",
                 "genel tatil",
@@ -219,8 +219,8 @@
             },
             {
               "no": "52",
-              "baslik": "Yüzdelerin belgelenmesi",
               "ceza": "",
+              "baslik": "Yüzdelerin belgelenmesi",
               "anahtar": [
                 "yüzde bordrosu",
                 "yüzde usulü"
@@ -230,8 +230,8 @@
             },
             {
               "no": "53",
-              "baslik": "Yıllık ücretli izin hakkı ve izin süreleri",
               "ceza": "",
+              "baslik": "Yıllık ücretli izin hakkı ve izin süreleri",
               "anahtar": [
                 "yıllık izin",
                 "yıllık ücretli izin",
@@ -245,8 +245,8 @@
             },
             {
               "no": "54",
-              "baslik": "Yıllık ücretli izne hak kazanma ve izni kullanma dönemi",
               "ceza": "",
+              "baslik": "Yıllık ücretli izne hak kazanma ve izni kullanma dönemi",
               "anahtar": [
                 "izne hak kazanma",
                 "hizmet süresi birleştirme",
@@ -257,8 +257,8 @@
             },
             {
               "no": "56",
-              "baslik": "Yıllık ücretli iznin uygulanması",
               "ceza": "",
+              "baslik": "Yıllık ücretli iznin uygulanması",
               "anahtar": [
                 "izin bölünmesi",
                 "on günden aşağı",
@@ -269,8 +269,8 @@
             },
             {
               "no": "57",
-              "baslik": "Yıllık izin ücreti",
               "ceza": "",
+              "baslik": "Yıllık izin ücreti",
               "anahtar": [
                 "izin ücreti",
                 "peşin ödeme",
@@ -281,8 +281,8 @@
             },
             {
               "no": "60",
-              "baslik": "İzinlere ilişkin düzenlemeler",
               "ceza": "",
+              "baslik": "İzinlere ilişkin düzenlemeler",
               "anahtar": [
                 "izin yönetmeliği",
                 "izin kaydı"
@@ -292,8 +292,8 @@
             },
             {
               "no": "63",
-              "baslik": "Çalışma süresi",
               "ceza": "",
+              "baslik": "Çalışma süresi",
               "anahtar": [
                 "çalışma süresi",
                 "haftalık 45 saat",
@@ -307,8 +307,8 @@
             },
             {
               "no": "63/2",
-              "baslik": "Çalışma süresi",
               "ceza": "",
+              "baslik": "Çalışma süresi",
               "anahtar": [
                 "denkleştirme",
                 "günlük 11 saat",
@@ -320,8 +320,8 @@
             },
             {
               "no": "64",
-              "baslik": "Telafi çalışması",
               "ceza": "",
+              "baslik": "Telafi çalışması",
               "anahtar": [
                 "telafi çalışması",
                 "telafi"
@@ -331,8 +331,8 @@
             },
             {
               "no": "68",
-              "baslik": "Ara dinlenmesi",
               "ceza": "",
+              "baslik": "Ara dinlenmesi",
               "anahtar": [
                 "ara dinlenme",
                 "ara dinlenmesi",
@@ -344,8 +344,8 @@
             },
             {
               "no": "69",
-              "baslik": "Gece süresi ve gece çalışmaları",
               "ceza": "",
+              "baslik": "Gece süresi ve gece çalışmaları",
               "anahtar": [
                 "gece çalışması",
                 "gece süresi",
@@ -358,8 +358,8 @@
             },
             {
               "no": "72",
-              "baslik": "Yer ve su altında çalıştırma yasağı",
               "ceza": "",
+              "baslik": "Yer ve su altında çalıştırma yasağı",
               "anahtar": [
                 "yer altı",
                 "su altı",
@@ -370,8 +370,8 @@
             },
             {
               "no": "73",
-              "baslik": "Gece çalıştırma yasağı",
               "ceza": "",
+              "baslik": "Gece çalıştırma yasağı",
               "anahtar": [
                 "çocuk işçi",
                 "genç işçi",
@@ -382,8 +382,8 @@
             },
             {
               "no": "74",
-              "baslik": "Analık halinde çalışma ve süt izni",
               "ceza": "",
+              "baslik": "Analık halinde çalışma ve süt izni",
               "anahtar": [
                 "analık izni",
                 "doğum",
@@ -397,8 +397,8 @@
             },
             {
               "no": "75",
-              "baslik": "İşçi özlük dosyası",
               "ceza": "",
+              "baslik": "İşçi özlük dosyası",
               "anahtar": [
                 "özlük dosyası",
                 "özlük",
@@ -409,8 +409,8 @@
             },
             {
               "no": "92/2",
-              "baslik": "Yetkili makam ve memurlar",
               "ceza": "",
+              "baslik": "Yetkili makam ve memurlar",
               "anahtar": [
                 "teftiş",
                 "bilgi verme",
@@ -421,8 +421,8 @@
             },
             {
               "no": "96/1",
-              "baslik": "İşçi ve işverenin sorumluluğu",
               "ceza": "",
+              "baslik": "İşçi ve işverenin sorumluluğu",
               "anahtar": [
                 "ifade",
                 "telkin",
@@ -433,8 +433,8 @@
             },
             {
               "no": "96/2",
-              "baslik": "İşçi ve işverenin sorumluluğu",
               "ceza": "",
+              "baslik": "İşçi ve işverenin sorumluluğu",
               "anahtar": [
                 "gerçeğe uygun olmayan haber",
                 "şikayet"
@@ -445,84 +445,84 @@
           ]
         },
         {
-          "id": "6331",
           "ad": "6331 - İş Sağlığı ve Güvenliği Kanunu",
+          "id": "6331",
           "atif": "6331 sayılı İş Sağlığı ve Güvenliği Kanunu'nun",
           "maddeler": []
         },
         {
-          "id": "6735",
           "ad": "6735 - Uluslararası İşgücü Kanunu",
+          "id": "6735",
           "atif": "6735 sayılı Uluslararası İşgücü Kanunu'nun",
           "maddeler": []
         },
         {
-          "id": "6356",
           "ad": "6356 - Sendikalar ve Toplu İş Sözleşmesi Kanunu",
+          "id": "6356",
           "atif": "6356 sayılı Sendikalar ve Toplu İş Sözleşmesi Kanunu'nun",
           "maddeler": []
         },
         {
-          "id": "5544",
           "ad": "5544 - Mesleki Yeterlilik Kurumu Kanunu",
+          "id": "5544",
           "atif": "5544 sayılı Mesleki Yeterlilik Kurumu Kanunu'nun",
           "maddeler": []
         },
         {
-          "id": "4447",
           "ad": "4447 - İşsizlik Sigortası Kanunu",
+          "id": "4447",
           "atif": "4447 sayılı İşsizlik Sigortası Kanunu'nun",
           "maddeler": []
         },
         {
-          "id": "4632",
           "ad": "4632 - Bireysel Emeklilik Tasarruf ve Yatırım Sistemi Kanunu",
+          "id": "4632",
           "atif": "4632 sayılı Bireysel Emeklilik Tasarruf ve Yatırım Sistemi Kanunu'nun",
           "maddeler": []
         },
         {
-          "id": "4904",
           "ad": "4904 - Türkiye İş Kurumu Kanunu",
+          "id": "4904",
           "atif": "4904 sayılı Türkiye İş Kurumu Kanunu'nun",
           "maddeler": []
         },
         {
-          "id": "854",
           "ad": "854 - Deniz İş Kanunu",
+          "id": "854",
           "atif": "854 sayılı Deniz İş Kanunu'nun",
           "maddeler": []
         }
       ]
     },
     {
-      "id": "yonetmelik",
       "ad": "Yönetmelik",
+      "id": "yonetmelik",
       "mevzuat": [
         {
-          "id": "uzaktan-calisma",
           "ad": "Uzaktan Çalışma Yönetmeliği",
+          "id": "uzaktan-calisma",
           "atif": "4857 sayılı İş Kanununun 14 üncü maddesine dayanılarak hazırlanan Uzaktan Çalışma Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "5",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
-              "paragraf": "",
+              "paragraf": "4857 sayılı İş Kanununun 14 üncü maddesine dayanılarak hazırlanan Uzaktan Çalışma Yönetmeliği'nin 5. maddesinde; “Deneme madde metni kaydetme testi 2.” hükmü amirdir.",
               "dogrulandi": false
             },
             {
               "no": "7",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
-              "paragraf": "",
+              "paragraf": "4857 sayılı İş Kanununun 14 üncü maddesine dayanılarak hazırlanan Uzaktan Çalışma Yönetmeliği'nin 7. maddesinde; “Buton tiklama testi metni.” hükmü amirdir.",
               "dogrulandi": false
             },
             {
               "no": "9",
-              "baslik": "Çalışma süresinin belirlenmesi",
               "ceza": "",
+              "baslik": "Çalışma süresinin belirlenmesi",
               "anahtar": [
                 "uzaktan çalışma",
                 "çalışma süresi",
@@ -534,10 +534,10 @@
             },
             {
               "no": "11",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
-              "paragraf": "",
+              "paragraf": "4857 sayılı İş Kanununun 14 üncü maddesine dayanılarak hazırlanan Uzaktan Çalışma Yönetmeliği'nin 11. maddesinde; “Hiz testi madde metni.” hükmü amirdir.",
               "dogrulandi": false
             },
             {
@@ -545,13 +545,13 @@
               "baslik": "",
               "ceza": "104",
               "anahtar": [],
-              "paragraf": "",
+              "paragraf": "4857 sayılı İş Kanununun 14 üncü maddesine dayanılarak hazırlanan Uzaktan Çalışma Yönetmeliği'nin 12. maddesinde; “Aninda kayit testi.” hükmü amirdir.",
               "dogrulandi": false
             },
             {
               "no": "13",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
@@ -559,14 +559,14 @@
           ]
         },
         {
-          "id": "yillik-izin",
           "ad": "Yıllık Ücretli İzin Yönetmeliği",
+          "id": "yillik-izin",
           "atif": "4857 sayılı İş Kanununun 60 ıncı maddesine dayanılarak hazırlanan Yıllık Ücretli İzin Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "6/(2)",
-              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "ceza": "104",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "anahtar": [
                 "izin kullandırma",
                 "sürekli izin",
@@ -577,8 +577,8 @@
             },
             {
               "no": "6/(4)",
-              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "ceza": "104",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "anahtar": [
                 "mahsup",
                 "diğer izinler",
@@ -589,8 +589,8 @@
             },
             {
               "no": "6/(5)",
-              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "ceza": "104",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "anahtar": [
                 "ulusal bayram",
                 "hafta tatili",
@@ -601,8 +601,8 @@
             },
             {
               "no": "6/(6)",
-              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "ceza": "104",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "anahtar": [
                 "yol izni",
                 "başka yerde geçirme"
@@ -612,8 +612,8 @@
             },
             {
               "no": "6/(7)",
-              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "ceza": "104",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "anahtar": [
                 "bildirim süresi",
                 "fesih",
@@ -624,8 +624,8 @@
             },
             {
               "no": "6(8)",
-              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "ceza": "104",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "anahtar": [
                 "izin kayıt belgesi",
                 "yıllık izin kaydı",
@@ -636,8 +636,8 @@
             },
             {
               "no": "6/(9)",
-              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "ceza": "104",
+              "baslik": "Yıllık Ücretli İznin Uygulanması",
               "anahtar": [
                 "alt işveren",
                 "aynı işyeri",
@@ -648,8 +648,8 @@
             },
             {
               "no": "13(1)",
-              "baslik": "Kısmi Süreli ve Çağrı Üzerine Çalışmalarda Yıllık Ücretli İzin",
               "ceza": "104",
+              "baslik": "Kısmi Süreli ve Çağrı Üzerine Çalışmalarda Yıllık Ücretli İzin",
               "anahtar": [
                 "kısmi süreli",
                 "çağrı üzerine",
@@ -660,8 +660,8 @@
             },
             {
               "no": "13(2)",
-              "baslik": "Kısmi Süreli ve Çağrı Üzerine Çalışmalarda Yıllık Ücretli İzin",
               "ceza": "104",
+              "baslik": "Kısmi Süreli ve Çağrı Üzerine Çalışmalarda Yıllık Ücretli İzin",
               "anahtar": [
                 "kısmi süreli",
                 "çağrı üzerine",
@@ -672,8 +672,8 @@
             },
             {
               "no": "15",
-              "baslik": "İzin Kurulunun Oluşumu",
               "ceza": "104",
+              "baslik": "İzin Kurulunun Oluşumu",
               "anahtar": [
                 "izin kurulu",
                 "yüzden fazla işçi"
@@ -683,8 +683,8 @@
             },
             {
               "no": "21(2)",
-              "baslik": "Ücretin Ödenmesi",
               "ceza": "104",
+              "baslik": "Ücretin Ödenmesi",
               "anahtar": [
                 "izin ücreti",
                 "peşin ödeme",
@@ -696,14 +696,14 @@
           ]
         },
         {
-          "id": "calisma-sureleri",
           "ad": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği",
+          "id": "calisma-sureleri",
           "atif": "4857 sayılı İş Kanununun 63 üncü maddesine dayanılarak hazırlanan İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "3/(2)",
-              "baslik": "Çalışma Süresi",
               "ceza": "104",
+              "baslik": "Çalışma Süresi",
               "anahtar": [
                 "ara dinlenme",
                 "kesintisiz oniki saat",
@@ -715,8 +715,8 @@
             },
             {
               "no": "7/(3)",
-              "baslik": "Telafi Çalışması",
               "ceza": "104",
+              "baslik": "Telafi Çalışması",
               "anahtar": [
                 "telafi çalışması",
                 "zorunlu neden"
@@ -726,8 +726,8 @@
             },
             {
               "no": "9",
-              "baslik": "Çalışma Süresinin Belgelenmesi",
               "ceza": "104",
+              "baslik": "Çalışma Süresinin Belgelenmesi",
               "anahtar": [
                 "çalışma süresinin belgelenmesi",
                 "puantaj",
@@ -735,58 +735,66 @@
               ],
               "paragraf": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin **Çalışma Süresinin Belgelenmesi** başlıklı 9. maddesinde; “İşveren, işçilerin çalışma sürelerini uygun araçlarla belgelemek zorundadır.” Hükmü amirdir.",
               "dogrulandi": true
+            },
+            {
+              "no": "4",
+              "ceza": "",
+              "baslik": "**Haftalık Normal Çalışma Süresi**",
+              "anahtar": [],
+              "paragraf": "4857 sayılı İş Kanununun 63 üncü maddesine dayanılarak hazırlanan İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin ****Haftalık Normal Çalışma Süresi**** başlıklı 4. maddesinde; “Genel bakımdan çalışma süresi haftada en çok kırkbeş saattir. Aksi kararlaştırılmamışsa bu süre, işyerlerinde haftanın çalışılan günlerine eşit ölçüde bölünerek uygulanır. Haftanın iş günlerinden birinde kısmen çalışılan işyerlerinde, bu süre haftalık çalışma süresinden düşüldükten sonra, çalışılan sürenin çalışılan gün sayısına bölünmesi suretiyle günlük çalışma süreleri belirlenir. Günlük çalışma süresi her ne şekilde olursa olsun 11 saati aşamaz. Bir işçinin bu sınırları aşan sürelerle çalıştırılmasında; a) 4857 sayılı İş Kanununun 41, 42 ve 43 üncü maddeleri, b) 79 sayılı Milli Korunma Suçlarının Affına, Milli Korunma Teşkilat, Sermaye ve Fon Hesaplarının Tasfiyesine ve Bazı Hükümler İhdasına Dair Kanunun 6 ncı maddesi hükümleri uygulanır. (Ek fıkra:RG-25/8/2017-30165) Yer altı maden işlerinde çalışan işçilerin çalışma süresi; günde en çok yedi buçuk, haftada en çok otuz yedi buçuk saattir.” hükmü amirdir.",
+              "dogrulandi": false
             }
           ]
         },
         {
-          "id": "cocuk-genc-isci",
           "ad": "Çocuk ve Genç İşçilerin Çalıştırılma Usul ve Esasları Hakkında Yönetmelik",
+          "id": "cocuk-genc-isci",
           "atif": "4857 sayılı İş Kanununun 71 inci maddesine dayanılarak hazırlanan Çocuk ve Genç İşçilerin Çalıştırılma Usul ve Esasları Hakkında Yönetmelik'nin",
           "maddeler": [
             {
               "no": "5",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "6",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "8",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "9",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "10",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "11",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
@@ -794,30 +802,30 @@
           ]
         },
         {
-          "id": "kadin-gece-postasi",
           "ad": "Kadın Çalışanların Gece Postalarında Çalıştırılma Koşulları Hakkında Yönetmelik",
+          "id": "kadin-gece-postasi",
           "atif": "4857 sayılı İş Kanununun 73 üncü maddesine dayanılarak hazırlanan Kadın Çalışanların Gece Postalarında Çalıştırılma Koşulları Hakkında Yönetmelik'nin",
           "maddeler": [
             {
               "no": "5",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "6",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "9",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
@@ -825,78 +833,78 @@
           ]
         },
         {
-          "id": "postalar-halinde",
           "ad": "Postalar Halinde İşçi Çalıştırılarak Yürütülen İşlerde Çalışmalara İlişkin Özel Usul ve Esaslar Hakkında Yönetmelik",
+          "id": "postalar-halinde",
           "atif": "4857 sayılı İş Kanununun 76 ncı maddesine dayanılarak hazırlanan Postalar Halinde İşçi Çalıştırılarak Yürütülen İşlerde Çalışmalara İlişkin Özel Usul ve Esaslar Hakkında Yönetmelik'nin",
           "maddeler": [
             {
               "no": "3",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "4",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "5",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "6",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "7",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "8",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "9",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "10",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "11",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
@@ -904,70 +912,70 @@
           ]
         },
         {
-          "id": "haftalik-bolunemeyen",
           "ad": "Haftalık İş Günlerine Bölünemeyen Çalışma Süreleri Yönetmeliği",
+          "id": "haftalik-bolunemeyen",
           "atif": "4857 sayılı İş Kanununun 63 üncü maddesine dayanılarak hazırlanan Haftalık İş Günlerine Bölünemeyen Çalışma Süreleri Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "4",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "5",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "6",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "7",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "8",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "9",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "15",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
             },
             {
               "no": "16",
-              "baslik": "",
               "ceza": "104",
+              "baslik": "",
               "anahtar": [],
               "paragraf": "",
               "dogrulandi": false
@@ -975,28 +983,24 @@
           ]
         },
         {
-          "id": "fazla-calisma",
           "ad": "İş Kanununa İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği",
+          "id": "fazla-calisma",
           "atif": "4857 sayılı İş Kanununun 41 inci maddesine dayanılarak hazırlanan İş Kanununa İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "5",
-              "baslik": "Fazla Çalışmada Sınır",
-              "ceza": "104",
+              "ceza": "",
+              "baslik": "Denkleştirme Esasına Göre Çalışma",
               "anahtar": [
-                "yarım saat",
-                "fazla çalışma hesabı",
-                "yuvarlama",
-                "270 saat",
-                "ikiyüzyetmiş"
+                "Denkleştirme"
               ],
-              "paragraf": "İş Kanunu'na İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin **Fazla Çalışmada Sınır** başlıklı 5. maddesinde; “Fazla çalışma süresinin toplamı bir yılda ikiyüzyetmiş saatten fazla olamaz. Bu süre sınırı, işyerlerine veya yürütülen işlere değil, işçilerin şahıslarına ilişkindir. Fazla çalışma veya fazla sürelerle çalışma sürelerinin hesabında yarım saatten az olan süreler yarım saat, yarım saati aşan süreler ise bir saat sayılır.” Hükmü amirdir.",
-              "dogrulandi": true
+              "paragraf": "Tarafların yazılı anlaşması ile haftalık normal çalışma süresi, işyerinde haftanın çalışılan günlerine günde onbir saati aşmamak\nkoşuluyla farklı şekilde dağıtılabilir. Bu halde, yoğunlaştırılmış iş haftası veya haftalarından sonraki dönemde işçinin daha az sürelerle çalıştırılması suretiyle, toplam çalışma süresi, çalışması gereken toplam normal süreyi geçmeyecek şekilde denkleştirilir.\nDenkleştirme iki aylık süre içinde tamamlanacak, bu süre toplu iş sözleşmeleri ile dört aya kadar artırılabilecektir. (Ek cümle:RG-25/8/2017-30165) Turizm sektöründe dört aylık süre içinde işçinin haftalık ortalama çalışma süresi, normal haftalık çalışma süresini aşamaz; denkleştirme süresi toplu iş sözleşmeleri ile altı aya kadar artırılabilir. Parça başına, akort veya götürü gibi yapılan iş tutarına göre ücret ödenen işlerde de bu Yönetmeliğin denkleştirmeye ilişkin hükümleri uygulanır.\nDenkleştirme dönemi içinde günlük ve haftalık çalışma süreleri ile denkleştirme süresi uygulamasının başlangıç ve bitiş tarihleri işverence\nbelirlenir.",
+              "dogrulandi": false
             },
             {
               "no": "9",
-              "baslik": "Fazla Çalışma Yaptırılacak İşçinin Onayı",
               "ceza": "104",
+              "baslik": "Fazla Çalışma Yaptırılacak İşçinin Onayı",
               "anahtar": [
                 "fazla çalışma onayı",
                 "yazılı onay",
@@ -1004,38 +1008,46 @@
               ],
               "paragraf": "İş Kanunu'na İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin **Fazla Çalışma Yaptırılacak İşçinin Onayı** başlıklı 9. maddesinde; “Fazla çalışma ve fazla sürelerle çalışma yaptırmak için işçinin yazılı onayının alınması gerekir. Zorunlu nedenlerle veya olağanüstü durumlarda yapılan fazla çalışma ve fazla sürelerle çalışma için bu onay aranmaz. Fazla çalışma ihtiyacı olan işverence bu onay iş sözleşmesinin yapılması esnasında ya da bu ihtiyaç ortaya çıktığında alınır ve işçi özlük dosyasında saklanır. Fazla çalışma veya fazla sürelerle çalışma yapmak istemeyen işçi verdiği onayı otuz gün önceden işverene yazılı olarak bildirimde bulunmak kaydıyla geri alabilir.” Hükmü amirdir.",
               "dogrulandi": true
+            },
+            {
+              "no": "4",
+              "ceza": "",
+              "baslik": "**Haftalık Normal Çalışma Süresi**",
+              "anahtar": [],
+              "paragraf": "4857 sayılı İş Kanununun 41 inci maddesine dayanılarak hazırlanan İş Kanununa İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin ****Haftalık Normal Çalışma Süresi**** başlıklı 4. maddesinde; “Genel bakımdan çalışma süresi haftada en çok kırkbeş saattir. Aksi kararlaştırılmamışsa bu süre, işyerlerinde haftanın çalışılan günlerine eşit ölçüde bölünerek uygulanır.\n\nHaftanın iş günlerinden birinde kısmen çalışılan işyerlerinde, bu süre haftalık çalışma süresinden düşüldükten sonra, çalışılan sürenin çalışılan gün sayısına bölünmesi suretiyle günlük çalışma süreleri belirlenir.\n\nGünlük çalışma süresi her ne şekilde olursa olsun 11 saati aşamaz.\n\nBir işçinin bu sınırları aşan sürelerle çalıştırılmasında;\n\na) 4857 sayılı İş Kanununun 41, 42 ve 43 üncü maddeleri,\n\nb) 79 sayılı Milli Korunma Suçlarının Affına, Milli Korunma Teşkilat, Sermaye ve Fon Hesaplarının Tasfiyesine ve Bazı Hükümler İhdasına Dair Kanunun 6 ncı maddesi\n\nhükümleri uygulanır.\n(Ek fıkra:RG-25/8/2017-30165) Yer altı maden işlerinde çalışan işçilerin çalışma süresi; günde en çok yedi buçuk, haftada en çok otuz yedi buçuk saattir.” Hükmü amirdir.",
+              "dogrulandi": false
             }
           ]
         },
         {
-          "id": "gemi-adamlari",
           "ad": "Gemi Adamlarının İkamet Yerleri, Sağlık ve İaşelerine Dair Yönetmelik",
+          "id": "gemi-adamlari",
           "atif": "Gemi Adamlarının İkamet Yerleri, Sağlık ve İaşelerine Dair Yönetmeliğin",
           "maddeler": []
         },
         {
-          "id": "bes",
           "ad": "Bireysel Emeklilik Sistemi Hakkında Yönetmelik",
+          "id": "bes",
           "atif": "Bireysel Emeklilik Sistemi Hakkında Yönetmeliğin",
           "maddeler": []
         },
         {
-          "id": "otomatik-bes",
           "ad": "Çalışanların İşverenleri Aracılığıyla Otomatik Olarak Emeklilik Planına Dahil Edilmesine İlişkin Yönetmelik",
+          "id": "otomatik-bes",
           "atif": "Çalışanların İşverenleri Aracılığıyla Otomatik Olarak Emeklilik Planına Dahil Edilmesine İlişkin Yönetmeliğin",
           "maddeler": []
         },
         {
-          "id": "tarimda-is-araciligi",
           "ad": "Tarımda İş Aracılığı Yönetmeliği",
+          "id": "tarimda-is-araciligi",
           "atif": "Tarımda İş Aracılığı Yönetmeliği'nin",
           "maddeler": []
         }
       ]
     },
     {
-      "id": "cbk",
       "ad": "CBK",
+      "id": "cbk",
       "mevzuat": []
     }
   ]

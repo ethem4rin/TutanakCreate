@@ -884,24 +884,13 @@ async function maddeyiKaydet() {
     bildir("Madde metni boş olamaz.", "hata");
     return;
   }
-  // Sunucuya kaydetmeyi dene (Supabase varsa kalıcı olur). Sunucu yanıtı ne
-  // olursa olsun localStorage'a DA yaz: böylece Supabase yapılandırılmamış
-  // olsa bile (sunucu sessizce kaybedebilir) kayıt bu tarayıcıda kaybolmaz.
-  try {
-    await istek(`/api/mevzuat/${m.tur_id}/${m.mevzuat_id}/madde`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(govde),
-    });
-  } catch { /* salt-okunur / Supabase yok — localStorage yedeği devrede */ }
-
+  // Önce yereli + belleği güncelle (anında), modalı HEMEN kapat; sunucuya
+  // yazma arka planda yapılır. Böylece kaydetme bekleme hissi vermez.
   let liste = ekstraMaddeleriYukle();
-  // Bu madde için önceki "silindi" işaretlerini temizle (yeniden ekleniyor)
   liste = liste.filter(
     (e) => !(e._silindi && e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id &&
              (e.no === govde.no || e.no === govde.eski_no))
   );
-  // Aynı mevzuat+no kombinasyonu varsa güncelle, yoksa ekle
   const eskiIdx = liste.findIndex(
     (e) => !e._silindi && e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id &&
            e.no === (govde.eski_no || govde.no)
@@ -911,21 +900,58 @@ async function maddeyiKaydet() {
   else liste.push(yeniKayit);
   ekstraMaddeleriKaydet(liste);
 
-  await mevzuatAgaciniYukle(true);
+  // Bellekteki ağacı doğrudan güncelle: tüm mevzuatı yeniden çekmeye gerek yok (hız).
+  mevzuatAgacinaMaddeYaz(m.tur_id, m.mevzuat_id, govde);
+
+  // Modalı hemen kapat ve bildir — kullanıcı beklemesin.
   kipKapat("#madde-kipi");
   bildir("Madde kaydedildi.", "basarili");
   if (maddeDuzenleme.sonra) maddeDuzenleme.sonra();
+
+  // Sunucuya (Supabase) yazmayı arka planda yap; hata olursa kullanıcıyı uyar
+  // (yerel kopya zaten güvende, kayıp olmaz).
+  fetch(`/api/mevzuat/${m.tur_id}/${m.mevzuat_id}/madde`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(govde),
+  }).then((y) => {
+    if (!y.ok) bildir("Madde bu cihazda kaydedildi; ortak kütüphaneye yazılamadı.", "uyari");
+  }).catch(() => {
+    bildir("Madde bu cihazda kaydedildi; ortak kütüphaneye şu an ulaşılamadı.", "uyari");
+  });
+}
+
+/** Bellekteki mevzuat ağacına maddeyi ekler/günceller (ağ beklemeden hızlı UI). */
+function mevzuatAgacinaMaddeYaz(turId, mevzuatId, govde) {
+  const tur = (mevzuatAgaci || []).find((t) => t.id === turId);
+  if (!tur) return;
+  const mev = tur.mevzuat.find((m) => m.id === mevzuatId);
+  if (!mev) return;
+  const anahtar = Array.isArray(govde.anahtar)
+    ? govde.anahtar
+    : String(govde.anahtar || "").split(",").map((s) => s.trim()).filter(Boolean);
+  const madde = {
+    kimlik: `${turId}|${mevzuatId}|${govde.no}`,
+    no: govde.no, baslik: govde.baslik || "", ceza: govde.ceza || "",
+    anahtar, paragraf: govde.paragraf || "", html: isaretliHtml(govde.paragraf || ""),
+    dolu: Boolean(govde.paragraf), dogrulandi: false,
+    tur_id: turId, mevzuat_id: mevzuatId, mevzuat_ad: mev.ad, atif: mev.atif,
+  };
+  const idx = mev.maddeler.findIndex((x) => x.no === (govde.eski_no || govde.no));
+  if (idx >= 0) mev.maddeler[idx] = madde;
+  else mev.maddeler.push(madde);
+  mev.madde_sayisi = mev.maddeler.length;
+  mev.dolu_sayisi = mev.maddeler.filter((x) => x.dolu).length;
 }
 
 async function maddeyiSil() {
   const m = maddeDuzenleme.madde;
   if (!confirm(`${m.mevzuat_ad} m.${m.no} silinsin mi?`)) return;
-  try {
-    await istek(
-      `/api/mevzuat/${m.tur_id}/${m.mevzuat_id}/madde/${encodeURIComponent(m.no)}`,
-      { method: "DELETE" }
-    );
-  } catch { /* salt-okunur — localStorage fallback */ }
+  // Sunucudan silmeyi arka planda yap (yavaş read-modify-write beklenmesin).
+  fetch(
+    `/api/mevzuat/${m.tur_id}/${m.mevzuat_id}/madde/${encodeURIComponent(m.no)}`,
+    { method: "DELETE" }
+  ).catch(() => {});
 
   const liste = ekstraMaddeleriYukle();
   // Daha önce localStorage'da eklendiyse oradan kaldır, her durumda silinmiş olarak işaretle
@@ -936,7 +962,15 @@ async function maddeyiSil() {
   liste.push({ tur_id: m.tur_id, mevzuat_id: m.mevzuat_id, no: m.no, _silindi: true });
   ekstraMaddeleriKaydet(liste);
 
-  await mevzuatAgaciniYukle(true);
+  // Bellekten de çıkar (ağ beklemeden hızlı UI).
+  const tur = (mevzuatAgaci || []).find((t) => t.id === m.tur_id);
+  const mev = tur && tur.mevzuat.find((x) => x.id === m.mevzuat_id);
+  if (mev) {
+    mev.maddeler = mev.maddeler.filter((x) => x.no !== m.no);
+    mev.madde_sayisi = mev.maddeler.length;
+    mev.dolu_sayisi = mev.maddeler.filter((x) => x.dolu).length;
+  }
+
   kipKapat("#madde-kipi");
   bildir("Madde silindi.", "basarili");
   if (maddeDuzenleme.sonra) maddeDuzenleme.sonra();

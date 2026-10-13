@@ -2030,7 +2030,7 @@ let authKayitModu = false;
 function authGateGoster() {
   $("#auth-perde").classList.add("acik");
   $("#kullanici-cip").style.display = "none";
-  setTimeout(() => $("#auth-eposta").focus(), 80);
+  setTimeout(() => $("#auth-kadi").focus(), 80);
 }
 
 function authGateGizle() {
@@ -2039,25 +2039,26 @@ function authGateGizle() {
 
 function authModunuAyarla() {
   $("#auth-baslik").textContent = authKayitModu ? "Kayıt Ol" : "Giriş Yap";
+  $("#auth-alt").textContent = authKayitModu
+    ? "Yeni bir müfettiş hesabı oluşturun"
+    : "Müfettiş Programı · hesabınızla devam edin";
   $("#auth-gonder").textContent = authKayitModu ? "Kayıt Ol" : "Giriş Yap";
-  $("#auth-ad-alan").classList.toggle("gizli", !authKayitModu);
   $("#auth-gecis-metin").textContent = authKayitModu ? "Zaten hesabınız var mı?" : "Hesabınız yok mu?";
   $("#auth-gecis").textContent = authKayitModu ? "Giriş yapın" : "Kayıt olun";
+  $("#auth-kayit-ipucu").classList.toggle("gizli", !authKayitModu);
   $("#auth-sifre").setAttribute("autocomplete", authKayitModu ? "new-password" : "current-password");
 }
 
 function kullaniciCipiYaz() {
   if (!AKTIF_KULLANICI) { $("#kullanici-cip").style.display = "none"; return; }
-  $("#kullanici-adi").textContent = AKTIF_KULLANICI.ad || AKTIF_KULLANICI.eposta || "";
+  $("#kullanici-adi").textContent = AKTIF_KULLANICI.kullanici_adi || "";
   $("#kullanici-cip").style.display = "flex";
 }
 
 async function authGonder() {
-  const ad = $("#auth-ad").value.trim();
-  const eposta = $("#auth-eposta").value.trim();
+  const kadi = $("#auth-kadi").value.trim();
   const sifre = $("#auth-sifre").value;
-  if (!eposta || !sifre) { bildir("E-posta ve şifre zorunludur.", "hata"); return; }
-  if (authKayitModu && !ad) { bildir("Ad Soyad zorunludur.", "hata"); return; }
+  if (!kadi || !sifre) { bildir("Kullanıcı adı ve şifre zorunludur.", "hata"); return; }
 
   const dugme = $("#auth-gonder");
   const eski = dugme.innerHTML;
@@ -2068,13 +2069,13 @@ async function authGonder() {
     const kullanici = await istek(yol, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ad, eposta, sifre }),
+      body: JSON.stringify({ kullanici_adi: kadi, sifre }),
     });
     AKTIF_KULLANICI = kullanici;
     $("#auth-sifre").value = "";
     authGateGizle();
     await uygulamayiBaslat();
-    bildir(`Hoş geldiniz, ${kullanici.ad || kullanici.eposta}.`, "basarili");
+    bildir(`Hoş geldiniz, ${kullanici.kullanici_adi}.`, "basarili");
   } catch (hata) {
     bildir(hata.message, "hata");
   } finally {
@@ -2096,7 +2097,16 @@ function authOlaylariniBagla() {
   $("#auth-gonder").addEventListener("click", authGonder);
   $("#auth-gecis").addEventListener("click", () => { authKayitModu = !authKayitModu; authModunuAyarla(); });
   $("#auth-sifre").addEventListener("keydown", (e) => { if (e.key === "Enter") authGonder(); });
-  $("#auth-eposta").addEventListener("keydown", (e) => { if (e.key === "Enter") authGonder(); });
+  $("#auth-kadi").addEventListener("keydown", (e) => { if (e.key === "Enter") authGonder(); });
+  // Şifre göster/gizle
+  const goster = $("#auth-sifre-goster");
+  if (goster) goster.addEventListener("click", () => {
+    const alan = $("#auth-sifre");
+    const gizli = alan.type === "password";
+    alan.type = gizli ? "text" : "password";
+    goster.classList.toggle("aktif", gizli);
+    alan.focus();
+  });
   const cikis = $("#cikis-dugme");
   if (cikis) cikis.addEventListener("click", cikisYap);
 }

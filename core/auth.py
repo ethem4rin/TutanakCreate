@@ -2,7 +2,7 @@
 """
 Basit kullanıcı kimlik doğrulaması (kayıt / giriş).
 
-Kullanıcılar Supabase'deki ``depo`` tablosunda ``kullanici:<eposta>`` kimliğiyle
+Kullanıcılar Supabase'deki ``depo`` tablosunda ``kullanici:<kullanici_adi>`` kimliğiyle
 saklanır. Şifreler werkzeug ile hash'lenir (düz metin tutulmaz). Oturum, Flask'ın
 imzalı çerez tabanlı session'ı ile taşınır — sunucusuz (Vercel) ortamda da çalışır.
 
@@ -26,11 +26,13 @@ class AuthHatasi(Exception):
     """İstemciye gösterilebilir kimlik doğrulama hatası."""
 
 
-EPOSTA_DESENI = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+KULLANICI_ADI_DESENI = re.compile(r"^[a-z0-9ğüşıöç._-]{3,32}$")
 
 
-def _eposta_normalize(eposta: str) -> str:
-    return (eposta or "").strip().lower()
+def _kadi_normalize(kullanici_adi: str) -> str:
+    # Türkçe duyarlı küçük harf + İ/I düzeltmesi
+    k = (kullanici_adi or "").strip().replace("I", "ı").replace("İ", "i").lower()
+    return re.sub(r"\s+", "", k)
 
 
 def supabase_var() -> bool:
@@ -73,46 +75,42 @@ def depo_yaz(kimlik: str, veri: Any) -> bool:
 # Kullanıcılar
 # --------------------------------------------------------------------------- #
 
-def _kullanici_kimligi(eposta: str) -> str:
-    return "kullanici:" + _eposta_normalize(eposta)
+def _kullanici_kimligi(kullanici_adi: str) -> str:
+    return "kullanici:" + _kadi_normalize(kullanici_adi)
 
 
-def kullanici_getir(eposta: str) -> Optional[Dict[str, Any]]:
-    return depo_oku(_kullanici_kimligi(eposta))
+def kullanici_getir(kullanici_adi: str) -> Optional[Dict[str, Any]]:
+    return depo_oku(_kullanici_kimligi(kullanici_adi))
 
 
-def kayit(ad: str, eposta: str, sifre: str) -> Dict[str, Any]:
+def kayit(kullanici_adi: str, sifre: str) -> Dict[str, Any]:
     if not supabase_var():
         raise AuthHatasi("Sunucu veritabanı (Supabase) yapılandırılmamış; kayıt yapılamıyor.")
-    ad = (ad or "").strip()
-    eposta = _eposta_normalize(eposta)
-    if not ad:
-        raise AuthHatasi("Ad Soyad boş olamaz.")
-    if not EPOSTA_DESENI.match(eposta):
-        raise AuthHatasi("Geçerli bir e-posta adresi girin.")
+    kadi = _kadi_normalize(kullanici_adi)
+    if not KULLANICI_ADI_DESENI.match(kadi):
+        raise AuthHatasi("Kullanıcı adı 3-32 karakter olmalı; harf, rakam ve . _ - içerebilir.")
     if len(sifre or "") < 6:
         raise AuthHatasi("Şifre en az 6 karakter olmalıdır.")
-    if kullanici_getir(eposta):
-        raise AuthHatasi("Bu e-posta ile zaten bir hesap var. Giriş yapın.")
+    if kullanici_getir(kadi):
+        raise AuthHatasi("Bu kullanıcı adı zaten alınmış. Başka bir ad deneyin ya da giriş yapın.")
 
     kayit_verisi = {
         "id": uuid.uuid4().hex,
-        "ad": ad,
-        "eposta": eposta,
+        "kullanici_adi": kadi,
         "sifre_hash": generate_password_hash(sifre),
         "olusturma": int(time.time()),
     }
-    if not depo_yaz(_kullanici_kimligi(eposta), kayit_verisi):
+    if not depo_yaz(_kullanici_kimligi(kadi), kayit_verisi):
         raise AuthHatasi("Kayıt kaydedilemedi. Lütfen tekrar deneyin.")
-    return {"id": kayit_verisi["id"], "ad": ad, "eposta": eposta}
+    return {"id": kayit_verisi["id"], "kullanici_adi": kadi}
 
 
-def giris(eposta: str, sifre: str) -> Dict[str, Any]:
-    eposta = _eposta_normalize(eposta)
-    kullanici = kullanici_getir(eposta)
+def giris(kullanici_adi: str, sifre: str) -> Dict[str, Any]:
+    kadi = _kadi_normalize(kullanici_adi)
+    kullanici = kullanici_getir(kadi)
     if not kullanici or not check_password_hash(kullanici.get("sifre_hash", ""), sifre or ""):
-        raise AuthHatasi("E-posta veya şifre hatalı.")
-    return {"id": kullanici["id"], "ad": kullanici.get("ad", ""), "eposta": eposta}
+        raise AuthHatasi("Kullanıcı adı veya şifre hatalı.")
+    return {"id": kullanici["id"], "kullanici_adi": kullanici.get("kullanici_adi", kadi)}
 
 
 # --------------------------------------------------------------------------- #

@@ -105,8 +105,7 @@ def _mevcut_kullanici():
         return None
     return {
         "id": kid,
-        "ad": session.get("kullanici_ad", ""),
-        "eposta": session.get("kullanici_eposta", ""),
+        "kullanici_adi": session.get("kullanici_adi", ""),
     }
 
 
@@ -122,14 +121,13 @@ def giris_gerekli(fn):
 def _oturum_kur(kullanici: dict) -> None:
     session.permanent = True
     session["kullanici_id"] = kullanici["id"]
-    session["kullanici_ad"] = kullanici["ad"]
-    session["kullanici_eposta"] = kullanici["eposta"]
+    session["kullanici_adi"] = kullanici["kullanici_adi"]
 
 
 @app.post("/api/kayit")
 def kayit():
     g = request.get_json(silent=True) or {}
-    kullanici = auth_modulu.kayit(g.get("ad", ""), g.get("eposta", ""), g.get("sifre", ""))
+    kullanici = auth_modulu.kayit(g.get("kullanici_adi", ""), g.get("sifre", ""))
     _oturum_kur(kullanici)
     return jsonify(kullanici), 201
 
@@ -137,7 +135,7 @@ def kayit():
 @app.post("/api/giris")
 def giris():
     g = request.get_json(silent=True) or {}
-    kullanici = auth_modulu.giris(g.get("eposta", ""), g.get("sifre", ""))
+    kullanici = auth_modulu.giris(g.get("kullanici_adi", ""), g.get("sifre", ""))
     _oturum_kur(kullanici)
     return jsonify(kullanici)
 

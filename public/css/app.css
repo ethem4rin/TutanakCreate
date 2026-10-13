@@ -230,7 +230,8 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; colo
 }
 .alan .ipucu { font-size: 11.5px; color: var(--metin-sonuk); }
 
-input[type="text"], input[type="search"], textarea, select {
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+textarea, select {
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--cizgi);
@@ -831,3 +832,38 @@ select option { background: #16161d; }
   font-size: 13px; font-weight: 600; color: var(--metin);
   max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
+
+/* --- Giriş/kayıt tasarım iyileştirmeleri --- */
+.auth-kutu {
+  animation: auth-giris 0.28s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+@keyframes auth-giris {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+.auth-kutu .alan > label {
+  font-size: 12px; font-weight: 600; letter-spacing: .2px;
+  color: var(--metin-soluk);
+}
+.auth-kutu input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
+  padding: 12px 14px;
+  font-size: 15px;
+  background: rgba(0, 0, 0, 0.35);
+}
+.auth-kutu .dugme.ana {
+  padding: 13px 18px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.sifre-sargi { position: relative; display: flex; align-items: center; }
+.sifre-sargi input { width: 100%; padding-right: 44px; }
+.sifre-goster {
+  position: absolute; right: 6px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  color: var(--metin-sonuk); border-radius: 8px;
+}
+.sifre-goster:hover { color: var(--metin); background: var(--cam); }
+.sifre-goster svg { width: 18px; height: 18px; }
+.sifre-goster.aktif { color: var(--turuncu); }

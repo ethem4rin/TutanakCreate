@@ -61,6 +61,21 @@
               "dogrulandi": true
             },
             {
+              "no": "11",
+              "baslik": "Belirli ve belirsiz süreli iş sözleşmesi",
+              "ceza": "",
+              "anahtar": [
+                "belirli süreli",
+                "belirsiz süreli",
+                "iş sözleşmesi",
+                "zincirleme",
+                "esaslı neden",
+                "objektif koşul"
+              ],
+              "paragraf": "4857 sayılı İş Kanunu'nun **Belirli ve belirsiz süreli iş sözleşmesi** başlıklı 11. maddesinde; “İş ilişkisinin bir süreye bağlı olarak yapılmadığı halde sözleşme belirsiz süreli sayılır. Belirli süreli işlerde veya belli bir işin tamamlanması veya belirli bir olgunun ortaya çıkması gibi objektif koşullara bağlı olarak işveren ile işçi arasında yazılı şekilde yapılan iş sözleşmesi belirli süreli iş sözleşmesidir. Belirli süreli iş sözleşmesi, esaslı bir neden olmadıkça, birden fazla üst üste (zincirleme) yapılamaz. Aksi halde iş sözleşmesi başlangıçtan itibaren belirsiz süreli kabul edilir. Esaslı nedene dayalı zincirleme iş sözleşmeleri, belirli süreli olma özelliğini korurlar.” hükmü amirdir.",
+              "dogrulandi": false
+            },
+            {
               "no": "14",
               "baslik": "Çağrı üzerine çalışma ve uzaktan çalışma",
               "ceza": "",
@@ -486,7 +501,7 @@
         {
           "id": "uzaktan-calisma",
           "ad": "Uzaktan Çalışma Yönetmeliği",
-          "atif": "Uzaktan Çalışma Yönetmeliği'nin",
+          "atif": "4857 sayılı İş Kanununun 14 üncü maddesine dayanılarak hazırlanan Uzaktan Çalışma Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "5",
@@ -502,6 +517,19 @@
               "ceza": "104",
               "anahtar": [],
               "paragraf": "",
+              "dogrulandi": false
+            },
+            {
+              "no": "9",
+              "baslik": "Çalışma süresinin belirlenmesi",
+              "ceza": "",
+              "anahtar": [
+                "uzaktan çalışma",
+                "çalışma süresi",
+                "fazla çalışma",
+                "çalışma saatleri"
+              ],
+              "paragraf": "4857 sayılı İş Kanununun 14 üncü maddesine dayanılarak hazırlanan Uzaktan Çalışma Yönetmeliği'nin **Çalışma süresinin belirlenmesi** başlıklı 9 uncu maddesinde; “Uzaktan çalışmanın yapılacağı zaman aralığı ve süresi iş sözleşmesinde belirtilir. Mevzuatta öngörülen sınırlamalara bağlı kalmak koşuluyla taraflarca çalışma saatlerinde değişiklik yapılabilir. Fazla çalışma işverenin yazılı talebi üzerine, işçinin kabulü ile mevzuat hükümlerine uygun olarak yapılır.” hükmü amirdir.",
               "dogrulandi": false
             },
             {
@@ -533,7 +561,7 @@
         {
           "id": "yillik-izin",
           "ad": "Yıllık Ücretli İzin Yönetmeliği",
-          "atif": "Yıllık Ücretli İzin Yönetmeliği'nin",
+          "atif": "4857 sayılı İş Kanununun 60 ıncı maddesine dayanılarak hazırlanan Yıllık Ücretli İzin Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "6/(2)",
@@ -670,7 +698,7 @@
         {
           "id": "calisma-sureleri",
           "ad": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği",
-          "atif": "İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin",
+          "atif": "4857 sayılı İş Kanununun 63 üncü maddesine dayanılarak hazırlanan İş Kanununa İlişkin Çalışma Süreleri Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "3/(2)",
@@ -713,7 +741,7 @@
         {
           "id": "cocuk-genc-isci",
           "ad": "Çocuk ve Genç İşçilerin Çalıştırılma Usul ve Esasları Hakkında Yönetmelik",
-          "atif": "Çocuk ve Genç İşçilerin Çalıştırılma Usul ve Esasları Hakkında Yönetmeliğin",
+          "atif": "4857 sayılı İş Kanununun 71 inci maddesine dayanılarak hazırlanan Çocuk ve Genç İşçilerin Çalıştırılma Usul ve Esasları Hakkında Yönetmelik'nin",
           "maddeler": [
             {
               "no": "5",
@@ -768,7 +796,7 @@
         {
           "id": "kadin-gece-postasi",
           "ad": "Kadın Çalışanların Gece Postalarında Çalıştırılma Koşulları Hakkında Yönetmelik",
-          "atif": "Kadın Çalışanların Gece Postalarında Çalıştırılma Koşulları Hakkında Yönetmeliğin",
+          "atif": "4857 sayılı İş Kanununun 73 üncü maddesine dayanılarak hazırlanan Kadın Çalışanların Gece Postalarında Çalıştırılma Koşulları Hakkında Yönetmelik'nin",
           "maddeler": [
             {
               "no": "5",
@@ -799,7 +827,7 @@
         {
           "id": "postalar-halinde",
           "ad": "Postalar Halinde İşçi Çalıştırılarak Yürütülen İşlerde Çalışmalara İlişkin Özel Usul ve Esaslar Hakkında Yönetmelik",
-          "atif": "Postalar Halinde İşçi Çalıştırılarak Yürütülen İşlerde Çalışmalara İlişkin Özel Usul ve Esaslar Hakkında Yönetmeliğin",
+          "atif": "4857 sayılı İş Kanununun 76 ncı maddesine dayanılarak hazırlanan Postalar Halinde İşçi Çalıştırılarak Yürütülen İşlerde Çalışmalara İlişkin Özel Usul ve Esaslar Hakkında Yönetmelik'nin",
           "maddeler": [
             {
               "no": "3",
@@ -878,7 +906,7 @@
         {
           "id": "haftalik-bolunemeyen",
           "ad": "Haftalık İş Günlerine Bölünemeyen Çalışma Süreleri Yönetmeliği",
-          "atif": "Haftalık İş Günlerine Bölünemeyen Çalışma Süreleri Yönetmeliği'nin",
+          "atif": "4857 sayılı İş Kanununun 63 üncü maddesine dayanılarak hazırlanan Haftalık İş Günlerine Bölünemeyen Çalışma Süreleri Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "4",
@@ -949,7 +977,7 @@
         {
           "id": "fazla-calisma",
           "ad": "İş Kanununa İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği",
-          "atif": "İş Kanunu'na İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin",
+          "atif": "4857 sayılı İş Kanununun 41 inci maddesine dayanılarak hazırlanan İş Kanununa İlişkin Fazla Çalışma ve Fazla Sürelerle Çalışma Yönetmeliği'nin",
           "maddeler": [
             {
               "no": "5",

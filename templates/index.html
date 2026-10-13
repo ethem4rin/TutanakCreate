@@ -104,6 +104,21 @@
     <!-- --------------------------- 1. AŞAMA: TUTANAK --------------------- -->
     <section class="sayfa etkin" id="sayfa-tutanak">
 
+      <div class="kart" id="calismalarim-karti">
+        <div class="kart-baslik">
+          <h3><svg><use href="#s-belge"/></svg> Çalışmalarım</h3>
+          <div class="dugme-sirasi">
+            <span class="not" id="aktif-calisma-adi"></span>
+            <button class="dugme kucuk" id="calisma-kaydet"><svg><use href="#s-indir"/></svg> Çalışmayı Kaydet</button>
+          </div>
+        </div>
+        <div class="bos-bilgi" style="text-align:left">
+          Yarıda kalan bir çalışmayı daha sonra kaldığınız yerden sürdürebilmek için adıyla kaydedin.
+          Kayıtlı çalışmalar bu tarayıcıda saklanır; aşağıdan tıklayarak geri yükleyebilirsiniz.
+        </div>
+        <div id="calisma-listesi" style="margin-top:12px"></div>
+      </div>
+
       <div class="kart" id="yukleme-karti">
         <div class="kart-baslik">
           <h3><svg><use href="#s-yukle"/></svg> Teftiş Tutanağını Yükle</h3>
@@ -261,6 +276,14 @@
         <div class="kart-baslik"><h3><svg><use href="#s-onay"/></svg> Özet ve Çıktı</h3></div>
         <div class="izgara uc" id="belge-ozet"></div>
         <div class="ayirac"></div>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:14px">
+          <input type="checkbox" id="birlestir-ayni-madde" style="margin-top:3px">
+          <span>
+            <strong>Aynı kanun/maddeye dayanan noksanlıkları birleştir</strong>
+            <span class="ipucu" style="display:block">İşaretlenirse, aynı mevzuat maddesini dayanak gösteren
+            noksanlıklar tek bir madde altında toplanır (noksanlık metinleri alt alta yazılır, dayanak ve öneri bir kez gösterilir).</span>
+          </span>
+        </label>
         <div class="dugme-sirasi">
           <button class="dugme" id="onizle-dugme"><svg><use href="#s-goz"/></svg> Önizle</button>
           <button class="dugme ana" id="olustur-dugme"><svg><use href="#s-indir"/></svg> Word Belgesini Oluştur</button>

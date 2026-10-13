@@ -22,6 +22,7 @@ const durum = {
   belge: {
     sayi: "", tarih: "", eposta: "", bildirimTarihi: "", bildirimSaati: "",
     tebAd: "", tebBaba: "", tebDogum: "", tebTckn: "", tebGorev: "", tebTarih: "",
+    birlestir: false,
   },
   tumunuGoster: false,
 };
@@ -100,6 +101,114 @@ function durumuYukle() {
   } catch (hata) {
     return false;
   }
+}
+
+/* --------------------------------------------- çalışmalar (eski dosyalar) */
+
+const CALISMALAR_ANAHTARI = "mufettis-calismalar-v1";
+
+function calismalariOku() {
+  try {
+    const liste = JSON.parse(localStorage.getItem(CALISMALAR_ANAHTARI) || "[]");
+    return Array.isArray(liste) ? liste : [];
+  } catch { return []; }
+}
+
+function calismalariYaz(liste) {
+  try { localStorage.setItem(CALISMALAR_ANAHTARI, JSON.stringify(liste)); return true; }
+  catch { bildir("Çalışma kaydedilemedi: tarayıcı deposu dolu.", "hata"); return false; }
+}
+
+let aktifCalismaId = null;
+
+function calismaKaydet() {
+  kunyeyiFormdanOku();
+  belgeFormunuOku();
+  if (!durum.kunye) {
+    bildir("Önce bir tutanak yükleyin.", "uyari");
+    return;
+  }
+  const varsayilan = (durum.kunye && durum.kunye.unvan) || durum.dosyaAdi || "Çalışma";
+  const ad = prompt("Çalışma adı:", aktifCalismaId
+    ? (calismalariOku().find((c) => c.id === aktifCalismaId) || {}).ad || varsayilan
+    : varsayilan);
+  if (ad === null) return;
+  const liste = calismalariOku();
+  const kayit = {
+    id: aktifCalismaId || ("c" + Date.now().toString(36)),
+    ad: ad.trim() || varsayilan,
+    tarih: new Date().toISOString(),
+    durum: JSON.parse(JSON.stringify(durum)),
+  };
+  const yeri = liste.findIndex((c) => c.id === kayit.id);
+  if (yeri >= 0) liste[yeri] = kayit; else liste.unshift(kayit);
+  if (!calismalariYaz(liste)) return;
+  aktifCalismaId = kayit.id;
+  calismaListesiniCiz();
+  bildir("Çalışma kaydedildi.", "basarili");
+}
+
+function calismaYukle(id) {
+  const kayit = calismalariOku().find((c) => c.id === id);
+  if (!kayit) return;
+  Object.assign(durum, JSON.parse(JSON.stringify(kayit.durum)));
+  aktifCalismaId = id;
+  durumuKaydet();
+  // Arayüzü tazele
+  $("#tutanak-sonuc").classList.remove("gizli");
+  kunyeyiFormaYaz();
+  paragraflariCiz();
+  belgeFormunuYaz();
+  noksanlikKartlariniCiz();
+  calismaListesiniCiz();
+  bildir(`“${kayit.ad}” çalışması yüklendi. Kaldığınız yerden devam edebilirsiniz.`, "basarili");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function calismaSil(id) {
+  const kayit = calismalariOku().find((c) => c.id === id);
+  if (!kayit) return;
+  if (!confirm(`“${kayit.ad}” çalışması silinsin mi?`)) return;
+  calismalariYaz(calismalariOku().filter((c) => c.id !== id));
+  if (aktifCalismaId === id) aktifCalismaId = null;
+  calismaListesiniCiz();
+  bildir("Çalışma silindi.", "basarili");
+}
+
+function calismaListesiniCiz() {
+  const yuva = $("#calisma-listesi");
+  if (!yuva) return;
+  const liste = calismalariOku().sort((a, b) => (b.tarih || "").localeCompare(a.tarih || ""));
+  const etiket = $("#aktif-calisma-adi");
+  if (etiket) {
+    const aktif = liste.find((c) => c.id === aktifCalismaId);
+    etiket.textContent = aktif ? "Açık: " + aktif.ad : "";
+  }
+  if (!liste.length) {
+    yuva.innerHTML = `<div class="bos-bilgi" style="text-align:left">Henüz kayıtlı çalışma yok.</div>`;
+    return;
+  }
+  yuva.innerHTML = liste
+    .map((c) => {
+      const n = (c.durum && c.durum.noksanliklar ? c.durum.noksanliklar.length : 0);
+      const t = c.tarih ? new Date(c.tarih).toLocaleString("tr-TR") : "";
+      return `<div class="kayit-satiri ${c.id === aktifCalismaId ? "secili" : ""}"
+                   style="display:flex;align-items:center;gap:10px;justify-content:space-between">
+        <div style="min-width:0;flex:1 1 auto">
+          <div class="ad">${kacis(c.ad)}</div>
+          <div style="font-size:12px;color:var(--metin-sonuk)">${n} noksanlık · ${kacis(t)}</div>
+        </div>
+        <div class="dugme-sirasi" style="flex:0 0 auto">
+          <button class="dugme kucuk ana" data-calisma-yukle="${c.id}">Devam et</button>
+          <button class="dugme kucuk tehlike" data-calisma-sil="${c.id}">Sil</button>
+        </div>
+      </div>`;
+    })
+    .join("");
+  yuva.querySelectorAll("[data-calisma-yukle]").forEach((d) =>
+    d.addEventListener("click", () => calismaYukle(d.dataset.calismaYukle)));
+  yuva.querySelectorAll("[data-calisma-sil]").forEach((d) =>
+    d.addEventListener("click", () => calismaSil(d.dataset.calismaSil)));
 }
 
 /* ---------------------------------------------------------------- sayfalar */
@@ -702,29 +811,32 @@ async function maddeyiKaydet() {
     bildir("Madde numarası zorunludur.", "hata");
     return;
   }
-  // Önce sunucuya kaydetmeyi dene; salt-okunur ortamda (Vercel) başarısız olursa
-  // tarayıcının localStorage'ına ekle — bir sonraki yüklemede merge edilir.
-  let sunucuBasarili = false;
+  // Sunucuya kaydetmeyi dene (Supabase varsa kalıcı olur). Sunucu yanıtı ne
+  // olursa olsun localStorage'a DA yaz: böylece Supabase yapılandırılmamış
+  // olsa bile (sunucu sessizce kaybedebilir) kayıt bu tarayıcıda kaybolmaz.
   try {
     await istek(`/api/mevzuat/${m.tur_id}/${m.mevzuat_id}/madde`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(govde),
     });
-    sunucuBasarili = true;
-  } catch { /* salt-okunur — localStorage fallback'e geç */ }
+  } catch { /* salt-okunur / Supabase yok — localStorage yedeği devrede */ }
 
-  if (!sunucuBasarili) {
-    const liste = ekstraMaddeleriYukle();
-    // Aynı mevzuat+no kombinasyonu varsa güncelle, yoksa ekle
-    const eskiIdx = liste.findIndex(
-      (e) => e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id && e.no === (govde.eski_no || govde.no)
-    );
-    const yeniKayit = { tur_id: m.tur_id, mevzuat_id: m.mevzuat_id, ...govde };
-    if (eskiIdx >= 0) liste[eskiIdx] = yeniKayit;
-    else liste.push(yeniKayit);
-    ekstraMaddeleriKaydet(liste);
-  }
+  let liste = ekstraMaddeleriYukle();
+  // Bu madde için önceki "silindi" işaretlerini temizle (yeniden ekleniyor)
+  liste = liste.filter(
+    (e) => !(e._silindi && e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id &&
+             (e.no === govde.no || e.no === govde.eski_no))
+  );
+  // Aynı mevzuat+no kombinasyonu varsa güncelle, yoksa ekle
+  const eskiIdx = liste.findIndex(
+    (e) => !e._silindi && e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id &&
+           e.no === (govde.eski_no || govde.no)
+  );
+  const yeniKayit = { tur_id: m.tur_id, mevzuat_id: m.mevzuat_id, ...govde };
+  if (eskiIdx >= 0) liste[eskiIdx] = yeniKayit;
+  else liste.push(yeniKayit);
+  ekstraMaddeleriKaydet(liste);
 
   await mevzuatAgaciniYukle(true);
   kipKapat("#madde-kipi");
@@ -735,25 +847,21 @@ async function maddeyiKaydet() {
 async function maddeyiSil() {
   const m = maddeDuzenleme.madde;
   if (!confirm(`${m.mevzuat_ad} m.${m.no} silinsin mi?`)) return;
-  let sunucuBasarili = false;
   try {
     await istek(
       `/api/mevzuat/${m.tur_id}/${m.mevzuat_id}/madde/${encodeURIComponent(m.no)}`,
       { method: "DELETE" }
     );
-    sunucuBasarili = true;
   } catch { /* salt-okunur — localStorage fallback */ }
 
-  if (!sunucuBasarili) {
-    const liste = ekstraMaddeleriYukle();
-    // Daha önce localStorage'da eklendiyse oradan kaldır, yoksa silinmiş olarak işaretle
-    const idx = liste.findIndex(
-      (e) => e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id && e.no === m.no
-    );
-    if (idx >= 0) liste.splice(idx, 1);
-    else liste.push({ tur_id: m.tur_id, mevzuat_id: m.mevzuat_id, no: m.no, _silindi: true });
-    ekstraMaddeleriKaydet(liste);
-  }
+  const liste = ekstraMaddeleriYukle();
+  // Daha önce localStorage'da eklendiyse oradan kaldır, her durumda silinmiş olarak işaretle
+  const idx = liste.findIndex(
+    (e) => e.tur_id === m.tur_id && e.mevzuat_id === m.mevzuat_id && e.no === m.no
+  );
+  if (idx >= 0) liste.splice(idx, 1);
+  liste.push({ tur_id: m.tur_id, mevzuat_id: m.mevzuat_id, no: m.no, _silindi: true });
+  ekstraMaddeleriKaydet(liste);
 
   await mevzuatAgaciniYukle(true);
   kipKapat("#madde-kipi");
@@ -780,19 +888,21 @@ async function yeniMevzuatKaydet() {
     atif: $("#yeni-mevzuat-atif").value.trim(),
   };
   
-  let sunucuBasarili = false;
+  let sunucuId = null;
   try {
-    await istek(`/api/mevzuat/${turId}`, {
+    const yeni = await istek(`/api/mevzuat/${turId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(govde),
     });
-    sunucuBasarili = true;
+    sunucuId = yeni && yeni.id;
   } catch { /* salt-okunur — localStorage fallback */ }
 
-  if (!sunucuBasarili) {
-    const liste = ekstraMevzuatlariYukle();
-    const id = "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  // Sunucu başarılı olsa bile localStorage'a yaz: Supabase yapılandırılmamışsa
+  // kayıt kaybolmasın. Sunucunun verdiği id'yi kullanarak çakışmayı önleriz.
+  const liste = ekstraMevzuatlariYukle();
+  const id = sunucuId || ("m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6));
+  if (!liste.some((e) => e.tur_id === turId && e.id === id)) {
     liste.push({ tur_id: turId, id, ad: govde.ad, atif: govde.atif });
     ekstraMevzuatlariKaydet(liste);
   }
@@ -1053,9 +1163,35 @@ function oneriyiUygula() {
 const ONERI_ANAHTARI = "mufettis-programi-oneriler-v1";
 let SUNUCU_ONERILER = null;
 
+function _yerelOnerileriOku() {
+  try {
+    const ham = localStorage.getItem(ONERI_ANAHTARI);
+    const liste = ham ? JSON.parse(ham) : [];
+    return Array.isArray(liste) ? liste : [];
+  } catch { return []; }
+}
+
 async function onerileriSunucudanCek() {
   try {
-    SUNUCU_ONERILER = await istek("/api/oneriler");
+    const sunucu = await istek("/api/oneriler");
+    const sunucuListe = Array.isArray(sunucu) ? sunucu : [];
+    const yerel = _yerelOnerileriOku();
+    // Sunucu ve yerel kayıtları birleştir: id'ye göre tekilleştir, sunucu önceliklidir.
+    const harita = new Map();
+    yerel.forEach((k) => k && k.id && harita.set(k.id, k));
+    sunucuListe.forEach((k) => k && k.id && harita.set(k.id, k));
+    const birlesik = Array.from(harita.values());
+    SUNUCU_ONERILER = birlesik;
+    // Yerelde olup sunucuda olmayan kayıtlar varsa sunucuyu güncelle (Supabase'e taşı).
+    if (birlesik.length !== sunucuListe.length) {
+      fetch("/api/oneriler", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(birlesik),
+      }).catch(() => {});
+    }
+    // Her durumda yerele de yaz (tek kaynak yedeği).
+    try { localStorage.setItem(ONERI_ANAHTARI, JSON.stringify(birlesik)); } catch {}
   } catch {
     SUNUCU_ONERILER = null;
   }
@@ -1076,6 +1212,7 @@ function onerileriOku() {
 }
 
 function onerileriYaz(liste) {
+  // Sunucu erişilebilirse oraya yaz (Supabase varsa kalıcı olur) ...
   if (SUNUCU_ONERILER !== null) {
     SUNUCU_ONERILER = liste;
     fetch("/api/oneriler", {
@@ -1083,12 +1220,14 @@ function onerileriYaz(liste) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(liste)
     }).catch(console.error);
-    return true;
   }
+  // ... ama her durumda localStorage'a DA yaz: Supabase yapılandırılmamışsa
+  // sunucu kaydı sessizce kaybolabilir, yerel yedek bunu önler.
   try {
     localStorage.setItem(ONERI_ANAHTARI, JSON.stringify(liste));
     return true;
   } catch (hata) {
+    if (SUNUCU_ONERILER !== null) return true;  // en azından sunucuya gitti
     bildir("Öneriler kaydedilemedi: tarayıcı deposu dolu ya da kapalı.", "hata");
     return false;
   }
@@ -1197,6 +1336,7 @@ function belgeFormunuYaz() {
   $("#t-tckn").value = b.tebTckn || "";
   $("#t-gorev").value = b.tebGorev || "";
   $("#t-tarih").value = b.tebTarih || "";
+  if ($("#birlestir-ayni-madde")) $("#birlestir-ayni-madde").checked = Boolean(b.birlestir);
 }
 
 function belgeFormunuOku() {
@@ -1212,6 +1352,7 @@ function belgeFormunuOku() {
     tebTckn: $("#t-tckn").value.trim(),
     tebGorev: $("#t-gorev").value.trim(),
     tebTarih: $("#t-tarih").value.trim(),
+    birlestir: $("#birlestir-ayni-madde") ? $("#birlestir-ayni-madde").checked : false,
   });
   durumuKaydet();
 }
@@ -1257,12 +1398,56 @@ function belgeVerisi() {
     teb_tckn: b.tebTckn,
     teb_gorev: b.tebGorev,
     teb_tarih: b.tebTarih,
-    noksanliklar: durum.noksanliklar.map((n) => ({
-      metin: n.metin,
-      mevzuat: n.mevzuat.map((m) => m.metin),
-      oneri: n.oneri ? n.oneri.metin : "",
-    })),
+    noksanliklar: noksanliklariDisaHazirla(),
   };
+}
+
+/**
+ * Noksanlıkları belgeye uygun biçime çevirir. "Aynı kanun/maddeye dayanan
+ * noksanlıkları birleştir" seçeneği açıksa, dayanak maddeleri birebir aynı olan
+ * noksanlıklar tek blokta toplanır.
+ */
+function noksanliklariDisaHazirla() {
+  const birlestir = $("#birlestir-ayni-madde") && $("#birlestir-ayni-madde").checked;
+  const temel = (n) => ({
+    metin: n.metin,
+    mevzuat: n.mevzuat.map((m) => m.metin),
+    oneri: n.oneri ? n.oneri.metin : "",
+  });
+  if (!birlestir) return durum.noksanliklar.map(temel);
+
+  // Dayanak imzası: seçilen maddelerin kimlik/başlık kümesi (sıralı).
+  const imza = (n) =>
+    n.mevzuat.map((m) => m.kimlik || m.baslik || m.metin).slice().sort().join("||");
+
+  const gruplar = new Map();
+  durum.noksanliklar.forEach((n) => {
+    if (!n.mevzuat.length) {  // dayanağı olmayanlar birleştirilmez
+      gruplar.set("__tek__" + n.id, [n]);
+      return;
+    }
+    const anahtar = imza(n);
+    if (!gruplar.has(anahtar)) gruplar.set(anahtar, []);
+    gruplar.get(anahtar).push(n);
+  });
+
+  const cikti = [];
+  gruplar.forEach((grup) => {
+    if (grup.length === 1) { cikti.push(temel(grup[0])); return; }
+    // Birden çok noksanlık aynı dayanağa sahip → birleştir.
+    const metinler = grup.map((n) => n.metin.trim()).filter(Boolean);
+    const oneriler = [];
+    grup.forEach((n) => {
+      const o = n.oneri ? n.oneri.metin.trim() : "";
+      if (o && !oneriler.includes(o)) oneriler.push(o);
+    });
+    cikti.push({
+      metin: metinler.join("\n"),
+      mevzuat: grup[0].mevzuat.map((m) => m.metin),
+      oneri: oneriler.join("\n\n"),
+    });
+  });
+  return cikti;
 }
 
 async function onizlemeAc() {
@@ -1513,6 +1698,10 @@ function olaylariBagla() {
     })
   );
 
+  // Çalışmalarım (eski dosyalar)
+  const calismaKaydetDugme = $("#calisma-kaydet");
+  if (calismaKaydetDugme) calismaKaydetDugme.addEventListener("click", calismaKaydet);
+
   // Dosya yükleme
   dosyaGirdisiniBagla();
   const alan = $("#birak-alani");
@@ -1681,6 +1870,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   olaylariBagla();
   ortamiOgren();
   await onerileriSunucudanCek();
+  calismaListesiniCiz();
   if (durumuYukle()) {
     $("#tutanak-sonuc").classList.remove("gizli");
     kunyeyiFormaYaz();

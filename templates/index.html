@@ -105,6 +105,12 @@
         <svg class="adim-ok" width="14" height="14"><use href="#s-ok"/></svg>
         <button class="adim" data-sayfa="belge"><span class="sayac">3</span> Belge</button>
       </div>
+      <div class="kullanici-cip" id="kullanici-cip" style="display:none">
+        <span class="ad" id="kullanici-adi"></span>
+        <button class="dugme kucuk sade" id="cikis-dugme" title="Çıkış yap">
+          <svg><use href="#s-yenile"/></svg> Çıkış
+        </button>
+      </div>
     </header>
 
     <!-- --------------------------- 1. AŞAMA: TUTANAK --------------------- -->
@@ -628,6 +634,37 @@
 </div>
 
 <div class="bildirim-yuvasi" id="bildirim-yuvasi"></div>
+
+<!-- ============================ GİRİŞ / KAYIT ============================ -->
+<div class="auth-perde" id="auth-perde">
+  <div class="auth-kutu">
+    <div class="auth-logo">MP</div>
+    <h2 id="auth-baslik">Giriş Yap</h2>
+    <p class="auth-alt" id="auth-alt">Müfettiş Programı · hesabınızla devam edin</p>
+
+    <div class="alan auth-ad gizli" id="auth-ad-alan">
+      <label>Ad Soyad</label>
+      <input type="text" id="auth-ad" autocomplete="name" placeholder="Ad Soyad">
+    </div>
+    <div class="alan">
+      <label>E-posta</label>
+      <input type="email" id="auth-eposta" autocomplete="email" placeholder="ad.soyad@csgb.gov.tr">
+    </div>
+    <div class="alan">
+      <label>Şifre</label>
+      <input type="password" id="auth-sifre" autocomplete="current-password" placeholder="••••••••">
+    </div>
+
+    <button class="dugme ana" id="auth-gonder" style="width:100%;justify-content:center;margin-top:8px">
+      Giriş Yap
+    </button>
+
+    <div class="auth-gecis">
+      <span id="auth-gecis-metin">Hesabınız yok mu?</span>
+      <button class="baglanti-dugme" id="auth-gecis">Kayıt olun</button>
+    </div>
+  </div>
+</div>
 
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>

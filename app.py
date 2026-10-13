@@ -18,9 +18,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from flask import Flask, jsonify, render_template, request, send_file
+from functools import wraps
+
+from flask import Flask, jsonify, render_template, request, send_file, session
 from werkzeug.exceptions import HTTPException, RequestEntityTooLarge
 
+from core import auth as auth_modulu
 from core import belge as belge_modulu
 from core import isveren as isveren_modulu
 from core import mevzuat as mevzuat_modulu
@@ -55,6 +58,17 @@ app = Flask(__name__, static_folder="public", static_url_path="")
 app.config["MAX_CONTENT_LENGTH"] = 25 * 1024 * 1024  # 25 MB
 app.config["JSON_AS_ASCII"] = False
 
+# Oturum imzalama anahtarı. En sağlamı Vercel'de SECRET_KEY ortam değişkenini
+# ayarlamaktır; yoksa SUPABASE_KEY'den türetilmiş sabit bir yedek kullanılır
+# (çerezlerin dağıtımlar arası geçerli kalması için sabit olması gerekir).
+app.secret_key = (
+    os.environ.get("SECRET_KEY")
+    or ("mp-secret-" + (os.environ.get("SUPABASE_KEY", "yerel-gelistirme")))[:64]
+)
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 30  # 30 gün
+
 
 class IstekHatasi(Exception):
     """İstemciye 400 ile dönen, kullanıcıya gösterilebilir hata."""
@@ -72,12 +86,71 @@ def _buyuk_dosya(_hata):
 
 @app.errorhandler(Exception)
 def _beklenmeyen_hata(hata):
-    if isinstance(hata, (IstekHatasi, MevzuatHatasi)):
+    if isinstance(hata, (IstekHatasi, MevzuatHatasi, auth_modulu.AuthHatasi)):
         return jsonify({"hata": str(hata)}), 400
     if isinstance(hata, HTTPException):  # 404, 405 … olduğu gibi geçsin
         return hata
     app.logger.error("Beklenmeyen hata:\n%s", traceback.format_exc())
     return jsonify({"hata": f"Beklenmeyen hata: {hata}"}), 500
+
+
+# --------------------------------------------------------------------------- #
+# Kimlik doğrulama
+# --------------------------------------------------------------------------- #
+
+def _mevcut_kullanici():
+    """Oturumdaki kullanıcıyı döndürür ya da None."""
+    kid = session.get("kullanici_id")
+    if not kid:
+        return None
+    return {
+        "id": kid,
+        "ad": session.get("kullanici_ad", ""),
+        "eposta": session.get("kullanici_eposta", ""),
+    }
+
+
+def giris_gerekli(fn):
+    @wraps(fn)
+    def sarmal(*args, **kwargs):
+        if not session.get("kullanici_id"):
+            return jsonify({"hata": "Bu işlem için giriş yapmalısınız."}), 401
+        return fn(*args, **kwargs)
+    return sarmal
+
+
+def _oturum_kur(kullanici: dict) -> None:
+    session.permanent = True
+    session["kullanici_id"] = kullanici["id"]
+    session["kullanici_ad"] = kullanici["ad"]
+    session["kullanici_eposta"] = kullanici["eposta"]
+
+
+@app.post("/api/kayit")
+def kayit():
+    g = request.get_json(silent=True) or {}
+    kullanici = auth_modulu.kayit(g.get("ad", ""), g.get("eposta", ""), g.get("sifre", ""))
+    _oturum_kur(kullanici)
+    return jsonify(kullanici), 201
+
+
+@app.post("/api/giris")
+def giris():
+    g = request.get_json(silent=True) or {}
+    kullanici = auth_modulu.giris(g.get("eposta", ""), g.get("sifre", ""))
+    _oturum_kur(kullanici)
+    return jsonify(kullanici)
+
+
+@app.post("/api/cikis")
+def cikis():
+    session.clear()
+    return jsonify({"durum": "cikis"})
+
+
+@app.get("/api/ben")
+def ben():
+    return jsonify({"kullanici": _mevcut_kullanici()})
 
 
 # --------------------------------------------------------------------------- #
@@ -105,35 +178,27 @@ def _yazma_izni():
 # --------------------------------------------------------------------------- #
 
 @app.route("/api/oneriler", methods=["GET", "POST"])
+@giris_gerekli
 def oneriler():
-    """Müfettiş önerilerini Supabase'den okur ve yazar."""
-    from core.mevzuat import SUPABASE_URL, get_supabase_headers
-    import requests
-    
+    """Müfettiş önerileri — her kullanıcıya özeldir (oturumdaki kullanıcıya göre)."""
+    kid = session["kullanici_id"]
     if request.method == "GET":
-        if SUPABASE_URL:
-            try:
-                url = f"{SUPABASE_URL}/rest/v1/depo?id=eq.oneriler&select=veri"
-                resp = requests.get(url, headers=get_supabase_headers())
-                if resp.status_code == 200:
-                    data = resp.json()
-                    if data and len(data) > 0:
-                        return jsonify(data[0]["veri"])
-            except Exception:
-                pass
-        return jsonify([])
-        
-    elif request.method == "POST":
-        liste = request.get_json(silent=True) or []
-        if SUPABASE_URL:
-            try:
-                url = f"{SUPABASE_URL}/rest/v1/depo"
-                headers = get_supabase_headers()
-                headers["Prefer"] = "resolution=merge-duplicates, return=representation"
-                requests.post(url, headers=headers, json={"id": "oneriler", "veri": liste})
-            except Exception:
-                pass
-        return jsonify(liste)
+        return jsonify(auth_modulu.kisisel_oku("oneriler", kid))
+    liste = request.get_json(silent=True) or []
+    auth_modulu.kisisel_yaz("oneriler", kid, liste)
+    return jsonify(liste)
+
+
+@app.route("/api/calismalar", methods=["GET", "POST"])
+@giris_gerekli
+def calismalar():
+    """Çalışmalar (yarım kalan işler) — her kullanıcıya özeldir."""
+    kid = session["kullanici_id"]
+    if request.method == "GET":
+        return jsonify(auth_modulu.kisisel_oku("calismalar", kid))
+    liste = request.get_json(silent=True) or []
+    auth_modulu.kisisel_yaz("calismalar", kid, liste)
+    return jsonify(liste)
 
 
 @app.post("/api/tutanak")

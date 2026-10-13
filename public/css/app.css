@@ -779,3 +779,55 @@ select option { background: #16161d; }
 @media (max-width: 820px) {
   .sutun-ic { max-height: 240px; }
 }
+
+/* ============================ GİRİŞ / KAYIT ============================ */
+.auth-perde {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1200px 600px at 50% -10%, rgba(255,106,31,0.10), transparent 60%), var(--zemin);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 200;
+}
+.auth-perde.acik { display: flex; }
+.auth-kutu {
+  width: min(400px, 100%);
+  background: #14141b;
+  border: 1px solid var(--cizgi-guclu);
+  border-radius: 20px;
+  padding: 30px 28px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.auth-logo {
+  width: 46px; height: 46px;
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; letter-spacing: .5px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--turuncu), var(--turuncu-koyu));
+  margin-bottom: 16px;
+}
+.auth-kutu h2 { font-size: 22px; margin: 0 0 4px; }
+.auth-alt { color: var(--metin-soluk); font-size: 13px; margin: 0 0 20px; }
+.auth-kutu .alan { margin-bottom: 14px; }
+.auth-gecis {
+  margin-top: 16px; text-align: center;
+  font-size: 13px; color: var(--metin-soluk);
+}
+.baglanti-dugme {
+  background: none; border: none; cursor: pointer;
+  color: var(--turuncu); font-weight: 600; font-size: 13px;
+  padding: 0 4px;
+}
+.baglanti-dugme:hover { text-decoration: underline; }
+
+.kullanici-cip {
+  display: flex; align-items: center; gap: 10px;
+  margin-left: 14px;
+}
+.kullanici-cip .ad {
+  font-size: 13px; font-weight: 600; color: var(--metin);
+  max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}

@@ -6,12 +6,19 @@
    ========================================================================= */
 "use strict";
 
-const SAKLAMA_ANAHTARI = "mufettis-programi-durum-v2";
+const SAKLAMA_ANAHTARI_TEMEL = "mufettis-programi-durum-v2";
+/** Çalışma durumu auto-save anahtarı kullanıcıya özeldir. */
+function saklamaAnahtari() {
+  return SAKLAMA_ANAHTARI_TEMEL + ":" + (AKTIF_KULLANICI ? AKTIF_KULLANICI.id : "anon");
+}
 const EKSTRA_MADDELER_ANAHTARI = "mufettis-ekstra-maddeler-v1";
 const EKSTRA_MEVZUATLAR_ANAHTARI = "mufettis-ekstra-mevzuatlar-v1";
 
 /** Sunucusuz kurulumda (Vercel) kütüphane salt okunurdur. */
 let yerelKurulum = true;
+
+/** Oturum açmış müfettiş. Giriş yapılmadan uygulama kullanılamaz. */
+let AKTIF_KULLANICI = null;
 
 const durum = {
   kunye: null,
@@ -87,7 +94,7 @@ function kipAc(secici) { $(secici).classList.add("acik"); }
 
 function durumuKaydet() {
   try {
-    localStorage.setItem(SAKLAMA_ANAHTARI, JSON.stringify(durum));
+    localStorage.setItem(saklamaAnahtari(), JSON.stringify(durum));
   } catch (hata) {
     /* kota dolu olabilir; kritik değil */
   }
@@ -95,7 +102,7 @@ function durumuKaydet() {
 
 function durumuYukle() {
   try {
-    const ham = localStorage.getItem(SAKLAMA_ANAHTARI);
+    const ham = localStorage.getItem(saklamaAnahtari());
     if (!ham) return false;
     Object.assign(durum, JSON.parse(ham));
     return Boolean(durum.kunye);
@@ -106,18 +113,42 @@ function durumuYukle() {
 
 /* --------------------------------------------- çalışmalar (eski dosyalar) */
 
-const CALISMALAR_ANAHTARI = "mufettis-calismalar-v1";
+const CALISMALAR_ANAHTARI_TEMEL = "mufettis-calismalar-v1";
+let SUNUCU_CALISMALAR = null;   // giriş yapılınca sunucudan yüklenir
+
+function calismaYerelAnahtari() {
+  return CALISMALAR_ANAHTARI_TEMEL + ":" + (AKTIF_KULLANICI ? AKTIF_KULLANICI.id : "anon");
+}
+
+async function calismalariSunucudanCek() {
+  try {
+    const sunucu = await istek("/api/calismalar");
+    SUNUCU_CALISMALAR = Array.isArray(sunucu) ? sunucu : [];
+    try { localStorage.setItem(calismaYerelAnahtari(), JSON.stringify(SUNUCU_CALISMALAR)); } catch {}
+  } catch {
+    SUNUCU_CALISMALAR = null;   // sunucuya ulaşılamadı → yerel yedek
+  }
+}
 
 function calismalariOku() {
+  if (SUNUCU_CALISMALAR !== null) return SUNUCU_CALISMALAR;
   try {
-    const liste = JSON.parse(localStorage.getItem(CALISMALAR_ANAHTARI) || "[]");
+    const liste = JSON.parse(localStorage.getItem(calismaYerelAnahtari()) || "[]");
     return Array.isArray(liste) ? liste : [];
   } catch { return []; }
 }
 
 function calismalariYaz(liste) {
-  try { localStorage.setItem(CALISMALAR_ANAHTARI, JSON.stringify(liste)); return true; }
-  catch { bildir("Çalışma kaydedilemedi: tarayıcı deposu dolu.", "hata"); return false; }
+  // Sunucuya (kişisel) yaz + yerel yedeğe yaz
+  if (SUNUCU_CALISMALAR !== null) {
+    SUNUCU_CALISMALAR = liste;
+    fetch("/api/calismalar", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(liste),
+    }).catch(() => {});
+  }
+  try { localStorage.setItem(calismaYerelAnahtari(), JSON.stringify(liste)); return true; }
+  catch { return SUNUCU_CALISMALAR !== null; }
 }
 
 let aktifCalismaId = null;
@@ -1164,12 +1195,17 @@ function oneriyiUygula() {
 /* Tarayıcı verisi silinebileceği için dışa/içe aktarma da sunulur.        */
 /* ====================================================================== */
 
-const ONERI_ANAHTARI = "mufettis-programi-oneriler-v1";
+const ONERI_ANAHTARI_TEMEL = "mufettis-programi-oneriler-v1";
 let SUNUCU_ONERILER = null;
+
+/** Öneri yerel yedeği kullanıcıya özeldir (aynı tarayıcıda kullanıcılar karışmasın). */
+function oneriYerelAnahtari() {
+  return ONERI_ANAHTARI_TEMEL + ":" + (AKTIF_KULLANICI ? AKTIF_KULLANICI.id : "anon");
+}
 
 function _yerelOnerileriOku() {
   try {
-    const ham = localStorage.getItem(ONERI_ANAHTARI);
+    const ham = localStorage.getItem(oneriYerelAnahtari());
     const liste = ham ? JSON.parse(ham) : [];
     return Array.isArray(liste) ? liste : [];
   } catch { return []; }
@@ -1195,7 +1231,7 @@ async function onerileriSunucudanCek() {
       }).catch(() => {});
     }
     // Her durumda yerele de yaz (tek kaynak yedeği).
-    try { localStorage.setItem(ONERI_ANAHTARI, JSON.stringify(birlesik)); } catch {}
+    try { localStorage.setItem(oneriYerelAnahtari(), JSON.stringify(birlesik)); } catch {}
   } catch {
     SUNUCU_ONERILER = null;
   }
@@ -1207,7 +1243,7 @@ const yeniOneriKimligi = () =>
 function onerileriOku() {
   if (SUNUCU_ONERILER !== null) return SUNUCU_ONERILER;
   try {
-    const ham = localStorage.getItem(ONERI_ANAHTARI);
+    const ham = localStorage.getItem(oneriYerelAnahtari());
     const liste = ham ? JSON.parse(ham) : [];
     return Array.isArray(liste) ? liste : [];
   } catch (hata) {
@@ -1228,7 +1264,7 @@ function onerileriYaz(liste) {
   // ... ama her durumda localStorage'a DA yaz: Supabase yapılandırılmamışsa
   // sunucu kaydı sessizce kaybolabilir, yerel yedek bunu önler.
   try {
-    localStorage.setItem(ONERI_ANAHTARI, JSON.stringify(liste));
+    localStorage.setItem(oneriYerelAnahtari(), JSON.stringify(liste));
     return true;
   } catch (hata) {
     if (SUNUCU_ONERILER !== null) return true;  // en azından sunucuya gitti
@@ -1944,9 +1980,105 @@ function olaylariBagla() {
   // Sıfırla
   $("#sifirla-dugme").addEventListener("click", () => {
     if (!confirm("Yüklenen tutanak ve tüm seçimler silinsin mi?")) return;
-    localStorage.removeItem(SAKLAMA_ANAHTARI);
+    localStorage.removeItem(saklamaAnahtari());
     location.reload();
   });
+}
+
+/* ====================================================================== */
+/* KİMLİK DOĞRULAMA — kayıt / giriş                                        */
+/* ====================================================================== */
+
+let authKayitModu = false;
+
+function authGateGoster() {
+  $("#auth-perde").classList.add("acik");
+  $("#kullanici-cip").style.display = "none";
+  setTimeout(() => $("#auth-eposta").focus(), 80);
+}
+
+function authGateGizle() {
+  $("#auth-perde").classList.remove("acik");
+}
+
+function authModunuAyarla() {
+  $("#auth-baslik").textContent = authKayitModu ? "Kayıt Ol" : "Giriş Yap";
+  $("#auth-gonder").textContent = authKayitModu ? "Kayıt Ol" : "Giriş Yap";
+  $("#auth-ad-alan").classList.toggle("gizli", !authKayitModu);
+  $("#auth-gecis-metin").textContent = authKayitModu ? "Zaten hesabınız var mı?" : "Hesabınız yok mu?";
+  $("#auth-gecis").textContent = authKayitModu ? "Giriş yapın" : "Kayıt olun";
+  $("#auth-sifre").setAttribute("autocomplete", authKayitModu ? "new-password" : "current-password");
+}
+
+function kullaniciCipiYaz() {
+  if (!AKTIF_KULLANICI) { $("#kullanici-cip").style.display = "none"; return; }
+  $("#kullanici-adi").textContent = AKTIF_KULLANICI.ad || AKTIF_KULLANICI.eposta || "";
+  $("#kullanici-cip").style.display = "flex";
+}
+
+async function authGonder() {
+  const ad = $("#auth-ad").value.trim();
+  const eposta = $("#auth-eposta").value.trim();
+  const sifre = $("#auth-sifre").value;
+  if (!eposta || !sifre) { bildir("E-posta ve şifre zorunludur.", "hata"); return; }
+  if (authKayitModu && !ad) { bildir("Ad Soyad zorunludur.", "hata"); return; }
+
+  const dugme = $("#auth-gonder");
+  const eski = dugme.innerHTML;
+  dugme.disabled = true;
+  dugme.innerHTML = `<span class="yukleniyor"></span> Lütfen bekleyin…`;
+  try {
+    const yol = authKayitModu ? "/api/kayit" : "/api/giris";
+    const kullanici = await istek(yol, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ad, eposta, sifre }),
+    });
+    AKTIF_KULLANICI = kullanici;
+    $("#auth-sifre").value = "";
+    authGateGizle();
+    await uygulamayiBaslat();
+    bildir(`Hoş geldiniz, ${kullanici.ad || kullanici.eposta}.`, "basarili");
+  } catch (hata) {
+    bildir(hata.message, "hata");
+  } finally {
+    dugme.disabled = false;
+    dugme.innerHTML = eski;
+  }
+}
+
+async function cikisYap() {
+  try { await istek("/api/cikis", { method: "POST" }); } catch {}
+  AKTIF_KULLANICI = null;
+  SUNUCU_ONERILER = null;
+  SUNUCU_CALISMALAR = null;
+  // Oturumla ilgili bellekteki durumu temizle (başka kullanıcı görmesin)
+  location.reload();
+}
+
+function authOlaylariniBagla() {
+  $("#auth-gonder").addEventListener("click", authGonder);
+  $("#auth-gecis").addEventListener("click", () => { authKayitModu = !authKayitModu; authModunuAyarla(); });
+  $("#auth-sifre").addEventListener("keydown", (e) => { if (e.key === "Enter") authGonder(); });
+  $("#auth-eposta").addEventListener("keydown", (e) => { if (e.key === "Enter") authGonder(); });
+  const cikis = $("#cikis-dugme");
+  if (cikis) cikis.addEventListener("click", cikisYap);
+}
+
+/** Giriş yapıldıktan sonra uygulamanın kişisel verilerini yükler. */
+async function uygulamayiBaslat() {
+  kullaniciCipiYaz();
+  await onerileriSunucudanCek();
+  await calismalariSunucudanCek();
+  calismaListesiniCiz();
+  if (durumuYukle()) {
+    $("#tutanak-sonuc").classList.remove("gizli");
+    kunyeyiFormaYaz();
+    paragraflariCiz();
+    belgeFormunuYaz();
+    noksanlikKartlariniCiz();
+    bildir("Önceki çalışma geri yüklendi.", "basarili");
+  }
 }
 
 /* ------------------------------------------------------------- başlangıç */
@@ -1964,15 +2096,21 @@ async function ortamiOgren() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   olaylariBagla();
+  authOlaylariniBagla();
+  authModunuAyarla();
   ortamiOgren();
-  await onerileriSunucudanCek();
-  calismaListesiniCiz();
-  if (durumuYukle()) {
-    $("#tutanak-sonuc").classList.remove("gizli");
-    kunyeyiFormaYaz();
-    paragraflariCiz();
-    belgeFormunuYaz();
-    noksanlikKartlariniCiz();
-    bildir("Önceki çalışma geri yüklendi.", "basarili");
+
+  // Oturum var mı? Varsa uygulamayı başlat, yoksa giriş ekranını göster.
+  try {
+    const o = await istek("/api/ben");
+    AKTIF_KULLANICI = o.kullanici || null;
+  } catch {
+    AKTIF_KULLANICI = null;
+  }
+
+  if (AKTIF_KULLANICI) {
+    await uygulamayiBaslat();
+  } else {
+    authGateGoster();
   }
 });

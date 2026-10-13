@@ -343,15 +343,35 @@ def bildirim_olustur():
 
 @app.post("/api/isveren-metni")
 def isveren_metni_olustur():
-    """İşveren vekili beyanını içeren ikinci Word belgesini üretir."""
-    govde = request.get_json(silent=True) or {}
+    """
+    İşveren vekili beyanını içeren ikinci Word'ü üretir.
+
+    Tutanak dosyası birlikte gönderilirse (multipart), çıktı tutanağın KENDİSİ
+    olur ve işveren metni onun sonuna yazılır (örnekteki gibi). Gönderilmezse
+    (yalnızca JSON) tek başına bir belge üretilir.
+    """
+    dosya = request.files.get("tutanak") if request.files else None
+
+    if dosya is not None and dosya.filename:
+        # Form alanları multipart içinde "veri" adlı JSON string olarak gelir.
+        import json as _json
+        govde = _json.loads(request.form.get("veri") or "{}")
+    else:
+        govde = request.get_json(silent=True) or {}
+
     veri = isveren_modulu.IsverenVerisi.sozlukten(govde)
     if not (veri.beyan or "").strip():
         raise IstekHatasi("İşveren beyan metni boş olamaz.")
 
     ad = _dosya_adi_temizle(govde.get("unvan") or veri.vekil_adi or "Isveren Metni")
     dosya_adi = f"{ad} - İşveren Metni.docx"
-    akis = isveren_modulu.bellege_uret(veri)
+
+    if dosya is not None and dosya.filename:
+        if not dosya.filename.lower().endswith(".docx"):
+            raise IstekHatasi("Tutanak yalnızca .docx olabilir.")
+        akis = isveren_modulu.tutanaktan_bellege(io.BytesIO(dosya.read()), veri)
+    else:
+        akis = isveren_modulu.bellege_uret(veri)
 
     if YEREL:
         damga = datetime.now().strftime("%Y%m%d-%H%M%S")

@@ -336,12 +336,16 @@ function paragraflariCiz() {
   });
 }
 
+/** Son yüklenen tutanak dosyası (İşveren Metni'ni bunun sonuna yazmak için). */
+let sonTutanakDosyasi = null;
+
 async function tutanagiYukle(dosya) {
   if (!dosya) return;
   if (!dosya.name.toLowerCase().endsWith(".docx")) {
     bildir("Yalnızca .docx uzantılı Word dosyaları yüklenebilir.", "hata");
     return;
   }
+  sonTutanakDosyasi = dosya;
   const alan = $("#birak-alani");
   const eskiHtml = alan.innerHTML;
   alan.innerHTML = `<div class="yukleniyor"></div>
@@ -1401,6 +1405,22 @@ function isverenSayfasiniOku() {
   durumuKaydet();
 }
 
+/** Tutanak dosyası bellekte yoksa (ör. sayfa yenilendi) kullanıcıdan seçtirir. */
+function tutanagiYenidenSec() {
+  return new Promise((coz) => {
+    const girdi = document.createElement("input");
+    girdi.type = "file";
+    girdi.accept = ".docx";
+    girdi.onchange = () => {
+      const d = girdi.files[0];
+      if (d && d.name.toLowerCase().endsWith(".docx")) { sonTutanakDosyasi = d; coz(true); }
+      else coz(false);
+    };
+    girdi.oncancel = () => coz(false);
+    girdi.click();
+  });
+}
+
 async function isverenMetniniOlustur(dugme) {
   isverenSayfasiniOku();
   const i = durum.isveren || {};
@@ -1408,23 +1428,39 @@ async function isverenMetniniOlustur(dugme) {
     bildir("İşveren beyan metni boş. Önce bir tutanak yükleyin veya metni girin.", "hata");
     return;
   }
+  // Tutanak dosyası elimizde yoksa, kullanıcıdan yeniden seçmesini iste.
+  if (!sonTutanakDosyasi) {
+    const sec = await tutanagiYenidenSec();
+    if (!sec) {
+      bildir("İşveren metni tutanağın sonuna yazılır; lütfen tutanak dosyasını seçin.", "uyari");
+      return;
+    }
+  }
+
+  const veriJson = JSON.stringify({
+    beyan: i.beyan, kapanis: i.kapanis,
+    vekil_adi: i.vekilAd, vekil_gorevi: i.vekilGorev,
+    mufettis_1: i.mufettis1, mufettis_2: i.mufettis2,
+    unvan: (durum.kunye && durum.kunye.unvan) || "",
+  });
+
   const eskiHtml = dugme ? dugme.innerHTML : "";
   if (dugme) { dugme.disabled = true; dugme.innerHTML = `<span class="yukleniyor"></span> Oluşturuluyor…`; }
   try {
-    const blob = await istek("/api/isveren-metni", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        beyan: i.beyan, kapanis: i.kapanis,
-        vekil_adi: i.vekilAd, vekil_gorevi: i.vekilGorev,
-        mufettis_1: i.mufettis1, mufettis_2: i.mufettis2,
-        unvan: (durum.kunye && durum.kunye.unvan) || "",
-      }),
-    });
+    let secenekler;
+    if (sonTutanakDosyasi) {
+      const fd = new FormData();
+      fd.append("tutanak", sonTutanakDosyasi);
+      fd.append("veri", veriJson);
+      secenekler = { method: "POST", body: fd };
+    } else {
+      secenekler = { method: "POST", headers: { "Content-Type": "application/json" }, body: veriJson };
+    }
+    const blob = await istek("/api/isveren-metni", secenekler);
     const adres = URL.createObjectURL(blob);
     const bag = document.createElement("a");
     bag.href = adres;
-    bag.download = `${(durum.kunye && durum.kunye.unvan) || i.vekilAd || "Isveren"} - İşveren Metni.docx`;
+    bag.download = `${(durum.kunye && durum.kunye.unvan) || i.vekilAd || "Tutanak"} - Tutanak (İşveren Metni).docx`;
     document.body.appendChild(bag);
     bag.click();
     bag.remove();

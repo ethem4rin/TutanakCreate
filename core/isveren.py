@@ -109,3 +109,67 @@ def bellege_uret(veri: IsverenVerisi) -> io.BytesIO:
     kur(veri).save(akis)
     akis.seek(0)
     return akis
+
+
+# --------------------------------------------------------------------------- #
+# Tutanağın sonuna işveren metnini yazan üretim (asıl kullanılan)
+# --------------------------------------------------------------------------- #
+
+def _tr_kucuk(metin: str) -> str:
+    return (metin or "").replace("I", "ı").replace("İ", "i").lower()
+
+
+def _paragraf_metnini_degistir(p, yeni: str) -> None:
+    """Paragrafın metnini, ilk run'ın biçimini koruyarak değiştirir."""
+    yeni = yeni or ""
+    if not p.runs:
+        p.add_run(yeni)
+        return
+    p.runs[0].text = yeni
+    for r in p.runs[1:]:
+        r.text = ""
+
+
+def tutanaktan_uret(tutanak_kaynak, veri: IsverenVerisi):
+    """
+    Yüklenen tutanağın KENDİSİNİ açar, içindeki işveren vekili beyanı ve kapanış
+    paragraflarını (müfettişin düzenlediği) güncel metinle değiştirir; bulunamazsa
+    sona ekler. Böylece çıktı, tüm tutanağı ve sonunda işveren metnini içerir —
+    yeni boş bir belge değil.
+    """
+    belge = docx.Document(tutanak_kaynak)
+
+    beyan = (veri.beyan or "").strip()
+    kapanis = (veri.kapanis or "").strip()
+
+    beyan_yazildi = False
+    kapanis_yazildi = False
+    for p in belge.paragraphs:
+        kucuk = _tr_kucuk(p.text)
+        if not beyan_yazildi and beyan and "işveren vekili" in kucuk and (
+            "ifade etmiştir" in kucuk or "beyan etmiştir" in kucuk or "şeklinde ifade" in kucuk
+        ):
+            _paragraf_metnini_degistir(p, beyan)
+            beyan_yazildi = True
+        elif not kapanis_yazildi and kapanis and "iş bu tutanak" in kucuk:
+            _paragraf_metnini_degistir(p, kapanis)
+            kapanis_yazildi = True
+
+    # Tutanakta işveren beyanı yoksa en sona ekle (+ gerekiyorsa kapanış ve imza).
+    if beyan and not beyan_yazildi:
+        _govde_paragrafi(belge, beyan)
+        if kapanis and not kapanis_yazildi:
+            _govde_paragrafi(belge, kapanis)
+            kapanis_yazildi = True
+        # Tutanakta imza tablosu yoksa ekleyelim.
+        if not belge.tables:
+            _imza_tablosu(belge, veri)
+
+    return belge
+
+
+def tutanaktan_bellege(tutanak_kaynak, veri: IsverenVerisi) -> io.BytesIO:
+    akis = io.BytesIO()
+    tutanaktan_uret(tutanak_kaynak, veri).save(akis)
+    akis.seek(0)
+    return akis
